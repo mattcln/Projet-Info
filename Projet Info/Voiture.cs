@@ -13,7 +13,7 @@ namespace Projet_Info
         private int nbPortes;
 
         //  CONSTRUCTEUR
-        public Voiture(string immat, string marque, string modèle, string typeVeh, string couleur, int nbPortes) : base(immat, marque, modèle, typeVeh)
+        public Voiture(string Immat, string marque, string modèle, string TypeVeh, string couleur, int nbPortes) : base(Immat, marque, modèle, TypeVeh)
         {
             this.couleur = couleur;
             this.nbPortes = nbPortes;

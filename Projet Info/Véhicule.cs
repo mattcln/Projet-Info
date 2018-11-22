@@ -9,35 +9,35 @@ namespace Projet_Info
     abstract class Véhicule
     {
         //  ATTRIBUTS
-        protected string immat;
-        protected string typeVeh;
+        protected string Immat;
+        protected string TypeVeh;
         protected string marque;
         protected string modèle;
 
         //  CONSTRUCTEUR
-        public Véhicule(string immat, string typeVeh, string marque, string modèle)
+        public Véhicule(string Immat, string TypeVeh, string marque, string modèle)
         {
-            this.immat = immat;
-            this.typeVeh = typeVeh;
+            this.Immat = Immat;
+            this.TypeVeh = TypeVeh;
             this.marque = marque;
             this.modèle = modèle;
         }
 
         // METHODE
 
-        public string Immat
+        public string ImmatReturn
         {
-            get { return immat; }
+            get { return Immat; }
         }
-        public string TypeVeh
+        public string TypeVehReturn
         {
-            get { return typeVeh; }
+            get { return TypeVeh; }
         }
-        public string Marque
+        public string MarqueReturn
         {
             get { return marque; }
         }
-        public string Modèle
+        public string ModèleReturn
         {
             get { return modèle; }
         }
@@ -45,7 +45,7 @@ namespace Projet_Info
         public override string ToString()
         {
             string str = "";
-            str = "Immatriculation: " + immat + "\n Type de véhicule: " + typeVeh + "\n Marque: " + marque + "\n Modèle: " + modèle + "\n";
+            str = "Immatriculation: " + Immat + "\n Type de véhicule: " + TypeVeh + "\n Marque: " + marque + "\n Modèle: " + modèle + "\n";
             return str;
         }
     }

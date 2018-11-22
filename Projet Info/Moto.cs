@@ -11,7 +11,7 @@ namespace Projet_Info
         private int Puissance;
         private string Couleur;
 
-        public Moto(string immat, string marque, string modèle, string typeVeh, string couleur, int Puissance) : base(immat, marque, modèle, typeVeh)
+        public Moto(string Immat, string marque, string modèle, string TypeVeh, string couleur, int Puissance) : base(Immat, marque, modèle, TypeVeh)
         {
             this.Puissance = Puissance;
             this.Couleur = couleur;
