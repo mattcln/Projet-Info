@@ -33,9 +33,9 @@ namespace Projet_Info
         {
             listVeh.Remove(V);
         }
-        public override string Tostring()
+        public string Tostring()
         {
-            string str = "Véhicule: " + nom + "\n";
+            string str = "Nom: " + nom + "Prénom: " + "ID:" + ID + "\n";
             for (int i = 0; i < listVeh.Count; i++)
             {
                 str += listVeh[i].ToString();

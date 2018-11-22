@@ -6,30 +6,29 @@ using System.Threading.Tasks;
 
 namespace Projet_Info
 {
-    class Véhicule
+    abstract class Véhicule
     {
         //  ATTRIBUTS
         protected string immat;
         protected string typeVeh;
         protected string marque;
         protected string modèle;
-        protected string couleur;
-        protected int nbPortes;
 
         //  CONSTRUCTEUR
-        public Véhicule(string immat, string typeVeh, string marque, string modèle, string couleur, int nbPortes)
+        public Véhicule(string immat, string typeVeh, string marque, string modèle)
         {
             this.immat = immat;
             this.typeVeh = typeVeh;
             this.marque = marque;
             this.modèle = modèle;
-            this.couleur = couleur;
-            this.nbPortes = nbPortes;
         }
 
         // METHODE
-
-        
-
+        public override string ToString()
+        {
+            string str = "";
+            str = "Immatriculation: " + immat + "\n Type de véhicule: " + typeVeh + "\n Marque: " + marque + "\n Modèle: " + modèle + "\n";
+            return str;
+        }
     }
 }
