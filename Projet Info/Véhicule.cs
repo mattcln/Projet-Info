@@ -24,6 +24,24 @@ namespace Projet_Info
         }
 
         // METHODE
+
+        public string Immat
+        {
+            get { return immat; }
+        }
+        public string TypeVeh
+        {
+            get { return typeVeh; }
+        }
+        public string Marque
+        {
+            get { return marque; }
+        }
+        public string Modèle
+        {
+            get { return modèle; }
+        }
+
         public override string ToString()
         {
             string str = "";

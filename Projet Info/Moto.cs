@@ -6,9 +6,17 @@ using System.Threading.Tasks;
 
 namespace Projet_Info
 {
-    class Moto
+    class Moto : Véhicule
     {
-        bite bite bite :) ;
+        private int Puissance;
+        private string Couleur;
+
+        public Moto(string immat, string marque, string modèle, string typeVeh, string couleur, int Puissance) : base(immat, marque, modèle, typeVeh)
+        {
+            this.Puissance = Puissance;
+            this.Couleur = couleur;
+        }
+
 
     }
 }
