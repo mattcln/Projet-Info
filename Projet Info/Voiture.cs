@@ -9,20 +9,20 @@ namespace Projet_Info
     class Voiture : Véhicule
     {
         //  ATTRIBUTS
-        private string couleur;
-        private int nbPortes;
+        private string Couleur;
+        private int NbPortes;
 
         //  CONSTRUCTEUR
-        public Voiture(string Immat, string marque, string modèle, string TypeVeh, string couleur, int nbPortes) : base(Immat, marque, modèle, TypeVeh)
+        public Voiture(string Immat, string Marque, string Modèle, string TypeVeh, string Couleur, int NbPortes) : base(Immat, Marque, Modèle, TypeVeh)
         {
-            this.couleur = couleur;
-            this.nbPortes = nbPortes;
+            this.Couleur = Couleur;
+            this.NbPortes = NbPortes;
         }
 
         //  METHODE        
         public override string ToString()
         {
-            return base.ToString() + "Couleur: " + couleur + "\n Nombre de portes: " + nbPortes + "\n";
+            return base.ToString() + "Couleur: " + Couleur + "\n Nombre de portes: " + NbPortes + "\n";
         }
     }
 }

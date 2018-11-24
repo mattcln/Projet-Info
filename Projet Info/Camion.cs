@@ -6,7 +6,18 @@ using System.Threading.Tasks;
 
 namespace Projet_Info
 {
-    class Camion
+    class Camion:Véhicule
     {
+        private int Volume;
+
+        public Camion(string Immat, string Marque, string Modèle, string TypeVeh, int Volume) :base(Immat, Marque, Modèle, TypeVeh)
+        {
+            this.Volume = Volume;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + "Volume: " + Volume + "\n";
+        }
     }
 }

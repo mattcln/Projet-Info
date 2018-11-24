@@ -11,10 +11,15 @@ namespace Projet_Info
         private int Puissance;
         private string Couleur;
 
-        public Moto(string Immat, string marque, string modèle, string TypeVeh, string couleur, int Puissance) : base(Immat, marque, modèle, TypeVeh)
+        public Moto(string Immat, string Marque, string Modèle, string TypeVeh, string Couleur, int Puissance) : base(Immat, Marque, Modèle, TypeVeh)
         {
             this.Puissance = Puissance;
-            this.Couleur = couleur;
+            this.Couleur = Couleur;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + "Couleur: " + Couleur + "\n Puissance du moteur: " + Puissance + "\n";
         }
 
 
