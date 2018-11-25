@@ -10,30 +10,34 @@ namespace Projet_Info
     {
         static void Main(string[] args)
         {
-            CréerClient();
-            Console.ReadKey();
-
+            List<int> NombreAléatoire = new List<int>();           
+            CréerClient(NombreAléatoire);
+            Console.ReadKey();            
         }
-        static void CréerClient()
+        static void CréerClient(List<int> NombreAléatoire)
         {
             Console.WriteLine("Veuillez renseigner les informations du client :" + "\nNom : ");
             string Nom = Console.ReadLine();
             Console.WriteLine("Prénom : ");
             string Prénom = Console.ReadLine();
-            int ID = CréerIDClient();
-            Client C1 = new Client(Nom, Prénom, ID);            
-        }
-        static int CréerIDClient()
+            int ID = CréerIDClient(NombreAléatoire);
+            string NomClasseClient = "C" + NombreAléatoire.Count();
+            Console.WriteLine(NomClasseClient);
+            Client Client = new Client(Nom, Prénom, ID);            
+        }        
+        static int CréerIDClient(List<int> NombreAléatoire)
         {
-            List<int> NombreAléatoire = new List<int>();
+            
             Random Aléatoire = new Random();
             int ID = Aléatoire.Next(100000, 999999);
-            while (NombreAléatoire.BinarySearch(ID) == 0)
-            {
-                ID = Aléatoire.Next(100000, 999999);                
+            bool ExisteDeja = NombreAléatoire.Contains(ID);
+            while (ExisteDeja == true)
+            {                
+                ID = Aléatoire.Next(100000, 999999);
+                ExisteDeja = NombreAléatoire.Contains(ID);
             }
             NombreAléatoire.Add(ID);
-            Console.WriteLine("ID Client créée : " + ID);
+            Console.WriteLine("ID Client : " + ID);
             return ID;
         }
     }
