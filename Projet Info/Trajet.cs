@@ -14,6 +14,7 @@ namespace Projet_Info
         private bool Autoroute;
         private bool AllerRetour;
         private List<Véhicule> listVeh;
+        private List<Client> listClient;
 
         public Trajet(int NbKm, string VilleDépart, string VilleArrivée, bool Autoroute, bool AllerRetour)
         {
@@ -23,6 +24,7 @@ namespace Projet_Info
             this.Autoroute = Autoroute;
             this.AllerRetour = AllerRetour;
             listVeh = new List<Véhicule>();
+            listClient = new List<Client>();
         }
 
         public void AjoutVéhicule(Véhicule V)
@@ -41,6 +43,11 @@ namespace Projet_Info
             for (int i = 0; i < listVeh.Count; i++)
             {
                 str += listVeh[i].ToString();
+            }      //Je comprends pas trop cette méthode, la ça affiche tout les véhicules de la liste nan ?
+            Console.WriteLine("Voici les informations du client assigné au trajet : ");
+            for (int i = 0; i < listClient.Count; i++)
+            {
+                str += listClient[i].ToString();
             }      //Je comprends pas trop cette méthode, la ça affiche tout les véhicules de la liste nan ?
 
             return str;
