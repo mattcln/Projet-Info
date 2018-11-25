@@ -20,10 +20,12 @@ namespace Projet_Info
             string Nom = Console.ReadLine();
             Console.WriteLine("Prénom : ");
             string Prénom = Console.ReadLine();
+            Console.WriteLine("Type de permis : ");
+            string TypePermis = Console.ReadLine();
             int ID = CréerIDClient(NombreAléatoire);
             string NomClasseClient = "C" + NombreAléatoire.Count();
             Console.WriteLine(NomClasseClient);
-            Client Client = new Client(Nom, Prénom, ID);            
+            Client Client = new Client(Nom, Prénom, TypePermis, ID);            
         }        
         static int CréerIDClient(List<int> NombreAléatoire)
         {
@@ -39,6 +41,34 @@ namespace Projet_Info
             NombreAléatoire.Add(ID);
             Console.WriteLine("ID Client : " + ID);
             return ID;
+        }
+        static void EnregistrerVéhicule()
+        {
+            Console.WriteLine("Veuillez renseigner les informations du véhicules : " + "\n Immatriculation : ");            
+            string Immatriculation = Console.ReadLine();
+            Console.WriteLine("Marque : ");
+            string Marque = Console.ReadLine();
+            Console.WriteLine("Modèle : ");
+            string Modèle = Console.ReadLine();
+            Console.WriteLine("Voulez - vous ajouter une moto, un camion ou une voiture ? ");
+            string TypeVéhicule = Console.ReadLine();
+            if (TypeVéhicule == "moto")
+            {
+                Console.WriteLine("Puissance : ");
+                int Puissance = int.Parse(Console.ReadLine());
+                Console.WriteLine("Couleur : ");
+                string Couleur = Console.ReadLine();
+                Moto Moto = new Moto(Immatriculation, Marque, Modèle, TypeVéhicule, Couleur, Puissance);                
+            }
+            if (TypeVéhicule == "camion")
+            {
+
+            }
+            if (TypeVéhicule == "voiture")
+            {
+
+            }
+
         }
     }
 }

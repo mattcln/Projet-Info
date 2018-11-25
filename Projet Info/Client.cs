@@ -9,17 +9,18 @@ namespace Projet_Info
     class Client
     {
         //  ATTRIBUTS
-        private string nom;
-        private string prénom;
-        private string typePermis;
-        private int ID;  // string ou int, à choisir en fonction du type d'ID
+        private string Nom;
+        private string Prénom;
+        private string TypePermis;
+        private int ID; 
         private List<Véhicule> listVeh;
 
         //  CONSTRUCTEUR
-        public Client(string nom, string prénom, int ID)
+        public Client(string Nom, string Prénom, string TypePermis, int ID)
         {
-            this.nom = nom;
-            this.prénom = prénom;
+            this.Nom = Nom;
+            this.Prénom = Prénom;
+            this.TypePermis = TypePermis;
             this.ID = ID;
             listVeh = new List<Véhicule>();
         }
@@ -35,7 +36,7 @@ namespace Projet_Info
         }
         public string Tostring()
         {
-            string str = "Nom: " + nom + "Prénom: " + "ID:" + ID + "\n";
+            string str = "Nom: " + Nom + "Prénom: " + Prénom + "Permis : " + TypePermis + "ID:" + ID + "\n";
             for (int i = 0; i < listVeh.Count; i++)
             {
                 str += listVeh[i].ToString();
