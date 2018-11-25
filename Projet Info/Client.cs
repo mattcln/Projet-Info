@@ -12,8 +12,7 @@ namespace Projet_Info
         private string Nom;
         private string Prénom;
         private string TypePermis;
-        private int ID; 
-        private List<Véhicule> listVeh;
+        private int ID;         
 
         //  CONSTRUCTEUR
         public Client(string Nom, string Prénom, string TypePermis, int ID)
@@ -21,26 +20,14 @@ namespace Projet_Info
             this.Nom = Nom;
             this.Prénom = Prénom;
             this.TypePermis = TypePermis;
-            this.ID = ID;
-            listVeh = new List<Véhicule>();
+            this.ID = ID;            
         }
 
         //  METHODE
-        public void AjoutVéhicule(Véhicule V)
-        {
-            listVeh.Add(V);
-        }
-        public void SuppVéhicule(Véhicule V)
-        {
-            listVeh.Remove(V);
-        }
+        
         public string Tostring()
         {
-            string str = "Nom: " + Nom + "Prénom: " + Prénom + "Permis : " + TypePermis + "ID:" + ID + "\n";
-            for (int i = 0; i < listVeh.Count; i++)
-            {
-                str += listVeh[i].ToString();
-            }
+            string str = "Nom: " + Nom + "\nPrénom: " + Prénom + "\nPermis : " + TypePermis + "\nID:" + ID;            
             return str;
         }
     }

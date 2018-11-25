@@ -10,8 +10,9 @@ namespace Projet_Info
     {
         static void Main(string[] args)
         {
-            List<int> NombreAléatoire = new List<int>();           
-            CréerClient(NombreAléatoire);
+            List<int> NombreAléatoire = new List<int>();
+            //EnregistrerVéhicule();
+            //CréerClient(NombreAléatoire);
             Console.ReadKey();            
         }
         static void CréerClient(List<int> NombreAléatoire)
@@ -52,6 +53,7 @@ namespace Projet_Info
             string Modèle = Console.ReadLine();
             Console.WriteLine("Voulez - vous ajouter une moto, un camion ou une voiture ? ");
             string TypeVéhicule = Console.ReadLine();
+            TypeVéhicule = TypeVéhicule.ToLower(); //Permet de mettre le string en minuscule pour être sure que le type soit compris
             if (TypeVéhicule == "moto")
             {
                 Console.WriteLine("Puissance : ");
@@ -62,13 +64,18 @@ namespace Projet_Info
             }
             if (TypeVéhicule == "camion")
             {
-
+                Console.WriteLine("Volume : ");
+                int Volume = int.Parse(Console.ReadLine());
+                Camion Camion = new Camion(Immatriculation, Marque, Modèle, TypeVéhicule, Volume);
             }
             if (TypeVéhicule == "voiture")
             {
-
+                Console.WriteLine("Couleur : ");
+                string Couleur = Console.ReadLine();
+                Console.WriteLine("Nombre de portes : ");
+                int NbPortes = int.Parse(Console.ReadLine());
+                Voiture Voiture = new Voiture(Immatriculation, Marque, Modèle, TypeVéhicule, Couleur, NbPortes);
             }
-
         }
     }
 }
