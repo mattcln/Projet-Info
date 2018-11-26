@@ -17,6 +17,7 @@ namespace Projet_Info
         {
             listVéhicule = new List<Véhicule>();
             listClient = new List<Client>();
+            listTrajet = new List<Trajet>();
         }
 
         static void CréerClient(List<int> NombreAléatoire)
