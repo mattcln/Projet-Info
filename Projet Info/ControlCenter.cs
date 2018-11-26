@@ -110,7 +110,7 @@ namespace Projet_Info
             while (LireAllerRetour != "oui" && LireAllerRetour != "non")
             {
                 Console.WriteLine("Il y a eu une erreur de compréhension, veuillez renseigner de nouveau par 'oui' ou 'non' s'il-vous-plaît :");
-                LireAllerRetour = Console.ReadLine();
+                LireAutoRoute = Console.ReadLine();
                 LireAllerRetour = LireAllerRetour.ToLower();
             }
             if (LireAllerRetour == "oui")
@@ -119,51 +119,13 @@ namespace Projet_Info
             }
             Console.WriteLine("Saisir l'ID du client affecté à ce trajet: ");
             int IDClient = int.Parse(Console.ReadLine());
-            bool ExistenceClient = false;
-            ExistenceClient = VérifierExistenceClient(IDClient);
-            while (ExistenceClient == false) //Faut créer un while pour vérifier si l'ID du client existe bien (et sinon proposer de créer un nouveau client je pense)
+            while () //Faut créer un while pour vérifier si l'ID du client existe bien (et sinon proposer de créer un nouveau client je pense)
             {
-                Console.WriteLine("Il n'existe aucun client avec cet ID, voulez-vous réessayer ?");
-                string LireRéponseID = Console.ReadLine();
-                LireRéponseID = LireRéponseID.ToLower();
-                bool RéponseID = false;
-                while (LireRéponseID != "oui" && LireRéponseID != "non")
-                {
-                    Console.WriteLine("Il y a eu une erreur de compréhension, veuillez renseigner de nouveau par 'oui' ou 'non' s'il-vous-plaît :");
-                    LireRéponseID = Console.ReadLine();
-                    LireRéponseID = LireRéponseID.ToLower();
-                }
-                if (LireRéponseID == "oui")
-                {
-                    RéponseID = true;
-                }
-                if(RéponseID == true)
-                {
-                    Console.WriteLine("Saisir l'ID du client affecté à ce trajet: ");
-                    IDClient = int.Parse(Console.ReadLine());
-                    ExistenceClient = VérifierExistenceClient(IDClient);
-                }
-                if(RéponseID == false)
-                {
-                    Console.WriteLine("Voulez-vous créer le profil de ce client ?");
-                    string LireRéponseProfile = Console.ReadLine();
-                    LireRéponseProfile = LireRéponseProfile.ToLower();                    
-                    while(LireRéponseProfile != "oui" && LireRéponseProfile != "non")
-                    {
-                        Console.WriteLine("Il y a eu une erreur de compréhension, veuillez renseigner de nouveau par 'oui' ou 'non' s'il-vous-plaît :");
-                        LireRéponseProfile = Console.ReadLine();
-                        LireRéponseProfile = LireRéponseProfile.ToLower();
-                    }
-                    if (LireRéponseProfile == "oui")
-                    {
-                        CréerClient(NombreAléatoire);
-                    }
-                    else ExistenceClient = true; // y'a un soucis ici, faudrait que le void s'arrête parce qu'on a décidé de rien faire finalement
-                }
+
             }
             Console.WriteLine("Saisir l'immatriculation du véhicule affecté à ce trajet: ");
             string Immatriculation = Console.ReadLine();
-            //while () //Faut créer un while pour vérifier si l'immat existe bien (et sinon proposer de créer un nouveau véhicule je pense)
+            while () //Faut créer un while pour vérifier si l'immat existe bien (et sinon proposer de créer un nouveau véhicule je pense)
             {
 
             }
@@ -171,17 +133,11 @@ namespace Projet_Info
             Trajet Trajet = new Trajet(NbKm, VilleDépart, VilleArrivée, Autoroute, AllerRetour, IDClient, Immatriculation, IDTrajet);
 
         }
-        public bool VérifierExistenceClient (int iD)
+        public bool Contains (Client item)
         {
-            bool existe = false;
-            for (int i = 0; i<listClient.Count;i++)
-            { 
-                if (listClient[i].ID == iD)
-                {
-                    existe = true;
-                }
-            }
-            return existe;
+            bool Existe = false;
+            listClient.Find(x => x.ID.Contains(item));
+            return Existe;
         }
     }
 }
