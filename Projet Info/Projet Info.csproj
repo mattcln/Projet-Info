@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BITE.cs" />
     <Compile Include="Camion.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="ControlCenter.cs" />
