@@ -22,35 +22,12 @@ namespace Projet_Info
             this.Autoroute = Autoroute;
             this.AllerRetour = AllerRetour;            
         }
-
-        public void AjoutVéhicule(Véhicule V)
-        {
-            listVeh.Add(V);
-        }
-        public void SuppVéhicule(Véhicule V)
-        {
-            listVeh.Remove(V);
-        }
+        
         public override string ToString()
         {
             string str = "";
-            str = "Nombre de kilomètre : " + NbKm + "\nVille de départ : " + VilleDépart + "\nVille d'arrivée : " + VilleArrivée + "\nAutoroute : " + Autoroute + "\nAller / Retour : " + AllerRetour;
-            Console.WriteLine("Voici les informations du véhicule assigné au trajet : ");
-            for (int i = 0; i < listVeh.Count; i++)
-            {
-                str += listVeh[i].ToString();
-            }      //Je comprends pas trop cette méthode, la ça affiche tout les véhicules de la liste nan ?
-            Console.WriteLine("Voici les informations du client assigné au trajet : ");
-            for (int i = 0; i < listClient.Count; i++)
-            {
-                str += listClient[i].ToString();
-            }      //Je comprends pas trop cette méthode, la ça affiche tout les véhicules de la liste nan ?
-
+            str = "Nombre de kilomètre : " + NbKm + "\nVille de départ : " + VilleDépart + "\nVille d'arrivée : " + VilleArrivée + "\nAutoroute : " + Autoroute + "\nAller / Retour : " + AllerRetour;            
             return str;
-        }
-        public void AffecterClient(string ID)
-        {
-            ClientAffecté = listClient.Find(ID);
-        }        
+        }             
     }
 }
