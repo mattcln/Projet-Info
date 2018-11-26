@@ -9,15 +9,19 @@ namespace Projet_Info
     abstract class Véhicule
     {
         //  ATTRIBUTS
-        protected string Immat;
+        protected string immat;
         protected string TypeVeh;
         protected string Marque;
         protected string Modèle;
+        public string Immat
+        {
+            get { return immat; }
+        }
 
         //  CONSTRUCTEUR
         public Véhicule(string Immat, string TypeVeh, string Marque, string Modèle)
         {
-            this.Immat = Immat;
+            this.immat = Immat;
             this.TypeVeh = TypeVeh;
             this.Marque = Marque;
             this.Modèle = Modèle;
@@ -25,10 +29,6 @@ namespace Projet_Info
 
         // METHODE
 
-        public string ImmatReturn
-        {
-            get { return Immat; }
-        }
         public string TypeVehReturn
         {
             get { return TypeVeh; }
