@@ -21,7 +21,5 @@ namespace Projet_Info
         {
             return base.ToString() + "Couleur: " + Couleur + "\n Puissance du moteur: " + Puissance + "\n";
         }
-
-
     }
 }
