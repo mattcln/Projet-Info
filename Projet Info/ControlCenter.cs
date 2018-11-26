@@ -20,7 +20,7 @@ namespace Projet_Info
             listTrajet = new List<Trajet>();
         }
 
-        static void CréerClient(List<int> NombreAléatoire)
+        public void CréerClient(List<int> NombreAléatoire)
         {
             Console.WriteLine("Veuillez renseigner les informations du client :" + "\nNom : ");
             string Nom = Console.ReadLine();
@@ -31,7 +31,7 @@ namespace Projet_Info
             int ID = CréerIDClient(NombreAléatoire);
             Client Client = new Client(Nom, Prénom, TypePermis, ID);
         }
-        static int CréerIDClient(List<int> NombreAléatoire)
+        public int CréerIDClient(List<int> NombreAléatoire)
         {
 
             Random Aléatoire = new Random();
@@ -47,7 +47,7 @@ namespace Projet_Info
             return ID;
         }
 
-        static void EnregistrerVéhicule()
+        public void EnregistrerVéhicule()
         {
             Console.WriteLine("Veuillez renseigner les informations du véhicule : " + "\n Immatriculation : ");
             string Immatriculation = Console.ReadLine();
@@ -81,7 +81,7 @@ namespace Projet_Info
                 Voiture Voiture = new Voiture(Immatriculation, Marque, Modèle, TypeVéhicule, Couleur, NbPortes);
             }
         }
-        static void CréerTrajet()
+        public void CréerTrajet()
         {
             Console.WriteLine("Veuillez renseigner les informations du véhicule : " + "\nVille de départ : ");
             string VilleDépart = Console.ReadLine();

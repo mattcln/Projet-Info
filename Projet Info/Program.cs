@@ -9,7 +9,9 @@ namespace Projet_Info
     class Program
     {
         static void Main(string[] args)
-        {            
+        {
+            ControlCenter C = new ControlCenter();
+            C.CréerTrajet();            
             Console.ReadKey();           
         }        
     }
