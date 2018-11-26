@@ -105,7 +105,7 @@ namespace Projet_Info
             }
             Console.WriteLine("Est-ce un trajet Aller/Retour ? : ");
             string LireAllerRetour = Console.ReadLine();
-            LireAllerRetour = LireAutoRoute.ToLower();
+            LireAllerRetour = LireAllerRetour.ToLower();
             bool AllerRetour = false;
             while (LireAllerRetour != "oui" && LireAllerRetour != "non")
             {
@@ -115,8 +115,9 @@ namespace Projet_Info
             }
             if (LireAllerRetour == "oui")
             {
-                Autoroute = true;
+                AllerRetour = true;
             }
+
             Trajet Trajet = new Trajet(NbKm, VilleDépart, VilleArrivée, Autoroute, AllerRetour);
         }
     }

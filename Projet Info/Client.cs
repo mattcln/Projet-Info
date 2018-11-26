@@ -29,11 +29,6 @@ namespace Projet_Info
         {
             string str = "Nom: " + Nom + "\nPrénom: " + Prénom + "\nPermis : " + TypePermis + "\nID:" + ID;            
             return str;
-        }
-        public int RetourneIDClient()
-        {
-            int IDClient;
-            return IDClient;
-        }
+        }        
     }
 }

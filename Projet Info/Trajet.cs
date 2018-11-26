@@ -13,14 +13,18 @@ namespace Projet_Info
         private string VilleArrivée;
         private bool Autoroute;
         private bool AllerRetour;
+        private int IDClient;
+        private string Immatriculation;
 
-        public Trajet(int NbKm, string VilleDépart, string VilleArrivée, bool Autoroute, bool AllerRetour)
+        public Trajet(int NbKm, string VilleDépart, string VilleArrivée, bool Autoroute, bool AllerRetour, int IDClient, string Immatriculation)
         {
             this.NbKm = NbKm;
             this.VilleDépart = VilleDépart;
             this.VilleArrivée = VilleArrivée;
             this.Autoroute = Autoroute;
-            this.AllerRetour = AllerRetour;            
+            this.AllerRetour = AllerRetour;
+            this.IDClient = IDClient;
+            this.Immatriculation = Immatriculation;
         }
         
         public override string ToString()
