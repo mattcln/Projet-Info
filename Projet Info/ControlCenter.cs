@@ -28,10 +28,10 @@ namespace Projet_Info
             string Prénom = Console.ReadLine();
             Console.WriteLine("Type de permis : ");
             string TypePermis = Console.ReadLine();
-            int ID = CréerID(NombreAléatoire);
+            int ID = CréerIDClient(NombreAléatoire);
             Client Client = new Client(Nom, Prénom, TypePermis, ID);
         }
-        static int CréerID(List<int> NombreAléatoire)
+        static int CréerIDClient(List<int> NombreAléatoire)
         {
 
             Random Aléatoire = new Random();
@@ -43,7 +43,7 @@ namespace Projet_Info
                 ExisteDeja = NombreAléatoire.Contains(ID);
             }
             NombreAléatoire.Add(ID);
-            Console.WriteLine("ID : " + ID);
+            Console.WriteLine("ID Client : " + ID);
             return ID;
         }
 
@@ -80,10 +80,6 @@ namespace Projet_Info
                 int NbPortes = int.Parse(Console.ReadLine());
                 Voiture Voiture = new Voiture(Immatriculation, Marque, Modèle, TypeVéhicule, Couleur, NbPortes);
             }
-        }
-        static void CréerTrajet()
-        {
-
         }
     }
 }
