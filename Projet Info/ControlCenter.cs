@@ -127,25 +127,20 @@ namespace Projet_Info
                 ArrêtDeLaMéthode = false;
                 Console.WriteLine("Il n'existe aucun client avec cet ID, voulez-vous réessayer ?");
                 string LireRéponseID = Console.ReadLine();
-                LireRéponseID = LireRéponseID.ToLower();
-                bool RéponseID = false;
+                LireRéponseID = LireRéponseID.ToLower();                
                 while (LireRéponseID != "oui" && LireRéponseID != "non")
                 {
                     Console.WriteLine("Il y a eu une erreur de compréhension, veuillez renseigner de nouveau par 'oui' ou 'non' s'il-vous-plaît :");
                     LireRéponseID = Console.ReadLine();
                     LireRéponseID = LireRéponseID.ToLower();
-                }
-                if (LireRéponseID == "oui")
-                {
-                    RéponseID = true;
-                }
-                if(RéponseID == true)
+                }                
+                if(LireRéponseID == "oui")
                 {
                     Console.WriteLine("Saisir l'ID du client affecté à ce trajet: ");
                     IDClient = int.Parse(Console.ReadLine());
                     ExistenceClient = VérifierExistenceClient(IDClient);
                 }
-                if(RéponseID == false)
+                if(LireRéponseID == "non")
                 {
                     Console.WriteLine("Voulez-vous créer le profil de ce client ?");
                     string LireRéponseProfile = Console.ReadLine();
@@ -217,7 +212,7 @@ namespace Projet_Info
             }
             if (ArrêtDeLaMéthode == true)
             {
-                Console.WriteLine("La création du trajet est annulé, il manquait des informations.");
+                Console.WriteLine("La création du trajet est annulée, il manquait des informations.");
             }
 
         }
@@ -228,9 +223,11 @@ namespace Projet_Info
             { 
                 if (listClient[i].ID == iD)
                 {
+                    Console.WriteLine("Voici l'ID lu : "  + listClient[i].ID);
                     existe = true;
                 }
             }
+            Console.WriteLine("Vérification faite : " + existe);
             return existe;
         }
         public bool VérifierExistenceImmatriculation (string immat)
@@ -239,7 +236,7 @@ namespace Projet_Info
             for(int i = 0; i<listVéhicule.Count; i++)
             {
                 if (listVéhicule[i].Immat == immat)
-                {
+                {                    
                     existe = true;
                 }
             }
