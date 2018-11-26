@@ -49,7 +49,7 @@ namespace Projet_Info
 
         static void EnregistrerVéhicule()
         {
-            Console.WriteLine("Veuillez renseigner les informations du véhicules : " + "\n Immatriculation : ");
+            Console.WriteLine("Veuillez renseigner les informations du véhicule : " + "\n Immatriculation : ");
             string Immatriculation = Console.ReadLine();
             Console.WriteLine("Marque : ");
             string Marque = Console.ReadLine();
@@ -80,6 +80,44 @@ namespace Projet_Info
                 int NbPortes = int.Parse(Console.ReadLine());
                 Voiture Voiture = new Voiture(Immatriculation, Marque, Modèle, TypeVéhicule, Couleur, NbPortes);
             }
+        }
+        static void CréerTrajet()
+        {
+            Console.WriteLine("Veuillez renseigner les informations du véhicule : " + "\nVille de départ : ");
+            string VilleDépart = Console.ReadLine();
+            Console.WriteLine("Ville d'arrivée : ");
+            string VilleArrivée = Console.ReadLine();
+            Console.WriteLine("Nombre de km à parcourir : ");
+            int NbKm = int.Parse(Console.ReadLine());
+            Console.WriteLine("Est-ce que le trajet est sur autoroute ? : ");
+            string LireAutoRoute = Console.ReadLine();
+            LireAutoRoute = LireAutoRoute.ToLower();
+            bool Autoroute = false;
+            while(LireAutoRoute != "oui" && LireAutoRoute != "non")
+            {
+                Console.WriteLine("Il y a eu une erreur de compréhension, veuillez renseigner de nouveau par 'oui' ou 'non' s'il-vous-plaît :" );
+                LireAutoRoute = Console.ReadLine();
+                LireAutoRoute = LireAutoRoute.ToLower();
+            }
+            if (LireAutoRoute == "oui")
+            {
+                Autoroute = true;
+            }
+            Console.WriteLine("Est-ce un trajet Aller/Retour ? : ");
+            string LireAllerRetour = Console.ReadLine();
+            LireAllerRetour = LireAutoRoute.ToLower();
+            bool AllerRetour = false;
+            while (LireAllerRetour != "oui" && LireAllerRetour != "non")
+            {
+                Console.WriteLine("Il y a eu une erreur de compréhension, veuillez renseigner de nouveau par 'oui' ou 'non' s'il-vous-plaît :");
+                LireAutoRoute = Console.ReadLine();
+                LireAllerRetour = LireAllerRetour.ToLower();
+            }
+            if (LireAllerRetour == "oui")
+            {
+                Autoroute = true;
+            }
+            Trajet Trajet = new Trajet(NbKm, VilleDépart, VilleArrivée, Autoroute, AllerRetour);
         }
     }
 }
