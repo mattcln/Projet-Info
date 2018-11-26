@@ -12,15 +12,19 @@ namespace Projet_Info
         private string Nom;
         private string Prénom;
         private string TypePermis;
-        private int ID;         
+        private int iD;
+        public int ID
+        {
+            get { return iD; }
+        }
 
         //  CONSTRUCTEUR
-        public Client(string Nom, string Prénom, string TypePermis, int ID)
+        public Client(string Nom, string Prénom, string TypePermis, int iD)
         {
             this.Nom = Nom;
             this.Prénom = Prénom;
             this.TypePermis = TypePermis;
-            this.ID = ID;            
+            this.iD = iD;            
         }
 
         //  METHODE
