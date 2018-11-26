@@ -28,10 +28,10 @@ namespace Projet_Info
             string Prénom = Console.ReadLine();
             Console.WriteLine("Type de permis : ");
             string TypePermis = Console.ReadLine();
-            int ID = CréerIDClient(NombreAléatoire);
+            int ID = CréerID(NombreAléatoire);
             Client Client = new Client(Nom, Prénom, TypePermis, ID);
         }
-        public int CréerIDClient(List<int> NombreAléatoire)
+        public int CréerID(List<int> NombreAléatoire)
         {
 
             Random Aléatoire = new Random();
@@ -117,9 +117,27 @@ namespace Projet_Info
             {
                 AllerRetour = true;
             }
+            Console.WriteLine("Saisir l'ID du client affecté à ce trajet: ");
+            int IDClient = int.Parse(Console.ReadLine());
+            while () //Faut créer un while pour vérifier si l'ID du client existe bien (et sinon proposer de créer un nouveau client je pense)
+            {
 
-            Trajet Trajet = new Trajet(NbKm, VilleDépart, VilleArrivée, Autoroute, AllerRetour);
+            }
+            Console.WriteLine("Saisir l'immatriculation du véhicule affecté à ce trajet: ");
+            string Immatriculation = Console.ReadLine();
+            while () //Faut créer un while pour vérifier si l'immat existe bien (et sinon proposer de créer un nouveau véhicule je pense)
+            {
 
+            }
+            int IDTrajet = CréerID(NombreAléatoire);
+            Trajet Trajet = new Trajet(NbKm, VilleDépart, VilleArrivée, Autoroute, AllerRetour, IDClient, Immatriculation, IDTrajet);
+
+        }
+        public bool Contains (Client item)
+        {
+            bool Existe = false;
+            listClient.Find(x => x.ID.Contains(item));
+            return Existe;
         }
     }
 }
