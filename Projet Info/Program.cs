@@ -11,8 +11,8 @@ namespace Projet_Info
         static void Main(string[] args)
         {
             ControlCenter C = new ControlCenter();
-            C.CréerTrajet();
-            Console.ReadKey();
-        }
+            C.CréerTrajet();            
+            Console.ReadKey();           
+        }        
     }
 }
