@@ -119,6 +119,7 @@ namespace Projet_Info
             }
 
             Trajet Trajet = new Trajet(NbKm, VilleDépart, VilleArrivée, Autoroute, AllerRetour);
+
         }
     }
 }
