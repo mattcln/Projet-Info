@@ -13,8 +13,6 @@ namespace Projet_Info
         private string VilleArrivée;
         private bool Autoroute;
         private bool AllerRetour;
-        private List<Véhicule> listVeh;
-        private List<Client> listClient;
 
         public Trajet(int NbKm, string VilleDépart, string VilleArrivée, bool Autoroute, bool AllerRetour)
         {
@@ -22,9 +20,7 @@ namespace Projet_Info
             this.VilleDépart = VilleDépart;
             this.VilleArrivée = VilleArrivée;
             this.Autoroute = Autoroute;
-            this.AllerRetour = AllerRetour;
-            listVeh = new List<Véhicule>();
-            listClient = new List<Client>();
+            this.AllerRetour = AllerRetour;            
         }
 
         public void AjoutVéhicule(Véhicule V)
@@ -52,5 +48,9 @@ namespace Projet_Info
 
             return str;
         }
+        public void AffecterClient(string ID)
+        {
+            ClientAffecté = listClient.Find(ID);
+        }        
     }
 }

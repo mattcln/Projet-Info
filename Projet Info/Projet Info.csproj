@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Camion.cs" />
     <Compile Include="Client.cs" />
+    <Compile Include="ControlCenter.cs" />
     <Compile Include="Moto.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

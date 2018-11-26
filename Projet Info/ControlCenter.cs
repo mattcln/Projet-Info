@@ -6,15 +6,19 @@ using System.Threading.Tasks;
 
 namespace Projet_Info
 {
-    class Program
+    class ControlCenter
     {
-        static void Main(string[] args)
+        List<int> NombreAléatoire = new List<int>();
+        private List<Véhicule> listVéhicule;
+        private List<Client> listClient;
+        private List<Trajet> listTrajet;
+
+        public ControlCenter()
         {
-            List<int> NombreAléatoire = new List<int>();
-            //EnregistrerVéhicule();
-            CréerClient(NombreAléatoire);
-            Console.ReadKey();            
+            listVéhicule = new List<Véhicule>();
+            listClient = new List<Client>();
         }
+
         static void CréerClient(List<int> NombreAléatoire)
         {
             Console.WriteLine("Veuillez renseigner les informations du client :" + "\nNom : ");
@@ -23,17 +27,17 @@ namespace Projet_Info
             string Prénom = Console.ReadLine();
             Console.WriteLine("Type de permis : ");
             string TypePermis = Console.ReadLine();
-            int ID = CréerIDClient(NombreAléatoire);            
-            Client Client = new Client(Nom, Prénom, TypePermis, ID);            
-        }        
+            int ID = CréerIDClient(NombreAléatoire);
+            Client Client = new Client(Nom, Prénom, TypePermis, ID);
+        }
         static int CréerIDClient(List<int> NombreAléatoire)
         {
-            
+
             Random Aléatoire = new Random();
             int ID = Aléatoire.Next(100000, 999999);
             bool ExisteDeja = NombreAléatoire.Contains(ID);
             while (ExisteDeja == true)
-            {                
+            {
                 ID = Aléatoire.Next(100000, 999999);
                 ExisteDeja = NombreAléatoire.Contains(ID);
             }
@@ -41,9 +45,10 @@ namespace Projet_Info
             Console.WriteLine("ID Client : " + ID);
             return ID;
         }
+
         static void EnregistrerVéhicule()
         {
-            Console.WriteLine("Veuillez renseigner les informations du véhicules : " + "\n Immatriculation : ");            
+            Console.WriteLine("Veuillez renseigner les informations du véhicules : " + "\n Immatriculation : ");
             string Immatriculation = Console.ReadLine();
             Console.WriteLine("Marque : ");
             string Marque = Console.ReadLine();
@@ -58,7 +63,7 @@ namespace Projet_Info
                 int Puissance = int.Parse(Console.ReadLine());
                 Console.WriteLine("Couleur : ");
                 string Couleur = Console.ReadLine();
-                Moto Moto = new Moto(Immatriculation, Marque, Modèle, TypeVéhicule, Couleur, Puissance);                
+                Moto Moto = new Moto(Immatriculation, Marque, Modèle, TypeVéhicule, Couleur, Puissance);
             }
             if (TypeVéhicule == "camion")
             {
