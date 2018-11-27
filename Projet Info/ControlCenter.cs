@@ -21,7 +21,7 @@ namespace Projet_Info
         }
 
         public void CréerClient(List<int> NombreAléatoire)
-        {
+        {            
             Console.WriteLine("Veuillez renseigner les informations du client :" + "\nNom : ");
             string Nom = Console.ReadLine();
             Console.WriteLine("Prénom : ");
@@ -29,7 +29,8 @@ namespace Projet_Info
             Console.WriteLine("Type de permis : ");
             string TypePermis = Console.ReadLine();
             int ID = CréerID(NombreAléatoire);
-            Client Client = new Client(Nom, Prénom, TypePermis, ID);
+            Client C = new Client(Nom, Prénom, TypePermis, ID);
+            listClient.Add(C);            
         }
         public int CréerID(List<int> NombreAléatoire)
         {
@@ -217,17 +218,16 @@ namespace Projet_Info
 
         }
         public bool VérifierExistenceClient (int iD)
-        {
-            bool existe = false;
+        {            
+            bool existe = false;            
             for (int i = 0; i<listClient.Count;i++)
-            { 
+            {                
                 if (listClient[i].ID == iD)
                 {
-                    Console.WriteLine("Voici l'ID lu : "  + listClient[i].ID);
                     existe = true;
+                    Console.WriteLine("L'ID client est vérifié.");
                 }
-            }
-            Console.WriteLine("Vérification faite : " + existe);
+            }            
             return existe;
         }
         public bool VérifierExistenceImmatriculation (string immat)

@@ -10,9 +10,14 @@ namespace Projet_Info
     {
         static void Main(string[] args)
         {
+            List<int> NombreAléatoire = new List<int>();
             ControlCenter C = new ControlCenter();
             C.CréerTrajet();
             Console.ReadKey();
+        }
+        static void Menu()
+        {
+
         }
     }
 }
