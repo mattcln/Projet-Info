@@ -66,12 +66,14 @@ namespace Projet_Info
                 Console.WriteLine("Couleur : ");
                 string Couleur = Console.ReadLine();
                 Moto Moto = new Moto(Immatriculation, Marque, Modèle, TypeVéhicule, Couleur, Puissance);
+                listVéhicule.Add(Moto);
             }
             if (TypeVéhicule == "camion")
             {
                 Console.WriteLine("Volume : ");
                 int Volume = int.Parse(Console.ReadLine());
                 Camion Camion = new Camion(Immatriculation, Marque, Modèle, TypeVéhicule, Volume);
+                listVéhicule.Add(Camion);
             }
             if (TypeVéhicule == "voiture")
             {
@@ -80,6 +82,7 @@ namespace Projet_Info
                 Console.WriteLine("Nombre de portes : ");
                 int NbPortes = int.Parse(Console.ReadLine());
                 Voiture Voiture = new Voiture(Immatriculation, Marque, Modèle, TypeVéhicule, Couleur, NbPortes);
+                listVéhicule.Add(Voiture);
             }
         }
         public void CréerTrajet()
@@ -258,6 +261,7 @@ namespace Projet_Info
                 if (listVéhicule[i].Immat == immat)
                 {                    
                     existe = true;
+                    Console.WriteLine("L'immatriculation du véhicule est vérifiée.");
                 }
             }
             return existe;
