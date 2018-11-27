@@ -21,8 +21,9 @@ namespace Projet_Info
         }
 
         public void CréerClient(List<int> NombreAléatoire)
-        {            
-            Console.WriteLine("Veuillez renseigner les informations du client :" + "\nNom : ");
+        {
+            Console.Clear();
+            Console.WriteLine("Veuillez renseigner les informations du client :" + "\n" + "\nNom : ");
             string Nom = Console.ReadLine();
             Console.WriteLine("Prénom : ");
             string Prénom = Console.ReadLine();
@@ -44,13 +45,14 @@ namespace Projet_Info
                 ExisteDeja = NombreAléatoire.Contains(ID);
             }
             NombreAléatoire.Add(ID);
-            Console.WriteLine("ID Client : " + ID);
+            Console.WriteLine("ID : " + ID);
             return ID;
         }
 
         public void EnregistrerVéhicule()
         {
-            Console.WriteLine("Veuillez renseigner les informations du véhicule : " + "\n Immatriculation : ");
+            Console.Clear();
+            Console.WriteLine("Veuillez renseigner les informations du véhicule : " + "\n" + "\n Immatriculation : ");
             string Immatriculation = Console.ReadLine();
             Console.WriteLine("Marque : ");
             string Marque = Console.ReadLine();
@@ -87,7 +89,8 @@ namespace Projet_Info
         }
         public void CréerTrajet()
         {
-            Console.WriteLine("Veuillez renseigner les informations du véhicule : " + "\nVille de départ : ");
+            Console.Clear();
+            Console.WriteLine("Veuillez renseigner les informations du trajet : " + "\n" + "\nVille de départ : ");
             string VilleDépart = Console.ReadLine();
             Console.WriteLine("Ville d'arrivée : ");
             string VilleArrivée = Console.ReadLine();
@@ -186,17 +189,27 @@ namespace Projet_Info
                     }
                 }
             }
+            bool NouvelleImmatriculation = false;
+            bool ExistenceImmatriculation = false;
+            string Immatriculation = "";
             if (ArrêtDeLaMéthode == false) //Permet d'arrêter le programme vu que aucun ID Client n'a été affecté
             {
-                Console.WriteLine("Saisir l'immatriculation du véhicule affecté à ce trajet: ");
-                string Immatriculation = Console.ReadLine();
-                bool ExistenceImmatriculation = false;
-                ExistenceImmatriculation = VérifierExistenceImmatriculation(Immatriculation);
-                while (ExistenceImmatriculation == false)
+                if (NouvelleImmatriculation == false)
                 {
-                    Console.WriteLine("Il n'existe aucun véhicule avec cet ID, vous-voulez réessayer ?");
-                    string LireRéponseImmat = Console.ReadLine();
-                    LireRéponseImmat = LireRéponseImmat.ToLower();
+                    Console.WriteLine("Saisir l'immatriculation du véhicule affecté à ce trajet: ");
+                    Immatriculation = Console.ReadLine();                    
+                    ExistenceImmatriculation = VérifierExistenceImmatriculation(Immatriculation);
+                }
+                string LireRéponseImmat = "";
+                while (ExistenceImmatriculation == false)
+                {                    
+                    if (NouvelleImmatriculation == false)
+                    {
+                        Console.WriteLine("Il n'existe aucun véhicule avec cet immatriculation, vous-voulez réessayer ?");
+                        LireRéponseImmat = Console.ReadLine();
+                        LireRéponseImmat = LireRéponseImmat.ToLower();
+                    }                    
+                    
                     while (LireRéponseImmat != "oui" && LireRéponseImmat != "non")
                     {
                         Console.WriteLine("Il y a eu une erreur de compréhension, veuillez renseigner de nouveau par 'oui' ou 'non' s'il-vous-plaît :");
@@ -205,10 +218,25 @@ namespace Projet_Info
                     }
                     if (LireRéponseImmat == "oui")
                     {
-                        Console.WriteLine("Saisir l'immatriculation du véhicule affecté à ce trajet: ");
-                        Immatriculation = Console.ReadLine();
-                        ExistenceImmatriculation = VérifierExistenceImmatriculation(Immatriculation);
-
+                        if (NouvelleImmatriculation == true)
+                        {
+                            while (ExistenceImmatriculation == false)
+                            {
+                                Console.WriteLine("Veuillez renseigner l'immatriculation du nouveau véhicule s'il-vous-plaît :");
+                                Immatriculation = Console.ReadLine();
+                                ExistenceImmatriculation = VérifierExistenceImmatriculation(Immatriculation);
+                                if (NouvelleImmatriculation == false)
+                                {
+                                    Console.WriteLine("Vous avez fait une erreur en recopiant l'immatriculation.");
+                                }
+                            }                            
+                        }
+                        else
+                        {
+                            Console.WriteLine("Saisir l'immatriculation du véhicule affecté à ce trajet: ");
+                            Immatriculation = Console.ReadLine();
+                            ExistenceImmatriculation = VérifierExistenceImmatriculation(Immatriculation);
+                        }
                     }
                     if (LireRéponseImmat == "non")
                     {
@@ -224,15 +252,18 @@ namespace Projet_Info
                         if (LireRéponseVéhicule == "oui")
                         {
                             EnregistrerVéhicule();
+                            LireRéponseImmat = "oui";
+                            NouvelleImmatriculation = true;
                         }
                         else ArrêtDeLaMéthode = true;
                     }
                 }
+                Console.WriteLine("Création d'un ID pour le trajet :");
                 int IDTrajet = CréerID(NombreAléatoire);
                 if (ArrêtDeLaMéthode == false)
                 {
                     Trajet Trajet = new Trajet(NbKm, VilleDépart, VilleArrivée, Autoroute, AllerRetour, IDClient, Immatriculation, IDTrajet);
-                }                
+                }
             }
             if (ArrêtDeLaMéthode == true)
             {
