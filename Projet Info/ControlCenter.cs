@@ -123,12 +123,17 @@ namespace Projet_Info
             bool ExistenceClient = false;
             ExistenceClient = VérifierExistenceClient(IDClient);
             bool ArrêtDeLaMéthode = false;
+            bool NouveauClient = false;
+            string LireRéponseID = "";
             while (ExistenceClient == false)
             {
-                ArrêtDeLaMéthode = false;
-                Console.WriteLine("Il n'existe aucun client avec cet ID, voulez-vous réessayer ?");
-                string LireRéponseID = Console.ReadLine();
-                LireRéponseID = LireRéponseID.ToLower();                
+                ArrêtDeLaMéthode = false;                
+                if (NouveauClient == false)
+                {
+                    Console.WriteLine("Il n'existe aucun client avec cet ID, voulez-vous réessayer ?");
+                    LireRéponseID = Console.ReadLine();
+                    LireRéponseID = LireRéponseID.ToLower();
+                }                                    
                 while (LireRéponseID != "oui" && LireRéponseID != "non")
                 {
                     Console.WriteLine("Il y a eu une erreur de compréhension, veuillez renseigner de nouveau par 'oui' ou 'non' s'il-vous-plaît :");
@@ -136,10 +141,23 @@ namespace Projet_Info
                     LireRéponseID = LireRéponseID.ToLower();
                 }                
                 if(LireRéponseID == "oui")
-                {
-                    Console.WriteLine("Saisir l'ID du client affecté à ce trajet: ");
-                    IDClient = int.Parse(Console.ReadLine());
-                    ExistenceClient = VérifierExistenceClient(IDClient);
+                {                    
+                    if(NouveauClient == true)
+                    {
+                        Console.WriteLine("Veuillez renseigner l'ID du nouveau client s'il-vous-plaît :");
+                        IDClient = int.Parse(Console.ReadLine());
+                        ExistenceClient = VérifierExistenceClient(IDClient);
+                        if (ExistenceClient == false)
+                        {
+                            Console.WriteLine("Vous avez fait une erreur en recopiant l'ID.");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Saisir l'ID du client affecté à ce trajet: ");
+                        IDClient = int.Parse(Console.ReadLine());
+                        ExistenceClient = VérifierExistenceClient(IDClient);
+                    }
                 }
                 if(LireRéponseID == "non")
                 {
@@ -154,7 +172,9 @@ namespace Projet_Info
                     }
                     if (LireRéponseProfile == "oui")
                     {
-                        CréerClient(NombreAléatoire);                        
+                        CréerClient(NombreAléatoire);
+                        LireRéponseID = "oui";
+                        NouveauClient = true;
                     }
                     else
                     {
