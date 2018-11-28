@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Projet_Info
 {
     class Program
     {
         static void Main(string[] args)
-        {
+        {            
             Menu();
             Console.ReadKey();
         }
@@ -17,6 +18,7 @@ namespace Projet_Info
         {
             List<int> NombreAléatoire = new List<int>();
             ControlCenter C = new ControlCenter();
+            C.ChargementDonnées();
             Console.WriteLine("-----------------M E N U   D E    G E S T I O N-----------------");
             Console.WriteLine("");
             Console.WriteLine(" Voici les options à votre dispositions :");
@@ -35,18 +37,24 @@ namespace Projet_Info
             {
                 case 1:
                     C.CréerClient(NombreAléatoire);
+                    Console.WriteLine("Le client a été créé avec succès !\n");
                     break;
                 case 2:
                     C.EnregistrerVéhicule();
-                    break;
+                    Console.WriteLine("Le véhicule a été enregistré avec succès !\n");
+                    break;                    
                 case 3:
                     C.CréerTrajet();
+                    Console.WriteLine("Le trajet a été enregistré avec succès !\n");
                     break;
                 default:
                     Console.WriteLine(" Valeur non-attendue reçu");
                     break;
             }
-
-        }
+            if (ChoixMenu == 1 || ChoixMenu == 2 || ChoixMenu == 3)
+            {
+                Menu();
+            }
+        }        
     }
 }

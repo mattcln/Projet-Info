@@ -16,8 +16,9 @@ namespace Projet_Info
         private int IDClient;
         private string Immatriculation;
         private int IDTrajet;
+        private bool Actif;
 
-        public Trajet(int NbKm, string VilleDépart, string VilleArrivée, bool Autoroute, bool AllerRetour, int IDClient, string Immatriculation, int IDTrajet)
+        public Trajet(int NbKm, string VilleDépart, string VilleArrivée, bool Autoroute, bool AllerRetour, int IDClient, string Immatriculation, int IDTrajet, bool Actif)
         {
             this.NbKm = NbKm;
             this.VilleDépart = VilleDépart;
@@ -27,12 +28,13 @@ namespace Projet_Info
             this.IDClient = IDClient;
             this.Immatriculation = Immatriculation;
             this.IDTrajet = IDTrajet;
+            this.Actif = Actif;
         }
         
         public override string ToString()
         {
             string str = "";
-            str = "Nombre de kilomètre : " + NbKm + "\nVille de départ : " + VilleDépart + "\nVille d'arrivée : " + VilleArrivée + "\nAutoroute : " + Autoroute + "\nAller / Retour : " + AllerRetour + "\nID client: " + IDClient + "\nImmatriculation du véhicule: " + Immatriculation + "\nID trajet: ";
+            str = "Nombre de kilomètre : " + NbKm + "\nVille de départ : " + VilleDépart + "\nVille d'arrivée : " + VilleArrivée + "\nAutoroute : " + Autoroute + "\nAller / Retour : " + AllerRetour + "\nID client: " + IDClient + "\nImmatriculation du véhicule: " + Immatriculation + "\nID trajet: " + "Activité du trajet: " + Actif;
             return str;
         }               
     }
