@@ -13,12 +13,18 @@ namespace Projet_Info
         private List<Véhicule> listVéhicule;
         private List<Client> listClient;
         private List<Trajet> listTrajet;
+        private List<Voiture> listVoiture;
+        private List<Moto> listMoto;
+        private List<Camion> listCamion;
 
         public ControlCenter()
         {
             listVéhicule = new List<Véhicule>();
             listClient = new List<Client>();
             listTrajet = new List<Trajet>();
+            listVoiture = new List<Voiture>();
+            listMoto = new List<Moto>();
+            listCamion = new List<Camion>();
         }
 
         public void CréerClient(List<int> NombreAléatoire)
@@ -33,8 +39,7 @@ namespace Projet_Info
             int ID = CréerID(NombreAléatoire);
             Client C = new Client(Nom, Prénom, TypePermis, ID);
             listClient.Add(C);
-            SauvegardeClient();
-            Console.Clear();
+            SauvegardeClient();            
         }
         public int CréerID(List<int> NombreAléatoire)
         {
@@ -351,15 +356,39 @@ namespace Projet_Info
         {
             try
             {
-                StreamWriter EcritureFichierClient = new StreamWriter("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Clients.txt");
-                string ligne = "";
+                StreamWriter EcritureFichierClient = new StreamWriter("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Clients.txt");                
                 for (int i = 0; i < listClient.Count; i++)
                 {
-                    string str = listClient[i].Tostring();
-                    string[] tab = ligne.Split('\n');
-                    EcritureFichierClient.WriteLine(tab[0] + ";" + tab[1] + ";" + tab[2] + ";" + tab[3]);
+                    EcritureFichierClient.WriteLine(listClient[i].nom + ";" + listClient[i].prénom + ";" + listClient[i].typepermis + ";" + listClient[i].ID);                    
                 }
                 EcritureFichierClient.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+        public void SauvegardeVéhicule()
+        {
+            try
+            {
+                StreamWriter EcritureFichierVéhicule = new StreamWriter("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Véhicules.txt");
+                for (int i = 0; i < listVéhicule.Count; i++)
+                {
+                    if(listVéhicule[i].typeveh == "voiture")
+                    {
+                        
+                    }
+                    if (listVéhicule[i].typeveh == "moto")
+                    {
+                        
+                    }
+                    if (listVéhicule[i].typeveh == "camion")
+                    {
+
+                    }                    
+                }
+                EcritureFichierVéhicule.Close();
             }
             catch (Exception e)
             {

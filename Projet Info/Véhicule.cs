@@ -18,6 +18,18 @@ namespace Projet_Info
         {
             get { return immat; }
         }
+        public string typeveh
+        {
+            get { return TypeVeh; }
+        }
+        public string marque
+        {
+            get { return Marque; }
+        }
+        public string modèle
+        {
+            get { return Modèle; }
+        }
 
         //  CONSTRUCTEUR
         public Véhicule(string Immat, string TypeVeh, string Marque, string Modèle)
@@ -28,20 +40,7 @@ namespace Projet_Info
             this.Modèle = Modèle;
         }
 
-        // METHODE
-
-        public string TypeVehReturn
-        {
-            get { return TypeVeh; }
-        }
-        public string MarqueReturn
-        {
-            get { return Marque; }
-        }
-        public string ModèleReturn
-        {
-            get { return Modèle; }
-        }
+        // METHODE        
 
         public override string ToString()
         {

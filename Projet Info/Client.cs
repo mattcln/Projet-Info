@@ -17,6 +17,18 @@ namespace Projet_Info
         {
             get { return iD; }
         }
+        public string nom
+        {
+            get { return Nom; }
+        }
+        public string prénom
+        {
+            get { return Prénom; }
+        }
+        public string typepermis
+        {
+            get { return TypePermis; }
+        }
 
         //  CONSTRUCTEUR
         public Client(string Nom, string Prénom, string TypePermis, int iD)
@@ -31,7 +43,7 @@ namespace Projet_Info
         
         public string Tostring()
         {
-            string str = "|Nom: " + Nom + "\nPrénom: " + Prénom + "\nPermis : " + TypePermis + "\nID:" + ID;            
+            string str = "\n|Nom: " + Nom + "\n|Prénom: " + Prénom + "\n|Permis : " + TypePermis + "\n|ID:" + ID;            
             return str;            
         }        
     }

@@ -10,10 +10,10 @@ namespace Projet_Info
     {
         //  ATTRIBUTS
         private string Couleur;
-        private int NbPortes;
+        private int NbPortes;        
 
         //  CONSTRUCTEUR
-        public Voiture(string Immat, string Marque, string Modèle, string TypeVeh, string Couleur, int NbPortes) : base(Immat, Marque, Modèle, TypeVeh)
+        public Voiture(string immat, string Marque, string Modèle, string TypeVeh, string Couleur, int NbPortes) : base(immat, Marque, Modèle, TypeVeh)
         {
             this.Couleur = Couleur;
             this.NbPortes = NbPortes;
