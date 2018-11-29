@@ -31,8 +31,8 @@ namespace Projet_Info
         
         public string Tostring()
         {
-            string str = "Nom: " + Nom + "\nPrénom: " + Prénom + "\nPermis : " + TypePermis + "\nID:" + ID;            
-            return str;
+            string str = "|Nom: " + Nom + "\nPrénom: " + Prénom + "\nPermis : " + TypePermis + "\nID:" + ID;            
+            return str;            
         }        
     }
 }
