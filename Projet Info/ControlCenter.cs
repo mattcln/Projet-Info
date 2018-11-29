@@ -34,6 +34,7 @@ namespace Projet_Info
             Client C = new Client(Nom, Prénom, TypePermis, ID);
             listClient.Add(C);
             Console.Clear();
+            SauvegardeClient();
         }
         public int CréerID(List<int> NombreAléatoire)
         {
@@ -302,7 +303,7 @@ namespace Projet_Info
         {
             try
             {
-                StreamReader LectureFichierClient = new StreamReader("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Clients.txt");
+                StreamReader LectureFichierClient = new StreamReader("C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Clients.txt");
                 string ligne = "";
                 while (LectureFichierClient.EndOfStream == false)
                 {
@@ -313,30 +314,50 @@ namespace Projet_Info
                     listClient.Add(C);
                 }
                 LectureFichierClient.Close();
-                StreamReader LectureFichierVéhicules = new StreamReader("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Véhicules.txt");                
-                while (LectureFichierClient.EndOfStream == false)
+                StreamReader LectureFichierVéhicules = new StreamReader("C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Véhicules.txt");
+                while (LectureFichierVéhicules.EndOfStream == false)
                 {
-                    ligne = LectureFichierClient.ReadLine();
-                    string[] tab = ligne.Split(';');                    
-                    if (tab[1] == "Voiture")
+                    ligne = LectureFichierVéhicules.ReadLine();
+                    string[] tab = ligne.Split(';');
+                    if (tab[3] == "voiture")
                     {
-                        int NbPortes = Convert.ToInt32(tab[3]);
+                        int NbPortes = Convert.ToInt32(tab[5]);
                         Voiture Voiture = new Voiture(tab[0], tab[1], tab[2], tab[3], tab[4], NbPortes);
                         listVéhicule.Add(Voiture);
                     }
-                    if (tab[1] == "Camion")
+                    if (tab[3] == "camion")
                     {
-                        int VolumeCamion = Convert.ToInt32(tab[4]);
+                        int VolumeCamion = Convert.ToInt32(tab[5]);
                         Camion Camion = new Camion(tab[0], tab[1], tab[2], tab[3], VolumeCamion);
                         listVéhicule.Add(Camion);
                     }
-                    if (tab[1] == "Moto")
+                    if (tab[3] == "moto")
                     {
-                        int Puissance = Convert.ToInt32(tab[4]);
+                        int Puissance = Convert.ToInt32(tab[5]);
                         Moto Moto = new Moto(tab[0], tab[1], tab[2], tab[3], tab[4], Puissance);
                         listVéhicule.Add(Moto);
                     }
                 }
+                LectureFichierVéhicules.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }            
+        }
+        public void SauvegardeClient()
+        {
+            try
+            {
+                StreamWriter EcritureFichierClient = new StreamWriter("C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Clients.txt");
+                string ligne = "";
+                for (int i = 0; i < listClient.Count; i++)
+                {
+                    string str = listClient[i].Tostring();
+                    string[] tab = ligne.Split('\n');
+                    EcritureFichierClient.WriteLine(tab[0] + ";" + tab[1] + ";" + tab[2] + ";" + tab[3]);
+                }
+                EcritureFichierClient.Close();
             }
             catch (Exception e)
             {

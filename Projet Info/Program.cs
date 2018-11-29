@@ -10,15 +10,17 @@ namespace Projet_Info
     class Program
     {
         static void Main(string[] args)
-        {            
+        {
+            ControlCenter C = new ControlCenter();
+            C.ChargementDonnées();
             Menu();
             Console.ReadKey();
         }
         static void Menu()
         {
             List<int> NombreAléatoire = new List<int>();
-            ControlCenter C = new ControlCenter();
-            C.ChargementDonnées();
+            ControlCenter C = new ControlCenter();            
+                        
             Console.WriteLine("-----------------M E N U   D E    G E S T I O N-----------------");
             Console.WriteLine("");
             Console.WriteLine(" Voici les options à votre dispositions :");
