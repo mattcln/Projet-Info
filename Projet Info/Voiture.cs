@@ -10,7 +10,15 @@ namespace Projet_Info
     {
         //  ATTRIBUTS
         private string Couleur;
-        private int NbPortes;        
+        private int NbPortes;
+        public string couleur
+        {
+            get { return Couleur; }
+        }
+        public int nbportes
+        {
+            get { return NbPortes; }
+        }
 
         //  CONSTRUCTEUR
         public Voiture(string immat, string Marque, string Modèle, string TypeVeh, string Couleur, int NbPortes) : base(immat, Marque, Modèle, TypeVeh)

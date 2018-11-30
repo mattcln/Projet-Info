@@ -8,7 +8,11 @@ namespace Projet_Info
 {
     class Camion:Véhicule
     {
-        private int Volume;               
+        private int Volume;
+        public int volume
+        {
+            get { return Volume; }
+        }
 
         public Camion(string Immat, string Marque, string Modèle, string TypeVeh, int Volume) :base(Immat, Marque, Modèle, TypeVeh)
         {

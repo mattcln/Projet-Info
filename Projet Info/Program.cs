@@ -18,8 +18,7 @@ namespace Projet_Info
         {
             List<int> NombreAléatoire = new List<int>();
             ControlCenter C = new ControlCenter();
-            C.ChargementDonnées();
-            Console.Clear();
+            C.ChargementDonnées();            
             Console.WriteLine("-----------------M E N U   D E    G E S T I O N-----------------");
             Console.WriteLine("");
             Console.WriteLine(" Voici les options à votre dispositions :");

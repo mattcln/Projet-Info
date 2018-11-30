@@ -93,6 +93,7 @@ namespace Projet_Info
                 Voiture Voiture = new Voiture(Immatriculation, Marque, Modèle, TypeVéhicule, Couleur, NbPortes);
                 listVéhicule.Add(Voiture);
             }
+            SauvegardeVéhicule();
         }
         public void CréerTrajet()
         {
@@ -323,26 +324,26 @@ namespace Projet_Info
                 string LocalisationVéhicules = "C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Véhicules.txt";
                 StreamReader LectureFichierVéhicules = new StreamReader(LocalisationVéhicules);                
                 while (LectureFichierVéhicules.EndOfStream == false)
-                {
+                {                    
                     ligne = LectureFichierVéhicules.ReadLine();
                     string[] tab = ligne.Split(';');                    
                     if (tab[3] == "voiture")
                     {                        
                         int NbPortes = Convert.ToInt32(tab[5]);                        
                         Voiture Voiture = new Voiture(tab[0], tab[1], tab[2], tab[3], tab[4], NbPortes);                        
-                        listVéhicule.Add(Voiture);
+                        listVéhicule.Add(Voiture);                        
                     }
                     if (tab[3] == "camion")
                     {
                         int VolumeCamion = Convert.ToInt32(tab[5]);
                         Camion Camion = new Camion(tab[0], tab[1], tab[2], tab[3], VolumeCamion);
-                        listVéhicule.Add(Camion);
+                        listVéhicule.Add(Camion);                        
                     }
                     if (tab[3] == "moto")
                     {
                         int Puissance = Convert.ToInt32(tab[5]);
                         Moto Moto = new Moto(tab[0], tab[1], tab[2], tab[3], tab[4], Puissance);
-                        listVéhicule.Add(Moto);
+                        listVéhicule.Add(Moto);                        
                     }                    
                 }
                 LectureFichierVéhicules.Close();                
@@ -372,23 +373,31 @@ namespace Projet_Info
         {
             try
             {
-                StreamWriter EcritureFichierVéhicule = new StreamWriter("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Véhicules.txt");
-                for (int i = 0; i < listVéhicule.Count; i++)
-                {
-                    if(listVéhicule[i].typeveh == "voiture")
+                StreamWriter EcritureFichierVéhicule = new StreamWriter("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Véhicules.txt");                
+                int NbVoiture = 1; int NbMoto = 1; int NbCamion = 1;
+                Console.WriteLine(listVéhicule.Count);
+                for (int i = 1; i <= listVéhicule.Count; i++)
+                {                    
+                    string str = listVéhicule[i].Immat + ";" + listVéhicule[i].marque + ";" + listVéhicule[i].modèle + ";" + listVéhicule[i].typeveh + ";" + listVoiture[NbVoiture].couleur + ";" + listVoiture[NbVoiture].nbportes;                    
+                    if (listVéhicule[i].typeveh == "voiture")
                     {
+                        EcritureFichierVéhicule.WriteLine(listVéhicule[i].Immat + ";" + listVéhicule[i].marque + ";" + listVéhicule[i].modèle + ";" + listVéhicule[i].typeveh + ";" + listVoiture[NbVoiture].couleur + ";" + listVoiture[NbVoiture].nbportes);
+                        NbVoiture++;
                         
                     }
                     if (listVéhicule[i].typeveh == "moto")
                     {
-                        
+                        EcritureFichierVéhicule.WriteLine(listVéhicule[i].Immat + ";" + listVéhicule[i].marque + ";" + listVéhicule[i].modèle + ";" + listVéhicule[i].typeveh + ";" + listMoto[NbMoto].couleur + ";" + listMoto[NbMoto].puissance);
+                        NbMoto++;
                     }
                     if (listVéhicule[i].typeveh == "camion")
                     {
-
+                        EcritureFichierVéhicule.WriteLine(listVéhicule[i].Immat + ";" + listVéhicule[i].marque + ";" + listVéhicule[i].modèle + ";" + listVéhicule[i].typeveh + ";" + listCamion[NbCamion].volume);
+                        NbCamion++;
                     }                    
                 }
                 EcritureFichierVéhicule.Close();
+                string okay = Console.ReadLine();
             }
             catch (Exception e)
             {
