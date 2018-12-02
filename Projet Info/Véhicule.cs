@@ -29,7 +29,7 @@ namespace Projet_Info
         public string modèle
         {
             get { return Modèle; }
-        }
+        }        
 
         //  CONSTRUCTEUR
         public Véhicule(string Immat, string TypeVeh, string Marque, string Modèle)

@@ -17,6 +17,14 @@ namespace Projet_Info
         private string Immatriculation;
         private int IDTrajet;
         private bool Actif;
+        public int idtrajet
+        {
+            get { return IDTrajet; }
+        }
+        public bool actif
+        {
+            get { return Actif; }
+        }       
 
         public Trajet(int NbKm, string VilleDépart, string VilleArrivée, bool Autoroute, bool AllerRetour, int IDClient, string Immatriculation, int IDTrajet, bool Actif)
         {
@@ -30,7 +38,14 @@ namespace Projet_Info
             this.IDTrajet = IDTrajet;
             this.Actif = Actif;
         }
-        
+        public void ChangerActif()
+        {
+            if (Actif == true)
+            {
+                Actif = false;
+            }
+            else Actif = true;
+        }
         public override string ToString()
         {
             string str = "";
