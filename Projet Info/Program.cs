@@ -89,7 +89,6 @@ namespace Projet_Info
                 Console.WriteLine("Merci d'avoir utilisé notre programme de gestion, à bientôt !");
             }
         }
-
         static void Menu()
         {
             List<int> NombreAléatoire = new List<int>();
@@ -98,8 +97,8 @@ namespace Projet_Info
             Console.WriteLine("-----------------M E N U   D E    G E S T I O N-----------------");
             Console.WriteLine("");
             Console.WriteLine(" Voici les options à votre dispositions :");
-            Console.WriteLine(" 1 -   Compte client");
-            Console.WriteLine(" 2 -   Enregistrement d'un nouveau véhicule");
+            Console.WriteLine(" 1 -   Menu Client");
+            Console.WriteLine(" 2 -   Menu Véhicule");
             Console.WriteLine(" 3 -   Enregistrement d'un nouveau trajet");
             Console.WriteLine(" 4 -   Mise à jour de l'état d'un trajet");
             Console.WriteLine(" 5 -   Fermeture du programme");
@@ -114,6 +113,7 @@ namespace Projet_Info
             switch (ChoixMenu)
             {
                 case 1:
+                    Console.Clear();
                     Console.WriteLine("-----------------M E N U   C L I E N T S-----------------");
                     Console.WriteLine("");
                     Console.WriteLine(" Voici les options à votre dispositions :");
@@ -130,27 +130,31 @@ namespace Projet_Info
                     switch (ChoixMenu2)
                     {
                         case 1:
+                            Console.Clear();
                             C.CréerClient(NombreAléatoire);
                             Console.WriteLine("Le client a été créé avec succès !\n");
                             break;
 
                         case 2:
-                            C.SupprimerClient();
-                            Console.WriteLine("Le client a été supprimé avec succès !\n");
+                            Console.Clear();
+                            C.SupprimerClient();                            
                             break;
 
                         case 3:
+                            Console.Clear();
                             C.InformationsClient();
                             // afficher les infos clients
                             break;
 
                         case 4:
+                            Console.Clear();
                             // methode retourner au menu principal
                             break;
                     }
                    break;
 
                 case 2:
+                    Console.Clear();
                     Console.WriteLine("-----------------M E N U   V E H I C U L E-----------------");
                     Console.WriteLine("");
                     Console.WriteLine(" Voici les options à votre dispositions :");
@@ -167,19 +171,23 @@ namespace Projet_Info
                     switch (ChoixMenu3)
                     {
                         case 1:
+                            Console.Clear();
                             C.EnregistrerVéhicule();
                             Console.WriteLine("Le véhicule a été enregistré avec succès !\n");
                             break;
 
                         case 2:
+                            Console.Clear();
                             // retirer un véhicule
                             break;
 
                         case 3:
+                            Console.Clear();
                             // info véhicule
                             break;
 
                         case 4:
+                            Console.Clear();
                             // methode retourner au menu principal
                             break;
                     }                    
