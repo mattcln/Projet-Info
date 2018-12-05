@@ -47,7 +47,6 @@ namespace Projet_Info
             string str = "";
             str = "Immatriculation: " + Immat + "\n Type de véhicule: " + TypeVeh + "\n Marque: " + Marque + "\n Modèle: " + Modèle + "\n";
             return str;
-        }        
-        
-    }
+        }
+        public abstract double Cout(int NbKm);
 }

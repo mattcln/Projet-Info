@@ -23,5 +23,11 @@ namespace Projet_Info
         {
             return base.ToString() + "Volume: " + Volume + "\n";
         }
+        public override double Cout(int nbKm)
+        {
+            double c = 0;
+            c = 0.30 * nbKm;
+            return c;
+        }
     }
 }
