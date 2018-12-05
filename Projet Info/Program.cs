@@ -98,7 +98,7 @@ namespace Projet_Info
             Console.WriteLine("-----------------M E N U   D E    G E S T I O N-----------------");
             Console.WriteLine("");
             Console.WriteLine(" Voici les options à votre dispositions :");
-            Console.WriteLine(" 1 -   Création d'un nouveau compte client");
+            Console.WriteLine(" 1 -   Compte client");
             Console.WriteLine(" 2 -   Enregistrement d'un nouveau véhicule");
             Console.WriteLine(" 3 -   Enregistrement d'un nouveau trajet");
             Console.WriteLine(" 4 -   Mise à jour de l'état d'un trajet");
@@ -113,14 +113,45 @@ namespace Projet_Info
             }
             switch (ChoixMenu)
             {
-                case 1:                    
+                case 1:
                     C.CréerClient(NombreAléatoire);
                     Console.WriteLine("Le client a été créé avec succès !\n");
                     break;
                 case 2:
-                    C.EnregistrerVéhicule();
-                    Console.WriteLine("Le véhicule a été enregistré avec succès !\n");
-                    break;                    
+                    Console.WriteLine("-----------------M E N U   V E H I C U L E-----------------");
+                    Console.WriteLine("");
+                    Console.WriteLine(" Voici les options à votre dispositions :");
+                    Console.WriteLine(" 1 -   Attribuer un véhicule");
+                    Console.WriteLine(" 2 -   Retirer un véhicule");
+                    Console.WriteLine(" 3 -   Information véhicule");
+                    Console.WriteLine(" 4 -   Retour au menu principal");
+                    int ChoixMenu3 = int.Parse(Console.ReadLine());
+                    while (ChoixMenu3 != 1 && ChoixMenu3 != 2 && ChoixMenu3 != 3 && ChoixMenu3 != 4)
+                    {
+                        Console.WriteLine(" Ceci ne correspond à aucune action, choississez une des actions disponibles :");
+                        ChoixMenu3 = int.Parse(Console.ReadLine());
+                    }
+                    switch (ChoixMenu3)
+                    {
+                        case 1:
+                            C.EnregistrerVéhicule();
+                            Console.WriteLine("Le véhicule a été enregistré avec succès !\n");
+                            break;
+
+                        case 2:
+                            // retirer un véhicule
+                            break;
+
+                        case 3:
+                            // info véhicule
+                            break;
+
+                        case 4:
+                            // methode retourner au menu principal
+                            break;
+                    }                    
+                    break;   
+                    
                 case 3:
                     C.CréerTrajet();
                     Console.WriteLine("Le trajet a été enregistré avec succès !\n");
