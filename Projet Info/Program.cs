@@ -138,7 +138,7 @@ namespace Projet_Info
                             break;
 
                         case 3:
-                            // afficher les infos clients
+                            C.InformationsClient();
                             break;
 
                         case 4:

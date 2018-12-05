@@ -68,6 +68,25 @@ namespace Projet_Info
             Console.WriteLine("ID : " + ID);
             return ID;
         }
+        public void InformationsClient()
+        {
+            Console.WriteLine("Quel est l'ID du client dont voulez-vous avoir les informations ?");
+            int IDClient = int.Parse(Console.ReadLine());
+            string Informations = ""; bool Trouvé = false;
+            for (int i = 0; i < listClient.Count; i++)
+            {
+                if (listClient[i].ID == IDClient)
+                {
+                    Informations = listClient[i].Tostring();
+                    Trouvé = true;
+                }
+            }
+            if (Trouvé == true)
+            {
+                Console.WriteLine(Informations);
+            }
+            else Console.WriteLine("\nAucun client avec cet ID n'a été trouvé.");
+        }
         public void EnregistrerVéhicule()
         {
             Console.Clear();
