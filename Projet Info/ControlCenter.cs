@@ -53,21 +53,6 @@ namespace Projet_Info
                 }
             }
         }
-        public int CréerID(List<int> NombreAléatoire)
-        {
-
-            Random Aléatoire = new Random();
-            int ID = Aléatoire.Next(100000, 999999);
-            bool ExisteDeja = NombreAléatoire.Contains(ID);
-            while (ExisteDeja == true)
-            {
-                ID = Aléatoire.Next(100000, 999999);
-                ExisteDeja = NombreAléatoire.Contains(ID);
-            }
-            NombreAléatoire.Add(ID);
-            Console.WriteLine("ID : " + ID);
-            return ID;
-        }
         public void InformationsClient()
         {
             Console.WriteLine("Quel est l'ID du client dont voulez-vous avoir les informations ?");
@@ -85,7 +70,23 @@ namespace Projet_Info
             {
                 Console.WriteLine(Informations);
             }
-            else Console.WriteLine("\nAucun client avec cet ID n'a été trouvé.");
+            else Console.WriteLine("\nAucun client avec cet ID n'a été trouvé.");            
+
+        }
+        public int CréerID(List<int> NombreAléatoire)
+        {
+
+            Random Aléatoire = new Random();
+            int ID = Aléatoire.Next(100000, 999999);
+            bool ExisteDeja = NombreAléatoire.Contains(ID);
+            while (ExisteDeja == true)
+            {
+                ID = Aléatoire.Next(100000, 999999);
+                ExisteDeja = NombreAléatoire.Contains(ID);
+            }
+            NombreAléatoire.Add(ID);
+            Console.WriteLine("ID : " + ID);
+            return ID;
         }
         public void EnregistrerVéhicule()
         {
@@ -125,7 +126,7 @@ namespace Projet_Info
                 listVéhicule.Add(Voiture);
             }
             //SauvegardeVéhicule();
-        }
+        }        
         public void CréerTrajet()
         {
             Console.Clear();
@@ -552,5 +553,6 @@ namespace Projet_Info
             }
             
         }
+
     }
 }
