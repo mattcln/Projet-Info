@@ -114,9 +114,40 @@ namespace Projet_Info
             switch (ChoixMenu)
             {
                 case 1:
-                    C.CréerClient(NombreAléatoire);
-                    Console.WriteLine("Le client a été créé avec succès !\n");
-                    break;
+                    Console.WriteLine("-----------------M E N U   C L I E N T S-----------------");
+                    Console.WriteLine("");
+                    Console.WriteLine(" Voici les options à votre dispositions :");
+                    Console.WriteLine(" 1 -   Création d'un nouveau compte client");
+                    Console.WriteLine(" 2 -   Supprimer un compte client");
+                    Console.WriteLine(" 3 -   Informations client");
+                    Console.WriteLine(" 4 -   Retour au menu principal");
+                    int ChoixMenu2 = int.Parse(Console.ReadLine());
+                    while (ChoixMenu2 != 1 && ChoixMenu2 != 2 && ChoixMenu2 != 3 && ChoixMenu2 != 4)
+                    {
+                        Console.WriteLine(" Ceci ne correspond à aucune action, choississez une des actions disponibles :");
+                        ChoixMenu2 = int.Parse(Console.ReadLine());
+                    }
+                    switch (ChoixMenu2)
+                    {
+                        case 1:
+                            C.CréerClient(NombreAléatoire);
+                            Console.WriteLine("Le client a été créé avec succès !\n");
+                            break;
+
+                        case 2:
+                            // méthode supprimer un client
+                            break;
+
+                        case 3:
+                            // afficher les infos clients
+                            break;
+
+                        case 4:
+                            // methode retourner au menu principal
+                            break;
+                    }
+                   break;
+
                 case 2:
                     Console.WriteLine("-----------------M E N U   V E H I C U L E-----------------");
                     Console.WriteLine("");
