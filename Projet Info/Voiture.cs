@@ -32,5 +32,12 @@ namespace Projet_Info
         {
             return base.ToString() + "Couleur: " + Couleur + "\n Nombre de portes: " + NbPortes + "\n";
         }
+
+        public override double Cout(int nbKm)
+        {
+            double c = 0;
+            c = 0.25 * nbKm;
+            return c;
+        }
     }
 }
