@@ -346,36 +346,7 @@ namespace Projet_Info
                         listVéhicule.Add(Moto);                        
                     }                    
                 }
-                LectureFichierVéhicules.Close(); 
-                string LocationTrajets = "C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Trajets.txt";
-                StreamReader LectureFichierTrajets = new StreamReader(LocationTrajets);
-                while (LectureFichierTrajets.EndOfStream == false)
-                {
-                    ligne = LectureFichierTrajets.ReadLine();
-                    string[] tab = ligne.Split(';');
-                    int NbKm = Convert.ToInt32(tab[0]);
-                    int IDTrajet = Convert.ToInt32(tab[7]);
-                    int IDClient = Convert.ToInt32(tab[5]);
-                    bool Autoroute; bool AllerRetour; bool Actif;
-                    if (tab[3] == "true")
-                    {
-                        Autoroute = true;
-                    }
-                    else Autoroute = false;
-                    if (tab[4] == "true")
-                    {
-                        AllerRetour = true;
-                    }
-                    else AllerRetour = false;
-                    if (tab[8] == "true")
-                    {
-                        Actif = true;
-                    }
-                    else Actif = false;
-                    Trajet T = new Trajet(NbKm, tab[1], tab[2], Autoroute, AllerRetour, IDClient, tab[6], IDTrajet, Actif);
-                    LectureFichierTrajets.Close();
-                }
-
+                LectureFichierVéhicules.Close();                
             }
             catch (Exception e)
             {
