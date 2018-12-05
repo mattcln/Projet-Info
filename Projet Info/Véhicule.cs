@@ -29,7 +29,7 @@ namespace Projet_Info
         public string modèle
         {
             get { return Modèle; }
-        }        
+        }
 
         //  CONSTRUCTEUR
         public Véhicule(string Immat, string TypeVeh, string Marque, string Modèle)
@@ -49,4 +49,5 @@ namespace Projet_Info
             return str;
         }
         public abstract double Cout(int NbKm);
+    }
 }

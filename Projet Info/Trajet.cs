@@ -17,6 +17,34 @@ namespace Projet_Info
         private string Immatriculation;
         private int IDTrajet;
         private bool Actif;
+        public int nbKm
+        {
+            get { return NbKm; }
+        }
+        public string villedépart
+        {
+            get { return VilleDépart; }
+        }
+        public string villearrivée
+        {
+            get { return VilleArrivée; }
+        }
+        public bool autoroute
+        {
+            get { return Autoroute; }
+        }
+        public bool allerretour
+        {
+            get { return AllerRetour; }
+        }
+        public int idclient
+        {
+            get { return IDClient; }
+        }
+        public string immatriculation
+        {
+            get { return Immatriculation; }
+        }
         public int idtrajet
         {
             get { return IDTrajet; }
@@ -24,8 +52,7 @@ namespace Projet_Info
         public bool actif
         {
             get { return Actif; }
-        }       
-
+        }
         public Trajet(int NbKm, string VilleDépart, string VilleArrivée, bool Autoroute, bool AllerRetour, int IDClient, string Immatriculation, int IDTrajet, bool Actif)
         {
             this.NbKm = NbKm;

@@ -41,6 +41,18 @@ namespace Projet_Info
             listClient.Add(C);
             SauvegardeClient();            
         }
+        public void SupprimerClient()
+        {
+            Console.WriteLine("Veuillez renseigner l'ID du client que vous voulez supprimer:");
+            int ID = int.Parse(Console.ReadLine());            
+            for (int i = 0; i < listClient.Count; i++)
+            {
+                if (listClient[i].ID == ID)
+                {
+                    listClient.RemoveAt(i);
+                }
+            }
+        }
         public int CréerID(List<int> NombreAléatoire)
         {
 
@@ -375,7 +387,6 @@ namespace Projet_Info
                     Trajet T = new Trajet(NbKm, tab[1], tab[2], Autoroute, AllerRetour, IDClient, tab[6], IDTrajet, Actif);
                     LectureFichierTrajets.Close();
                 }
-
             }
             catch (Exception e)
             {
@@ -434,6 +445,22 @@ namespace Projet_Info
         //        Console.WriteLine(e.Message);
         //    }
         //}
+        public void SauvegardeTrajet()
+        {
+            try
+            {
+                StreamWriter EcritureFichierTrajets = new StreamWriter("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Trajets.txt");
+                for (int i = 0; i < listClient.Count; i++)
+                {
+                    EcritureFichierTrajets.WriteLine(listTrajet[i].nbKm + ";" + listTrajet[i].villedépart + ";" + listTrajet[i].villearrivée + ";" + listTrajet[i].autoroute + ";" + listTrajet[i].allerretour + ";" + listTrajet[i].idclient + ";" + listTrajet[i].immatriculation + ";" + listTrajet[i].idtrajet + ";" + listTrajet[i].actif);
+                }
+                EcritureFichierTrajets.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
         public void MaJTrajet(int IDTrajet)
         {
             bool Continue = true;

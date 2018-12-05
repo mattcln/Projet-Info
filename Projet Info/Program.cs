@@ -113,7 +113,7 @@ namespace Projet_Info
             }
             switch (ChoixMenu)
             {
-                case 1:
+                case 1:                    
                     C.CréerClient(NombreAléatoire);
                     Console.WriteLine("Le client a été créé avec succès !\n");
                     break;
