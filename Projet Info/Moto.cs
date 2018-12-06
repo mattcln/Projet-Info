@@ -29,7 +29,7 @@ namespace Projet_Info
         {
             return base.ToString() + ";" + Couleur + ";" + puissance;
         }
-        public override double Cout(int nbKm)
+        public override double CalculCout(int nbKm)
         {
             double c = 0;
             c = 0.20 * nbKm;

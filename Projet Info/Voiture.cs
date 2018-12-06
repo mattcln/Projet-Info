@@ -33,7 +33,7 @@ namespace Projet_Info
             return base.ToString() + ";" + Couleur + ";" + NbPortes;
         }
 
-        public override double Cout(int nbKm)
+        public override double CalculCout(int nbKm)
         {
             double c = 0;
             c = 0.25 * nbKm;

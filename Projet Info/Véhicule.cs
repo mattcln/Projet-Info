@@ -48,6 +48,6 @@ namespace Projet_Info
             str = Immat + ";" + TypeVeh + ";" + Marque + ";" + Modèle;
             return str;
         }
-        public abstract double Cout(int NbKm);
+        public abstract double CalculCout(int NbKm);        
     }
 }
