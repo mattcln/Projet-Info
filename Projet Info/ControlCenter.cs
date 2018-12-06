@@ -40,13 +40,13 @@ namespace Projet_Info
             Client C = new Client(Nom, Prénom, TypePermis, ID);
             listClient.Add(C);
             Console.Clear();
-            SauvegardeClient();            
+            SauvegardeClient();
         }
         public void SupprimerClient()
         {
             Console.WriteLine("Veuillez renseigner l'ID du client que vous voulez supprimer:");
             bool Supprimer = false;
-            int ID = int.Parse(Console.ReadLine());       
+            int ID = int.Parse(Console.ReadLine());
             for (int i = 0; i < listClient.Count; i++)
             {
                 if (listClient[i].ID == ID)
@@ -54,7 +54,7 @@ namespace Projet_Info
                     listClient.RemoveAt(i);
                     Supprimer = true;
                 }
-            }            
+            }
             Console.Clear();
             if (Supprimer == true)
             {

@@ -99,9 +99,8 @@ namespace Projet_Info
             Console.WriteLine(" Voici les options à votre dispositions :");
             Console.WriteLine(" 1 -   Menu Client");
             Console.WriteLine(" 2 -   Menu Véhicule");
-            Console.WriteLine(" 3 -   Enregistrement d'un nouveau trajet");
-            Console.WriteLine(" 4 -   Mise à jour de l'état d'un trajet");
-            Console.WriteLine(" 5 -   Fermeture du programme");
+            Console.WriteLine(" 3 -   Menu Trajet");
+            Console.WriteLine(" 4 -   Fermeture du programme");
             Console.WriteLine("");
             Console.WriteLine(" Choississez une action avec un chiffre : ");
             int ChoixMenu = int.Parse(Console.ReadLine());
@@ -191,19 +190,52 @@ namespace Projet_Info
                             // methode retourner au menu principal
                             break;
                     }                    
-                    break;   
-                    
+                    break;
+
                 case 3:
-                    C.CréerTrajet();
-                    Console.WriteLine("Le trajet a été enregistré avec succès !\n");
+                    Console.WriteLine("-----------------M E N U   T R A J E T-----------------");
+                    Console.WriteLine("");
+                    Console.WriteLine(" Voici les options à votre dispositions :");
+                    Console.WriteLine(" 1 -   Attribuer un trajet");
+                    Console.WriteLine(" 2 -   Retirer un trajet");
+                    Console.WriteLine(" 3 -   Modifier un trajet");
+                    Console.WriteLine(" 4 -   Information trajet");
+                    Console.WriteLine(" 5 -   Retour au menu principal");
+                    int ChoixMenu4 = int.Parse(Console.ReadLine());
+                    while (ChoixMenu4 != 1 && ChoixMenu4 != 2 && ChoixMenu4 != 3 && ChoixMenu4 != 4 && ChoixMenu4 != 5)
+                    {
+                        Console.WriteLine(" Ceci ne correspond à aucune action, choississez une des actions disponibles :");
+                        ChoixMenu4 = int.Parse(Console.ReadLine());
+                    }
+                    switch (ChoixMenu4)
+                    {
+                        case 1:
+                            C.CréerTrajet();
+                            Console.WriteLine("Le trajet a été enregistré avec succès !\n");
+                            break;
+
+                        case 2:
+                            // retirer un trajet
+                            break;
+
+                        case 3:
+                            Console.WriteLine("\nVeuillez renseigner l'ID du trajet que vous voulez mette à jour :");
+                            int IDTrajet = int.Parse(Console.ReadLine());
+                            C.MaJTrajet(IDTrajet);
+                            Console.WriteLine("L'état du trajet a bien été mis à jour !\n");
+                            break;
+
+                        case 4:
+                            // info trajet
+                            break;
+
+                        case 5:
+                            // methode retourner au menu principal
+                            break;
+                    }
                     break;
+
                 case 4:
-                    Console.WriteLine("\nVeuillez renseigner l'ID du trajet que vous voulez mette à jour :");
-                    int IDTrajet = int.Parse(Console.ReadLine());
-                    C.MaJTrajet(IDTrajet);
-                    Console.WriteLine("L'état du trajet a bien été mis à jour !\n");
-                    break;
-                case 5:
                     break;
                 default:
                     Console.WriteLine(" Valeur non-attendue reçu");
@@ -213,6 +245,6 @@ namespace Projet_Info
             {
                 Menu();
             }
-        }        
+        }
     }
 }
