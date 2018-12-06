@@ -147,7 +147,6 @@ namespace Projet_Info
         }        
         public void CréerTrajet()
         {
-            Console.Clear();
             Console.WriteLine("Veuillez renseigner les informations du trajet : " + "\n" + "\nVille de départ : ");
             string VilleDépart = Console.ReadLine();
             Console.WriteLine("\nVille d'arrivée : ");
@@ -307,6 +306,7 @@ namespace Projet_Info
                 if (ArrêtDeLaMéthode == false)
                 {
                     Trajet Trajet = new Trajet(NbKm, VilleDépart, VilleArrivée, Autoroute, AllerRetour, IDClient, Immatriculation, IDTrajet, true);
+                    listTrajet.Add(Trajet);
                     SauvegardeTrajet();
                 }
             }
@@ -346,7 +346,7 @@ namespace Projet_Info
         {
             try
             {
-                string LocalisationClient = "C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Clients.txt";
+                string LocalisationClient = "C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Clients.txt";
                 StreamReader LectureFichierClient = new StreamReader(LocalisationClient);
                 string ligne = "";
                 while (LectureFichierClient.EndOfStream == false)
@@ -358,7 +358,7 @@ namespace Projet_Info
                     listClient.Add(C);
                 }                
                 LectureFichierClient.Close();
-                string LocalisationVéhicules = "C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Véhicules.txt";
+                string LocalisationVéhicules = "C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Véhicules.txt";
                 StreamReader LectureFichierVéhicules = new StreamReader(LocalisationVéhicules);                
                 while (LectureFichierVéhicules.EndOfStream == false)
                 {
@@ -384,7 +384,7 @@ namespace Projet_Info
                     }
                 }
                 LectureFichierVéhicules.Close(); 
-                //string LocationTrajets = "C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Trajets.txt";
+                //string LocationTrajets = "C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Trajets.txt";
                 //StreamReader LectureFichierTrajets = new StreamReader(LocationTrajets);
                 //while (LectureFichierTrajets.EndOfStream == false)
                 //{
@@ -422,7 +422,7 @@ namespace Projet_Info
         {
             try
             {
-                StreamWriter EcritureFichierClient = new StreamWriter("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Clients.txt");                
+                StreamWriter EcritureFichierClient = new StreamWriter("C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Clients.txt");                
                 for (int i = 0; i < listClient.Count; i++)
                 {
                     EcritureFichierClient.WriteLine(listClient[i].nom + ";" + listClient[i].prénom + ";" + listClient[i].typepermis + ";" + listClient[i].ID);                    
@@ -438,7 +438,7 @@ namespace Projet_Info
         {
             try
             {
-                StreamWriter EcritureFichierVéhicule = new StreamWriter("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Véhicules.txt");        
+                StreamWriter EcritureFichierVéhicule = new StreamWriter("C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Véhicules.txt");        
         
                 for (int i = 0; i<listVéhicule.Count; i++)
                 {
@@ -457,8 +457,8 @@ namespace Projet_Info
         {
             try
             {
-                StreamWriter EcritureFichierTrajets = new StreamWriter("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Trajets.txt");
-                for (int i = 0; i < listClient.Count; i++)
+                StreamWriter EcritureFichierTrajets = new StreamWriter("C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Trajets.txt",true);
+                for (int i = 0; i < listTrajet.Count; i++)
                 {
                     EcritureFichierTrajets.WriteLine(listTrajet[i].nbKm + ";" + listTrajet[i].villedépart + ";" + listTrajet[i].villearrivée + ";" + listTrajet[i].autoroute + ";" + listTrajet[i].allerretour + ";" + listTrajet[i].idclient + ";" + listTrajet[i].immatriculation + ";" + listTrajet[i].idtrajet + ";" + listTrajet[i].actif);
                 }
