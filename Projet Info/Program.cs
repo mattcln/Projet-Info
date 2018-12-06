@@ -232,7 +232,7 @@ namespace Projet_Info
                             Console.WriteLine("L'état du trajet a bien été mis à jour !\n");
                             break;
 
-                        case 4:.
+                        case 4:
                             Console.Clear();
                             // info trajet
                             break;

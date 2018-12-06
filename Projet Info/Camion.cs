@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projet_Info
 {
-    class Camion:Véhicule
+    class Camion : Véhicule
     {
         private int Volume;
         public int volume
@@ -23,7 +23,7 @@ namespace Projet_Info
         {
             return base.ToString() + ";" + volume;
         }
-        public override double Cout(int nbKm)
+        public override double CalculCout(int nbKm)
         {
             double c = 0;
             c = 0.30 * nbKm;
