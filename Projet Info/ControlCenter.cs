@@ -361,57 +361,57 @@ namespace Projet_Info
                 string LocalisationVéhicules = "C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Véhicules.txt";
                 StreamReader LectureFichierVéhicules = new StreamReader(LocalisationVéhicules);                
                 while (LectureFichierVéhicules.EndOfStream == false)
-                {                    
+                {
                     ligne = LectureFichierVéhicules.ReadLine();
                     string[] tab = ligne.Split(';');                    
                     if (tab[3] == "voiture")
-                    {                        
+                    {
                         int NbPortes = Convert.ToInt32(tab[5]);                        
                         Voiture Voiture = new Voiture(tab[0], tab[1], tab[2], tab[3], tab[4], NbPortes);                        
-                        listVéhicule.Add(Voiture);                        
+                        listVéhicule.Add(Voiture);
                     }
                     if (tab[3] == "camion")
                     {
-                        int VolumeCamion = Convert.ToInt32(tab[5]);
+                        int VolumeCamion = Convert.ToInt32(tab[4]);
                         Camion Camion = new Camion(tab[0], tab[1], tab[2], tab[3], VolumeCamion);
-                        listVéhicule.Add(Camion);                        
+                        listVéhicule.Add(Camion);
                     }
                     if (tab[3] == "moto")
                     {
                         int Puissance = Convert.ToInt32(tab[5]);
                         Moto Moto = new Moto(tab[0], tab[1], tab[2], tab[3], tab[4], Puissance);
-                        listVéhicule.Add(Moto);                        
-                    }                    
+                        listVéhicule.Add(Moto);
+                    }
                 }
                 LectureFichierVéhicules.Close(); 
-                string LocationTrajets = "C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Trajets.txt";
-                StreamReader LectureFichierTrajets = new StreamReader(LocationTrajets);
-                while (LectureFichierTrajets.EndOfStream == false)
-                {
-                    ligne = LectureFichierTrajets.ReadLine();
-                    string[] tab = ligne.Split(';');
-                    int NbKm = Convert.ToInt32(tab[0]);
-                    int IDTrajet = Convert.ToInt32(tab[7]);
-                    int IDClient = Convert.ToInt32(tab[5]);
-                    bool Autoroute; bool AllerRetour; bool Actif;
-                    if (tab[3] == "true")
-                    {
-                        Autoroute = true;
-                    }
-                    else Autoroute = false;
-                    if (tab[4] == "true")
-                    {
-                        AllerRetour = true;
-                    }
-                    else AllerRetour = false;
-                    if (tab[8] == "true")
-                    {
-                        Actif = true;
-                    }
-                    else Actif = false;
-                    Trajet T = new Trajet(NbKm, tab[1], tab[2], Autoroute, AllerRetour, IDClient, tab[6], IDTrajet, Actif);
-                    LectureFichierTrajets.Close();
-                }
+                //string LocationTrajets = "C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Trajets.txt";
+                //StreamReader LectureFichierTrajets = new StreamReader(LocationTrajets);
+                //while (LectureFichierTrajets.EndOfStream == false)
+                //{
+                //    ligne = LectureFichierTrajets.ReadLine();
+                //    string[] tab = ligne.Split(';');
+                //    int NbKm = Convert.ToInt32(tab[0]);
+                //    int IDTrajet = Convert.ToInt32(tab[7]);
+                //    int IDClient = Convert.ToInt32(tab[5]);
+                //    bool Autoroute; bool AllerRetour; bool Actif;
+                //    if (tab[3] == "true")
+                //    {
+                //        Autoroute = true;
+                //    }
+                //    else Autoroute = false;
+                //    if (tab[4] == "true")
+                //    {
+                //        AllerRetour = true;
+                //    }
+                //    else AllerRetour = false;
+                //    if (tab[8] == "true")
+                //    {
+                //        Actif = true;
+                //    }
+                //    else Actif = false;
+                //    Trajet T = new Trajet(NbKm, tab[1], tab[2], Autoroute, AllerRetour, IDClient, tab[6], IDTrajet, Actif);
+                //    LectureFichierTrajets.Close();
+                //}
             }
             catch (Exception e)
             {
@@ -441,9 +441,10 @@ namespace Projet_Info
                 StreamWriter EcritureFichierVéhicule = new StreamWriter("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Véhicules.txt");        
         
                 for (int i = 0; i<listVéhicule.Count; i++)
-                {                    
+                {
+                    Console.WriteLine("Coucou");
                     string str = listVéhicule[i].ToString();
-                    EcritureFichierVéhicule.WriteLine(str);                        
+                    EcritureFichierVéhicule.WriteLine(str);         
                 }
                 EcritureFichierVéhicule.Close();                
             }
