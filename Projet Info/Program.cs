@@ -104,7 +104,7 @@ namespace Projet_Info
             Console.WriteLine("");
             Console.WriteLine(" Choississez une action avec un chiffre : ");
             int ChoixMenu = int.Parse(Console.ReadLine());
-            while (ChoixMenu != 1 && ChoixMenu != 2 && ChoixMenu != 3 && ChoixMenu != 4 && ChoixMenu != 5)
+            while (ChoixMenu != 1 && ChoixMenu != 2 && ChoixMenu != 3 && ChoixMenu != 4)
             {
                 Console.WriteLine(" Ceci ne correspond à aucune action, choississez une des actions disponibles :");
                 ChoixMenu = int.Parse(Console.ReadLine());

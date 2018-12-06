@@ -45,7 +45,7 @@ namespace Projet_Info
         public override string ToString()
         {
             string str = "";
-            str = "Immatriculation: " + Immat + "\n Type de véhicule: " + TypeVeh + "\n Marque: " + Marque + "\n Modèle: " + Modèle + "\n";
+            str = Immat + ";" + TypeVeh + ";" + Marque + ";" + Modèle;
             return str;
         }
         public abstract double Cout(int NbKm);

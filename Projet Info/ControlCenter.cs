@@ -101,15 +101,23 @@ namespace Projet_Info
         public void EnregistrerVéhicule()
         {
             Console.Clear();
-            Console.WriteLine("Veuillez renseigner les informations du véhicule : " + "\n" + "\n Immatriculation : ");
+            Console.WriteLine(" Veuillez renseigner les informations du véhicule : " + "\n" + "\n Immatriculation : ");
             string Immatriculation = Console.ReadLine();
             Console.WriteLine("\nMarque : ");
             string Marque = Console.ReadLine();
             Console.WriteLine("\nModèle : ");
             string Modèle = Console.ReadLine();
+            string TypeVéhicule = "";
             Console.WriteLine("\nVoulez - vous ajouter une moto, un camion ou une voiture ? ");
-            string TypeVéhicule = Console.ReadLine();
-            TypeVéhicule = TypeVéhicule.ToLower(); //Permet de mettre le string en minuscule pour être sure que le type soit compris
+            while (TypeVéhicule != "moto" && TypeVéhicule != "camion" && TypeVéhicule != "voiture")
+            {  
+                TypeVéhicule = Console.ReadLine();
+                TypeVéhicule = TypeVéhicule.ToLower();
+                if (TypeVéhicule != "moto" && TypeVéhicule != "camion" && TypeVéhicule != "voiture")
+                {
+                    Console.WriteLine("Ceci n'est pas un véhicule valide, veuillez réessayer s'il-vous-plaît.");
+                }
+            }
             if (TypeVéhicule == "moto")
             {
                 Console.WriteLine("\nPuissance : ");
@@ -133,9 +141,9 @@ namespace Projet_Info
                 Console.WriteLine("\nNombre de portes : ");
                 int NbPortes = int.Parse(Console.ReadLine());
                 Voiture Voiture = new Voiture(Immatriculation, Marque, Modèle, TypeVéhicule, Couleur, NbPortes);                
-                listVéhicule.Add(Voiture);
+                listVéhicule.Add(Voiture);                
             }
-            //SauvegardeVéhicule();
+            SauvegardeVéhicule();
         }        
         public void CréerTrajet()
         {
@@ -146,30 +154,16 @@ namespace Projet_Info
             string VilleArrivée = Console.ReadLine();
             Console.WriteLine("\nNombre de km à parcourir : ");
             int NbKm = int.Parse(Console.ReadLine());
-            Console.WriteLine("\nEst-ce que le trajet est sur autoroute ? : ");
-            string LireAutoRoute = Console.ReadLine();
-            LireAutoRoute = LireAutoRoute.ToLower();
+            Console.WriteLine("\nEst-ce que le trajet est sur autoroute ? : ");            
+            string LireAutoRoute = OuiNon();
             bool Autoroute = false;
-            while(LireAutoRoute != "oui" && LireAutoRoute != "non")
-            {
-                Console.WriteLine("\nIl y a eu une erreur de compréhension, veuillez renseigner de nouveau par 'oui' ou 'non' s'il-vous-plaît :");
-                LireAutoRoute = Console.ReadLine();
-                LireAutoRoute = LireAutoRoute.ToLower();
-            }
             if (LireAutoRoute == "oui")
             {
                 Autoroute = true;
             }
             Console.WriteLine("\nEst-ce un trajet Aller/Retour ? : ");
-            string LireAllerRetour = Console.ReadLine();
-            LireAllerRetour = LireAllerRetour.ToLower();
-            bool AllerRetour = false;
-            while (LireAllerRetour != "oui" && LireAllerRetour != "non")
-            {
-                Console.WriteLine("\nIl y a eu une erreur de compréhension, veuillez renseigner de nouveau par 'oui' ou 'non' s'il-vous-plaît :");
-                LireAllerRetour = Console.ReadLine();
-                LireAllerRetour = LireAllerRetour.ToLower();
-            }
+            string LireAllerRetour = OuiNon();
+            bool AllerRetour = false;            
             if (LireAllerRetour == "oui")
             {
                 AllerRetour = true;
@@ -237,7 +231,7 @@ namespace Projet_Info
                         ExistenceClient = true;
                         ArrêtDeLaMéthode = true;
                     }
-                }
+                }                
             }
             bool NouvelleImmatriculation = false;
             bool ExistenceImmatriculation = false;
@@ -313,6 +307,7 @@ namespace Projet_Info
                 if (ArrêtDeLaMéthode == false)
                 {
                     Trajet Trajet = new Trajet(NbKm, VilleDépart, VilleArrivée, Autoroute, AllerRetour, IDClient, Immatriculation, IDTrajet, true);
+                    SauvegardeTrajet();
                 }
             }
             if (ArrêtDeLaMéthode == true)
@@ -439,42 +434,24 @@ namespace Projet_Info
                 Console.WriteLine(e.Message);
             }
         }
-        //public void SauvegardeVéhicule()     La méthode ne marche pas parce que quand on créé par ex une voiture dans la ListVéhicule, la ListVoiture ne s'incrémente pas, jsp pk?
-        //{
-        //    try
-        //    {
-        //        StreamWriter EcritureFichierVéhicule = new StreamWriter("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Véhicules.txt");                
-        //        int NbVoiture = 0; int NbMoto = 0; int NbCamion = 0;
-        //        Console.WriteLine(listVéhicule.Count);
-        //        for (int i = 0; i < listVéhicule.Count; i++)
-        //        {
-        //            Console.WriteLine("ici" + listVoiture.Count);
-        //            string str = listVéhicule[i].Immat + ";" + listVéhicule[i].marque + ";" + listVéhicule[i].modèle + ";" + listVéhicule[i].typeveh + ";" + listVoiture[i].couleur + ";" + listVoiture[NbVoiture].nbportes;
-        //            Console.WriteLine("ici2");
-        //            if (listVéhicule[i].typeveh == "voiture")
-        //            {
-        //                EcritureFichierVéhicule.WriteLine(listVéhicule[i].Immat + ";" + listVéhicule[i].marque + ";" + listVéhicule[i].modèle + ";" + listVéhicule[i].typeveh + ";" + listVoiture[NbVoiture].couleur + ";" + listVoiture[NbVoiture].nbportes);
-        //                NbVoiture++;                        
-        //            }
-        //            if (listVéhicule[i].typeveh == "moto")
-        //            {
-        //                EcritureFichierVéhicule.WriteLine(listVéhicule[i].Immat + ";" + listVéhicule[i].marque + ";" + listVéhicule[i].modèle + ";" + listVéhicule[i].typeveh + ";" + listMoto[NbMoto].couleur + ";" + listMoto[NbMoto].puissance);
-        //                NbMoto++;
-        //            }
-        //            if (listVéhicule[i].typeveh == "camion")
-        //            {
-        //                EcritureFichierVéhicule.WriteLine(listVéhicule[i].Immat + ";" + listVéhicule[i].marque + ";" + listVéhicule[i].modèle + ";" + listVéhicule[i].typeveh + ";" + listCamion[NbCamion].volume);
-        //                NbCamion++;
-        //            }                    
-        //        }
-        //        EcritureFichierVéhicule.Close();
-        //        string okay = Console.ReadLine();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine(e.Message);
-        //    }
-        //}
+        public void SauvegardeVéhicule()
+        {
+            try
+            {
+                StreamWriter EcritureFichierVéhicule = new StreamWriter("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Véhicules.txt");        
+        
+                for (int i = 0; i<listVéhicule.Count; i++)
+                {                    
+                    string str = listVéhicule[i].ToString();
+                    EcritureFichierVéhicule.WriteLine(str);                        
+                }
+                EcritureFichierVéhicule.Close();                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
         public void SauvegardeTrajet()
         {
             try
@@ -562,6 +539,18 @@ namespace Projet_Info
                 }
             }
             
+        }
+        public string OuiNon()
+        {
+            string Réponse = Console.ReadLine();
+            Réponse = Réponse.ToLower();
+            while (Réponse != "oui" && Réponse != "non")
+            {
+                Console.WriteLine("\nIl y a eu une erreur de compréhension, veuillez renseigner de nouveau par 'oui' ou 'non' s'il-vous-plaît :");
+                Réponse = Console.ReadLine();
+                Réponse = Réponse.ToLower();
+            }
+            return Réponse;
         }
 
     }

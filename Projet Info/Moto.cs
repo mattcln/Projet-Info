@@ -27,7 +27,7 @@ namespace Projet_Info
 
         public override string ToString()
         {
-            return base.ToString() + "Couleur: " + Couleur + "\n Puissance du moteur: " + Puissance + "\n";
+            return base.ToString() + ";" + Couleur + ";" + puissance;
         }
         public override double Cout(int nbKm)
         {

@@ -30,7 +30,7 @@ namespace Projet_Info
         //  METHODE        
         public override string ToString()
         {
-            return base.ToString() + "Couleur: " + Couleur + "\n Nombre de portes: " + NbPortes + "\n";
+            return base.ToString() + ";" + Couleur + ";" + NbPortes;
         }
 
         public override double Cout(int nbKm)
