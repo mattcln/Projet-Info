@@ -16,7 +16,7 @@ namespace Projet_Info
         }
         static void Authentification()
         {
-            StreamReader FichierAuthentification = new StreamReader("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Authentification.txt");            
+            StreamReader FichierAuthentification = new StreamReader("C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Authentification.txt");            
             Console.WriteLine("Bienvenue sur le programme de gestion du park automobile.");
             string ligne = "";
             string Pseudo = ""; string MDP = ""; bool Continuer = true; bool Vérif = false; bool boucle = false; bool end = false;
@@ -24,7 +24,7 @@ namespace Projet_Info
             {
                 if (boucle == true)
                 {
-                    FichierAuthentification = new StreamReader("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Authentification.txt");
+                    FichierAuthentification = new StreamReader("C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Authentification.txt");
                 }
                 Console.WriteLine("\n Veuillez renseigner votre pseudonyme:");
                 Pseudo = Console.ReadLine();
@@ -97,6 +97,7 @@ namespace Projet_Info
             Console.WriteLine("-----------------M E N U   D E    G E S T I O N-----------------");
             Console.WriteLine("");
             Console.WriteLine(" Voici les options à votre dispositions :");
+            Console.WriteLine("");
             Console.WriteLine(" 1 -   Menu Client");
             Console.WriteLine(" 2 -   Menu Véhicule");
             Console.WriteLine(" 3 -   Menu Trajet");
@@ -104,7 +105,7 @@ namespace Projet_Info
             Console.WriteLine("");
             Console.WriteLine(" Choississez une action avec un chiffre : ");
             int ChoixMenu = int.Parse(Console.ReadLine());
-            while (ChoixMenu != 1 && ChoixMenu != 2 && ChoixMenu != 3 && ChoixMenu != 4 && ChoixMenu != 5)
+            while (ChoixMenu != 1 && ChoixMenu != 2 && ChoixMenu != 3 && ChoixMenu != 4)
             {
                 Console.WriteLine(" Ceci ne correspond à aucune action, choississez une des actions disponibles :");
                 ChoixMenu = int.Parse(Console.ReadLine());
@@ -116,6 +117,7 @@ namespace Projet_Info
                     Console.WriteLine("-----------------M E N U   C L I E N T S-----------------");
                     Console.WriteLine("");
                     Console.WriteLine(" Voici les options à votre dispositions :");
+                    Console.WriteLine("");
                     Console.WriteLine(" 1 -   Création d'un nouveau compte client");
                     Console.WriteLine(" 2 -   Supprimer un compte client");
                     Console.WriteLine(" 3 -   Informations client");
@@ -157,6 +159,7 @@ namespace Projet_Info
                     Console.WriteLine("-----------------M E N U   V E H I C U L E-----------------");
                     Console.WriteLine("");
                     Console.WriteLine(" Voici les options à votre dispositions :");
+                    Console.WriteLine("");
                     Console.WriteLine(" 1 -   Attribuer un véhicule");
                     Console.WriteLine(" 2 -   Retirer un véhicule");
                     Console.WriteLine(" 3 -   Information véhicule");
@@ -196,6 +199,7 @@ namespace Projet_Info
                     Console.WriteLine("-----------------M E N U   T R A J E T-----------------");
                     Console.WriteLine("");
                     Console.WriteLine(" Voici les options à votre dispositions :");
+                    Console.WriteLine("");
                     Console.WriteLine(" 1 -   Attribuer un trajet");
                     Console.WriteLine(" 2 -   Retirer un trajet");
                     Console.WriteLine(" 3 -   Modifier un trajet");
@@ -210,38 +214,44 @@ namespace Projet_Info
                     switch (ChoixMenu4)
                     {
                         case 1:
+                            Console.Clear();
                             C.CréerTrajet();
                             Console.WriteLine("Le trajet a été enregistré avec succès !\n");
                             break;
 
                         case 2:
+                            Console.Clear();
                             // retirer un trajet
                             break;
 
                         case 3:
+                            Console.Clear();
                             Console.WriteLine("\nVeuillez renseigner l'ID du trajet que vous voulez mette à jour :");
                             int IDTrajet = int.Parse(Console.ReadLine());
                             C.MaJTrajet(IDTrajet);
                             Console.WriteLine("L'état du trajet a bien été mis à jour !\n");
                             break;
 
-                        case 4:
+                        case 4:.
+                            Console.Clear();
                             // info trajet
                             break;
 
                         case 5:
+                            Console.Clear();
                             // methode retourner au menu principal
                             break;
                     }
                     break;
 
                 case 4:
+                    Console.Clear();
                     break;
                 default:
                     Console.WriteLine(" Valeur non-attendue reçu");
                     break;
             }
-            if (ChoixMenu == 1 || ChoixMenu == 2 || ChoixMenu == 3 || ChoixMenu == 4)
+            if (ChoixMenu == 1 || ChoixMenu == 2 || ChoixMenu == 3)
             {
                 Menu();
             }
