@@ -546,7 +546,7 @@ namespace Projet_Info
             Réponse = Réponse.ToLower();
             while (Réponse != "oui" && Réponse != "non")
             {
-                Console.WriteLine("\nIl y a eu une erreur de compréhension, veuillez renseigner de nouveau par 'oui' ou 'non' s'il-vous-plaît :");
+                Console.WriteLine("\nIl y a eu une erreur de compréhension, veuillez renseigner de nouveau par 'oui' ou 'non' s'il-vous-plaît:");
                 Réponse = Console.ReadLine();
                 Réponse = Réponse.ToLower();
             }
