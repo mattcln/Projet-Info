@@ -394,22 +394,23 @@ namespace Projet_Info
                     int IDTrajet = Convert.ToInt32(tab[7]);
                     int IDClient = Convert.ToInt32(tab[5]);
                     bool Autoroute; bool AllerRetour; bool Actif;
-                    if (tab[3] == "true")
+                    if (tab[3] == "True")
                     {
                         Autoroute = true;
                     }
                     else Autoroute = false;
-                    if (tab[4] == "true")
+                    if (tab[4] == "True")
                     {
                         AllerRetour = true;
                     }
                     else AllerRetour = false;
-                    if (tab[8] == "true")
+                    if (tab[8] == "True")
                     {
                         Actif = true;
                     }
                     else Actif = false;
-                    Trajet T = new Trajet(NbKm, tab[1], tab[2], Autoroute, AllerRetour, IDClient, tab[6], IDTrajet, Actif);                    
+                    Trajet T = new Trajet(NbKm, tab[1], tab[2], Autoroute, AllerRetour, IDClient, tab[6], IDTrajet, Actif);
+                    listTrajet.Add(T);
                 }
                 LectureFichierTrajets.Close();
             }
@@ -442,7 +443,6 @@ namespace Projet_Info
         
                 for (int i = 0; i<listVéhicule.Count; i++)
                 {
-                    Console.WriteLine("Coucou");
                     string str = listVéhicule[i].ToString();
                     EcritureFichierVéhicule.WriteLine(str);         
                 }
@@ -460,7 +460,6 @@ namespace Projet_Info
                 StreamWriter EcritureFichierTrajets = new StreamWriter("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Trajets.txt");
                 for (int i = 0; i < listTrajet.Count; i++)
                 {
-                    Console.WriteLine(listTrajet[i].nbKm + ";" + listTrajet[i].villedépart + ";" + listTrajet[i].villearrivée + ";" + listTrajet[i].autoroute + ";" + listTrajet[i].allerretour + ";" + listTrajet[i].idclient + ";" + listTrajet[i].immatriculation + ";" + listTrajet[i].idtrajet + ";" + listTrajet[i].actif);
                     EcritureFichierTrajets.WriteLine(listTrajet[i].nbKm + ";" + listTrajet[i].villedépart + ";" + listTrajet[i].villearrivée + ";" + listTrajet[i].autoroute + ";" + listTrajet[i].allerretour + ";" + listTrajet[i].idclient + ";" + listTrajet[i].immatriculation + ";" + listTrajet[i].idtrajet + ";" + listTrajet[i].actif);
                 }
                 EcritureFichierTrajets.Close();
@@ -469,55 +468,46 @@ namespace Projet_Info
             {
                 Console.WriteLine(e.Message);
             }
-            Console.ReadKey();
         }
         public void MaJTrajet(int IDTrajet)
         {
+            SauvegardeTrajet();
             bool Continue = true;
             while (Continue == true)
             {
                 bool Existe = false;
                 for (int i = 0; i < listTrajet.Count; i++)
                 {
-                    if (listTrajet[i].idtrajet == IDTrajet || listTrajet[i].actif == true)
+                    Console.WriteLine("OucOuc" + listTrajet[i].actif);
+                    if (listTrajet[i].idtrajet == IDTrajet && listTrajet[i].actif == true)
                     {
+                        Existe = true;
                         Console.WriteLine("Le trajet a bien été sélectionné, il est actuellement considéré étant en cours. Voulez-vous cloturer le trajet ?");
-                        string LireRéponseID = Console.ReadLine();
-                        LireRéponseID = LireRéponseID.ToLower();
-                        while (LireRéponseID != "oui" && LireRéponseID != "non")
-                        {
-                            Console.WriteLine("\nIl y a eu une erreur de compréhension, veuillez renseigner de nouveau par 'oui' ou 'non' s'il-vous-plaît :");
-                            LireRéponseID = Console.ReadLine();
-                            LireRéponseID = LireRéponseID.ToLower();
-                        }
+                        string LireRéponseID = OuiNon();
                         if(LireRéponseID == "oui")
                         {
                             for (int j = 0; j<listTrajet.Count;j++)
                             {
                                 if (listTrajet[j].idtrajet == IDTrajet)
                                 {
+                                    Console.WriteLine("Je suis passé par là");
                                     listTrajet[j].ChangerActif();
                                 }
                             }
                         }
                     }
-                    if (listTrajet[i].idtrajet == IDTrajet || listTrajet[i].actif == false)
+                    if (listTrajet[i].idtrajet == IDTrajet && listTrajet[i].actif == false)
                     {
+                        Existe = true;
                         Console.WriteLine("Le trajet a bien été sélectionné, il est actuellement considéré étant cloturer. Voulez-vous relancer le trajet ?");
-                        string LireRéponseID = Console.ReadLine();
-                        LireRéponseID = LireRéponseID.ToLower();
-                        while (LireRéponseID != "oui" && LireRéponseID != "non")
-                        {
-                            Console.WriteLine("\nIl y a eu une erreur de compréhension, veuillez renseigner de nouveau par 'oui' ou 'non' s'il-vous-plaît :");
-                            LireRéponseID = Console.ReadLine();
-                            LireRéponseID = LireRéponseID.ToLower();
-                        }
+                        string LireRéponseID = OuiNon();
                         if (LireRéponseID == "oui")
                         {
                             for (int j = 0; j < listTrajet.Count; j++)
                             {
                                 if (listTrajet[j].idtrajet == IDTrajet)
                                 {
+                                    Console.WriteLine("Je suis passé par ici");
                                     listTrajet[j].ChangerActif();
                                 }
                             }

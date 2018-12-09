@@ -11,7 +11,7 @@ namespace Projet_Info
     {
         static void Main(string[] args)
         {      
-            Authentification();
+            Menu();
             System.Threading.Thread.Sleep(2000);
         }
         static void Authentification()
