@@ -471,14 +471,12 @@ namespace Projet_Info
         }
         public void MaJTrajet(int IDTrajet)
         {
-            SauvegardeTrajet();
             bool Continue = true;
             while (Continue == true)
             {
                 bool Existe = false;
                 for (int i = 0; i < listTrajet.Count; i++)
                 {
-                    Console.WriteLine("OucOuc" + listTrajet[i].actif);
                     if (listTrajet[i].idtrajet == IDTrajet && listTrajet[i].actif == true)
                     {
                         Existe = true;
@@ -490,13 +488,13 @@ namespace Projet_Info
                             {
                                 if (listTrajet[j].idtrajet == IDTrajet)
                                 {
-                                    Console.WriteLine("Je suis passé par là");
                                     listTrajet[j].ChangerActif();
+                                    Continue = false;
                                 }
                             }
                         }
                     }
-                    if (listTrajet[i].idtrajet == IDTrajet && listTrajet[i].actif == false)
+                    if (listTrajet[i].idtrajet == IDTrajet && listTrajet[i].actif == false && Existe == false)
                     {
                         Existe = true;
                         Console.WriteLine("Le trajet a bien été sélectionné, il est actuellement considéré étant cloturer. Voulez-vous relancer le trajet ?");
@@ -507,8 +505,8 @@ namespace Projet_Info
                             {
                                 if (listTrajet[j].idtrajet == IDTrajet)
                                 {
-                                    Console.WriteLine("Je suis passé par ici");
                                     listTrajet[j].ChangerActif();
+                                    Continue = false;
                                 }
                             }
                         }
@@ -531,6 +529,7 @@ namespace Projet_Info
                     }
                 }
             }
+            Console.Clear();
             SauvegardeTrajet();
             
         }
