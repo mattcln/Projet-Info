@@ -545,6 +545,17 @@ namespace Projet_Info
             }
             return Réponse;
         }
-
+        public void ListeClients()
+        {
+            Console.WriteLine("Voici la liste complète des clients enregistrés :");
+            Console.WriteLine("\n| Nom |" + "     | Prénom | " + "      ID ");
+            for (int i = 0; i<listClient.Count; i++)
+            {
+                Console.WriteLine(listClient[i].nom + "    " + listClient[i].prénom + "    " + listClient[i].ID);
+            }
+            Console.WriteLine("\nPressez un bouton pour retourner au menu.");
+            Console.ReadKey();
+            Console.Clear();
+        }
     }
 }

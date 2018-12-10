@@ -121,7 +121,8 @@ namespace Projet_Info
                     Console.WriteLine(" 1 -   Création d'un nouveau compte client");
                     Console.WriteLine(" 2 -   Supprimer un compte client");
                     Console.WriteLine(" 3 -   Informations client");
-                    Console.WriteLine(" 4 -   Retour au menu principal");
+                    Console.WriteLine(" 4 -   Afficher la liste des clients");
+                    Console.WriteLine(" 5 -   Retour au menu principal");
                     int ChoixMenu2 = int.Parse(Console.ReadLine());
                     while (ChoixMenu2 != 1 && ChoixMenu2 != 2 && ChoixMenu2 != 3 && ChoixMenu2 != 4)
                     {
@@ -148,6 +149,11 @@ namespace Projet_Info
                             break;
 
                         case 4:
+                            Console.Clear();
+                            C.ListeClients();
+                            
+                            break;
+                        case 5:
                             Console.Clear();
                             // methode retourner au menu principal
                             break;
