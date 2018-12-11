@@ -124,7 +124,7 @@ namespace Projet_Info
                     Console.WriteLine(" 4 -   Afficher la liste des clients");
                     Console.WriteLine(" 5 -   Retour au menu principal");
                     int ChoixMenu2 = int.Parse(Console.ReadLine());
-                    while (ChoixMenu2 != 1 && ChoixMenu2 != 2 && ChoixMenu2 != 3 && ChoixMenu2 != 4)
+                    while (ChoixMenu2 != 1 && ChoixMenu2 != 2 && ChoixMenu2 != 3 && ChoixMenu2 != 4 && ChoixMenu2 != 5)
                     {
                         Console.WriteLine(" Ceci ne correspond à aucune action, choississez une des actions disponibles :");
                         ChoixMenu2 = int.Parse(Console.ReadLine());
@@ -202,6 +202,7 @@ namespace Projet_Info
                     break;
 
                 case 3:
+                    Console.Clear();
                     Console.WriteLine("-----------------M E N U   T R A J E T-----------------");
                     Console.WriteLine("");
                     Console.WriteLine(" Voici les options à votre dispositions :");
@@ -210,9 +211,10 @@ namespace Projet_Info
                     Console.WriteLine(" 2 -   Retirer un trajet");
                     Console.WriteLine(" 3 -   Modifier un trajet");
                     Console.WriteLine(" 4 -   Information trajet");
-                    Console.WriteLine(" 5 -   Retour au menu principal");
+                    Console.WriteLine(" 5 -   Afficher la liste des trajets");
+                    Console.WriteLine(" 6 -   Retour au menu principal");
                     int ChoixMenu4 = int.Parse(Console.ReadLine());
-                    while (ChoixMenu4 != 1 && ChoixMenu4 != 2 && ChoixMenu4 != 3 && ChoixMenu4 != 4 && ChoixMenu4 != 5)
+                    while (ChoixMenu4 != 1 && ChoixMenu4 != 2 && ChoixMenu4 != 3 && ChoixMenu4 != 4 && ChoixMenu4 != 5 && ChoixMenu4 != 6)
                     {
                         Console.WriteLine(" Ceci ne correspond à aucune action, choississez une des actions disponibles :");
                         ChoixMenu4 = int.Parse(Console.ReadLine());
@@ -227,12 +229,15 @@ namespace Projet_Info
 
                         case 2:
                             Console.Clear();
+                            Console.WriteLine("Veuillez renseigner l'ID du trajet que vous voulez supprimer:");
+                            int ID = int.Parse(Console.ReadLine());
+                            C.SupprimerTrajet(ID);
                             // retirer un trajet
                             break;
 
                         case 3:
                             Console.Clear();
-                            Console.WriteLine("\nVeuillez renseigner l'ID du trajet que vous voulez mette à jour :");
+                            Console.WriteLine("\nVeuillez renseigner l'ID du trajet que vous voulez mette à jour:");
                             int IDTrajet = int.Parse(Console.ReadLine());
                             C.MaJTrajet(IDTrajet);
                             Console.WriteLine("L'état du trajet a bien été mis à jour !\n");
@@ -244,6 +249,10 @@ namespace Projet_Info
                             break;
 
                         case 5:
+                            Console.Clear();                            
+                            C.ListeTrajets();
+                            break;
+                        case 6:
                             Console.Clear();
                             // methode retourner au menu principal
                             break;

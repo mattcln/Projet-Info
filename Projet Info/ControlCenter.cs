@@ -548,7 +548,8 @@ namespace Projet_Info
         public void ListeClients()
         {
             Console.WriteLine("Voici la liste complète des clients enregistrés :");
-            Console.WriteLine("\n| Nom |" + "     | Prénom | " + "      ID ");
+            Console.WriteLine("\n| Nom |" + "    " +
+                " | Prénom | " + "     | ID |");
             for (int i = 0; i<listClient.Count; i++)
             {
                 Console.WriteLine(listClient[i].nom + "    " + listClient[i].prénom + "    " + listClient[i].ID);
@@ -556,6 +557,40 @@ namespace Projet_Info
             Console.WriteLine("\nPressez un bouton pour retourner au menu.");
             Console.ReadKey();
             Console.Clear();
+        }
+        public void SupprimerTrajet(int ID)
+        {
+            bool Supprimer = false;
+            for (int i = 0; i < listTrajet.Count; i++)
+            {
+                if (listTrajet[i].idtrajet == ID)
+                {
+                    listTrajet.RemoveAt(i);
+                    Supprimer = true;
+                }
+            }
+            Console.Clear();
+            if (Supprimer == true)
+            {
+                Console.WriteLine("Le trajet a bien été supprimé.");
+            }
+            else Console.WriteLine("Aucun trajet avec cet ID n'a été trouvé.");
+            SauvegardeTrajet();
+        }
+        public void ListeTrajets()
+        {
+            {
+                Console.WriteLine("Voici la liste complète des trajets enregistrés :");
+                Console.WriteLine("\n| Ville de départ |" + "    " +
+                    " | Ville d'arrivée | " + "| ID du client |" + "| ID du trajet |");
+                for (int i = 0; i < listTrajet.Count; i++)
+                {
+                    Console.WriteLine(listTrajet[i].villedépart + "             |            " + listTrajet[i].villearrivée + "        |       " + listTrajet[i].idclient + "    |     " + listTrajet[i].idtrajet + "    |     ");
+                }
+                Console.WriteLine("\nPressez un bouton pour retourner au menu.");
+                Console.ReadKey();
+                Console.Clear();
+            }
         }
     }
 }
