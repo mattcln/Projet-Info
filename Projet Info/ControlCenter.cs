@@ -27,6 +27,10 @@ namespace Projet_Info
             listCamion = new List<Camion>();
         }
 
+
+
+
+                //CLIENTS
         public void CréerClient(List<int> NombreAléatoire)
         {
             Console.Clear();
@@ -40,27 +44,6 @@ namespace Projet_Info
             Client C = new Client(Nom, Prénom, TypePermis, ID);
             listClient.Add(C);
             Console.Clear();
-            SauvegardeClient();
-        }
-        public void SupprimerClient()
-        {
-            Console.WriteLine("Veuillez renseigner l'ID du client que vous voulez supprimer:");
-            bool Supprimer = false;
-            int ID = int.Parse(Console.ReadLine());
-            for (int i = 0; i < listClient.Count; i++)
-            {
-                if (listClient[i].ID == ID)
-                {
-                    listClient.RemoveAt(i);
-                    Supprimer = true;
-                }
-            }
-            Console.Clear();
-            if (Supprimer == true)
-            {
-                Console.WriteLine("Le client a bien été supprimé.");
-            }
-            else Console.WriteLine("Aucun client avec cet ID n'a été trouvé.");
             SauvegardeClient();
         }
         public void InformationsClient()
@@ -83,20 +66,82 @@ namespace Projet_Info
             else Console.WriteLine("\nAucun client avec cet ID n'a été trouvé.");            
 
         }
-        public int CréerID(List<int> NombreAléatoire)
+        public void SupprimerClient()
         {
-
-            Random Aléatoire = new Random();
-            int ID = Aléatoire.Next(100000, 999999);
-            bool ExisteDeja = NombreAléatoire.Contains(ID);
-            while (ExisteDeja == true)
+            Console.WriteLine("Veuillez renseigner l'ID du client que vous voulez supprimer:");
+            bool Supprimer = false;
+            int ID = int.Parse(Console.ReadLine());
+            for (int i = 0; i < listClient.Count; i++)
             {
-                ID = Aléatoire.Next(100000, 999999);
-                ExisteDeja = NombreAléatoire.Contains(ID);
+                if (listClient[i].ID == ID)
+                {
+                    listClient.RemoveAt(i);
+                    Supprimer = true;
+                }
             }
-            NombreAléatoire.Add(ID);
-            Console.WriteLine("ID : " + ID);
-            return ID;
+            Console.Clear();
+            if (Supprimer == true)
+            {
+                Console.WriteLine("Le client a bien été supprimé.");
+            }
+            else Console.WriteLine("Aucun client avec cet ID n'a été trouvé.");
+            SauvegardeClient();
+        }
+        public void ListeClients()
+        {
+            Console.WriteLine("Voici la liste complète des clients enregistrés:");
+            Console.WriteLine("\n| Nom |" + "    " + " | Prénom | " + "     | ID |");
+            for (int i = 0; i < listClient.Count; i++)
+            {
+                Console.WriteLine(listClient[i].nom + "    " + listClient[i].prénom + "    " + listClient[i].ID);
+            }
+            Console.WriteLine("\nPressez un bouton pour retourner au menu.");
+            Console.ReadKey();
+            Console.Clear();
+        }
+        public void SauvegardeClient()
+        {
+            try
+            {
+                StreamWriter EcritureFichierClient = new StreamWriter("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Clients.txt");
+                for (int i = 0; i < listClient.Count; i++)
+                {
+                    EcritureFichierClient.WriteLine(listClient[i].nom + ";" + listClient[i].prénom + ";" + listClient[i].typepermis + ";" + listClient[i].ID);
+                }
+                EcritureFichierClient.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+        public bool VérifierExistenceClient(int iD)
+        {
+            bool existe = false;
+            for (int i = 0; i < listClient.Count; i++)
+            {
+                if (listClient[i].ID == iD)
+                {
+                    existe = true;
+                    Console.WriteLine("L'ID client est vérifié.");
+                }
+            }
+            return existe;
+        }
+
+                //VEHICULES
+        public bool VérifierExistenceImmatriculation(string immat)
+        {
+            bool existe = false;
+            for (int i = 0; i < listVéhicule.Count; i++)
+            {
+                if (listVéhicule[i].Immat == immat)
+                {
+                    existe = true;
+                    Console.WriteLine("L'immatriculation du véhicule est vérifiée.");
+                }
+            }
+            return existe;
         }
         public void EnregistrerVéhicule()
         {
@@ -110,7 +155,7 @@ namespace Projet_Info
             string TypeVéhicule = "";
             Console.WriteLine("\nVoulez - vous ajouter une moto, un camion ou une voiture ? ");
             while (TypeVéhicule != "moto" && TypeVéhicule != "camion" && TypeVéhicule != "voiture")
-            {  
+            {
                 TypeVéhicule = Console.ReadLine();
                 TypeVéhicule = TypeVéhicule.ToLower();
                 if (TypeVéhicule != "moto" && TypeVéhicule != "camion" && TypeVéhicule != "voiture")
@@ -140,11 +185,103 @@ namespace Projet_Info
                 string Couleur = Console.ReadLine();
                 Console.WriteLine("\nNombre de portes : ");
                 int NbPortes = int.Parse(Console.ReadLine());
-                Voiture Voiture = new Voiture(Immatriculation, Marque, Modèle, TypeVéhicule, Couleur, NbPortes);                
-                listVéhicule.Add(Voiture);                
+                Voiture Voiture = new Voiture(Immatriculation, Marque, Modèle, TypeVéhicule, Couleur, NbPortes);
+                listVéhicule.Add(Voiture);
             }
             SauvegardeVéhicule();
-        }        
+        }
+        public void SupprimerVéhicule()
+        {
+            Console.WriteLine("Veuillez renseigner l'immatriculation du véhicule que vous voulez supprimer:");
+            bool Supprimer = false;
+            string Immat = Console.ReadLine();
+            Immat = Immat.ToUpper();
+            for (int i = 0; i < listVéhicule.Count; i++)
+            {
+                if (listVéhicule[i].Immat == Immat)
+                {
+                    listVéhicule.RemoveAt(i);
+                    Supprimer = true;
+                }
+            }
+            Console.Clear();
+            if (Supprimer == true)
+            {
+                Console.WriteLine("Le véhicule a bien été supprimé.");
+            }
+            else Console.WriteLine("Aucun véhicule avec cette immatriculation n'a été trouvé.");
+            SauvegardeVéhicule();
+        }
+        public void SauvegardeVéhicule()
+        {
+            try
+            {
+                StreamWriter EcritureFichierVéhicule = new StreamWriter("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Véhicules.txt");
+
+                for (int i = 0; i < listVéhicule.Count; i++)
+                {
+                    string str = listVéhicule[i].ToString();
+                    EcritureFichierVéhicule.WriteLine(str);
+                }
+                EcritureFichierVéhicule.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+        public void InformationsVéhicule()
+        {
+            Console.WriteLine("Quel est l'immatriculation du véhicule dont voulez-vous avoir les informations ?");
+            string Immat = Console.ReadLine();
+            string Informations = ""; bool Trouvé = false;
+            for (int i = 0; i < listVéhicule.Count; i++)
+            {
+                if (listVéhicule[i].Immat == Immat)
+                {
+                    Informations = listVéhicule[i].ToString();
+                    string [] Info = Informations.Split(';');
+                    Console.WriteLine("\nVoici les informations du véhicules: ");
+                    Console.WriteLine("Immatriculation: " + Info[0]);
+                    Console.WriteLine("Type de véhicule: " + Info[3]);
+                    Console.WriteLine("Marque: " + Info[1]);
+                    Console.WriteLine("Modèle: " + Info[2]);
+                    if (Info[3] == "voiture")
+                    {
+                        Console.WriteLine("Couleur: " + Info[4]);
+                        Console.WriteLine("Nombre de portes: " + Info[5] + "\n");
+                    }
+                    if (Info[3] == "camion")
+                    {
+                        Console.WriteLine("Volume: " + Info[4] + "\n");
+                    }
+                    if (Info[3] == "moto")
+                    {
+                        Console.WriteLine("Couleur: " + Info[4]);
+                        Console.WriteLine("Puissance: " + Info[5] + "\n");
+                    }
+                    Trouvé = true;
+                }
+            }
+            if (Trouvé == false)
+            {
+                Console.WriteLine("\nAucun véhicule avec cet ID n'a été trouvé.");
+            }           
+        }
+        public void ListeVéhicules()
+        {
+            Console.WriteLine("Voici la liste complète des clients enregistrés:");
+            Console.WriteLine("\n| Immat |" + "    " + " | Marque | " + "     | Modèle |");
+            for (int i = 0; i < listVéhicule.Count; i++)
+            {
+                Console.WriteLine("  " + listVéhicule[i].Immat + "      " + listVéhicule[i].marque + "         " + listVéhicule[i].modèle);
+            }
+            Console.WriteLine("\nPressez un bouton pour retourner au menu.");
+            Console.ReadKey();
+            Console.Clear();
+        }
+
+                //TRAJETS
         public void CréerTrajet()
         {
             Console.WriteLine("Veuillez renseigner les informations du trajet : " + "\n" + "\nVille de départ : ");
@@ -153,7 +290,7 @@ namespace Projet_Info
             string VilleArrivée = Console.ReadLine();
             Console.WriteLine("\nNombre de km à parcourir : ");
             int NbKm = int.Parse(Console.ReadLine());
-            Console.WriteLine("\nEst-ce que le trajet est sur autoroute ? : ");            
+            Console.WriteLine("\nEst-ce que le trajet est sur autoroute ? : ");
             string LireAutoRoute = OuiNon();
             bool Autoroute = false;
             if (LireAutoRoute == "oui")
@@ -162,7 +299,7 @@ namespace Projet_Info
             }
             Console.WriteLine("\nEst-ce un trajet Aller/Retour ? : ");
             string LireAllerRetour = OuiNon();
-            bool AllerRetour = false;            
+            bool AllerRetour = false;
             if (LireAllerRetour == "oui")
             {
                 AllerRetour = true;
@@ -176,22 +313,22 @@ namespace Projet_Info
             string LireRéponseID = "";
             while (ExistenceClient == false)
             {
-                ArrêtDeLaMéthode = false;                
+                ArrêtDeLaMéthode = false;
                 if (NouveauClient == false)
                 {
                     Console.WriteLine("\nIl n'existe aucun client avec cet ID, voulez-vous réessayer ?");
                     LireRéponseID = Console.ReadLine();
                     LireRéponseID = LireRéponseID.ToLower();
-                }                                    
+                }
                 while (LireRéponseID != "oui" && LireRéponseID != "non")
                 {
                     Console.WriteLine("\nIl y a eu une erreur de compréhension, veuillez renseigner de nouveau par 'oui' ou 'non' s'il-vous-plaît :");
                     LireRéponseID = Console.ReadLine();
                     LireRéponseID = LireRéponseID.ToLower();
-                }                
-                if(LireRéponseID == "oui")
-                {                    
-                    if(NouveauClient == true)
+                }
+                if (LireRéponseID == "oui")
+                {
+                    if (NouveauClient == true)
                     {
                         Console.WriteLine("\nVeuillez renseigner l'ID du nouveau client s'il-vous-plaît :");
                         IDClient = int.Parse(Console.ReadLine());
@@ -208,12 +345,12 @@ namespace Projet_Info
                         ExistenceClient = VérifierExistenceClient(IDClient);
                     }
                 }
-                if(LireRéponseID == "non")
+                if (LireRéponseID == "non")
                 {
                     Console.WriteLine("\nVoulez-vous créer le profil de ce client ?");
                     string LireRéponseProfile = Console.ReadLine();
-                    LireRéponseProfile = LireRéponseProfile.ToLower();                    
-                    while(LireRéponseProfile != "oui" && LireRéponseProfile != "non")
+                    LireRéponseProfile = LireRéponseProfile.ToLower();
+                    while (LireRéponseProfile != "oui" && LireRéponseProfile != "non")
                     {
                         Console.WriteLine("\nIl y a eu une erreur de compréhension, veuillez renseigner de nouveau par 'oui' ou 'non' s'il-vous-plaît :");
                         LireRéponseProfile = Console.ReadLine();
@@ -230,7 +367,7 @@ namespace Projet_Info
                         ExistenceClient = true;
                         ArrêtDeLaMéthode = true;
                     }
-                }                
+                }
             }
             bool NouvelleImmatriculation = false;
             bool ExistenceImmatriculation = false;
@@ -240,19 +377,19 @@ namespace Projet_Info
                 if (NouvelleImmatriculation == false)
                 {
                     Console.WriteLine("\nSaisir l'immatriculation du véhicule affecté à ce trajet: ");
-                    Immatriculation = Console.ReadLine();                    
+                    Immatriculation = Console.ReadLine();
                     ExistenceImmatriculation = VérifierExistenceImmatriculation(Immatriculation);
                 }
                 string LireRéponseImmat = "";
                 while (ExistenceImmatriculation == false)
-                {                    
+                {
                     if (NouvelleImmatriculation == false)
                     {
                         Console.WriteLine("\nIl n'existe aucun véhicule avec cet immatriculation, vous-voulez réessayer ?");
                         LireRéponseImmat = Console.ReadLine();
                         LireRéponseImmat = LireRéponseImmat.ToLower();
-                    }                    
-                    
+                    }
+
                     while (LireRéponseImmat != "oui" && LireRéponseImmat != "non")
                     {
                         Console.WriteLine("\nIl y a eu une erreur de compréhension, veuillez renseigner de nouveau par 'oui' ou 'non' s'il-vous-plaît :");
@@ -272,7 +409,7 @@ namespace Projet_Info
                                 {
                                     Console.WriteLine("\nVous avez fait une erreur en recopiant l'immatriculation.");
                                 }
-                            }                            
+                            }
                         }
                         else
                         {
@@ -286,7 +423,7 @@ namespace Projet_Info
                         Console.WriteLine("\nVoulez-vous créer un nouveau véhicule ?");
                         string LireRéponseVéhicule = Console.ReadLine();
                         LireRéponseVéhicule = LireRéponseVéhicule.ToLower();
-                        while(LireRéponseVéhicule != "oui" && LireRéponseVéhicule != "non")
+                        while (LireRéponseVéhicule != "oui" && LireRéponseVéhicule != "non")
                         {
                             Console.WriteLine("\nIl y a eu une erreur de compréhension, veuillez renseigner de nouveau par 'oui' ou 'non' s'il-vous-plaît :");
                             LireRéponseVéhicule = Console.ReadLine();
@@ -316,31 +453,148 @@ namespace Projet_Info
             }
             Console.Clear();
         }
-        public bool VérifierExistenceClient (int iD)
-        {            
-            bool existe = false;            
-            for (int i = 0; i<listClient.Count;i++)
-            {                
-                if (listClient[i].ID == iD)
-                {
-                    existe = true;
-                    Console.WriteLine("L'ID client est vérifié.");
-                }
-            }            
-            return existe;
-        }
-        public bool VérifierExistenceImmatriculation (string immat)
+        public void SauvegardeTrajet()
         {
-            bool existe = false;
-            for(int i = 0; i<listVéhicule.Count; i++)
+            try
             {
-                if (listVéhicule[i].Immat == immat)
-                {                    
-                    existe = true;
-                    Console.WriteLine("L'immatriculation du véhicule est vérifiée.");
+                StreamWriter EcritureFichierTrajets = new StreamWriter("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Trajets.txt");
+                for (int i = 0; i < listTrajet.Count; i++)
+                {
+                    EcritureFichierTrajets.WriteLine(listTrajet[i].nbKm + ";" + listTrajet[i].villedépart + ";" + listTrajet[i].villearrivée + ";" + listTrajet[i].autoroute + ";" + listTrajet[i].allerretour + ";" + listTrajet[i].idclient + ";" + listTrajet[i].immatriculation + ";" + listTrajet[i].idtrajet + ";" + listTrajet[i].actif);
+                }
+                EcritureFichierTrajets.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+        public void MaJTrajet(int IDTrajet)
+        {
+            bool Continue = true;
+            while (Continue == true)
+            {
+                bool Existe = false;
+                for (int i = 0; i < listTrajet.Count; i++)
+                {
+                    if (listTrajet[i].idtrajet == IDTrajet && listTrajet[i].actif == true)
+                    {
+                        Existe = true;
+                        Console.WriteLine("Le trajet a bien été sélectionné, il est actuellement considéré étant en cours. Voulez-vous cloturer le trajet ?");
+                        string LireRéponseID = OuiNon();
+                        if (LireRéponseID == "oui")
+                        {
+                            for (int j = 0; j < listTrajet.Count; j++)
+                            {
+                                if (listTrajet[j].idtrajet == IDTrajet)
+                                {
+                                    listTrajet[j].ChangerActif();
+                                    Continue = false;
+                                }
+                            }
+                        }
+                    }
+                    if (listTrajet[i].idtrajet == IDTrajet && listTrajet[i].actif == false && Existe == false)
+                    {
+                        Existe = true;
+                        Console.WriteLine("Le trajet a bien été sélectionné, il est actuellement considéré étant cloturer. Voulez-vous relancer le trajet ?");
+                        string LireRéponseID = OuiNon();
+                        if (LireRéponseID == "oui")
+                        {
+                            for (int j = 0; j < listTrajet.Count; j++)
+                            {
+                                if (listTrajet[j].idtrajet == IDTrajet)
+                                {
+                                    listTrajet[j].ChangerActif();
+                                    Continue = false;
+                                }
+                            }
+                        }
+                    }
+                }
+                if (Existe == false)
+                {
+                    Console.WriteLine("\nIl n'existe aucun trajet avec cet ID, voulez-vous essayer un autre ID ?");
+                    string LireRéponseID = Console.ReadLine();
+                    LireRéponseID = LireRéponseID.ToLower();
+                    while (LireRéponseID != "oui" && LireRéponseID != "non")
+                    {
+                        Console.WriteLine("\nIl y a eu une erreur de compréhension, veuillez renseigner de nouveau par 'oui' ou 'non' s'il-vous-plaît :");
+                        LireRéponseID = Console.ReadLine();
+                        LireRéponseID = LireRéponseID.ToLower();
+                    }
+                    if (LireRéponseID == "non")
+                    {
+                        Continue = false;
+                    }
                 }
             }
-            return existe;
+            Console.Clear();
+            SauvegardeTrajet();
+
+        }        
+        public void SupprimerTrajet(int ID)
+        {
+            bool Supprimer = false;
+            for (int i = 0; i < listTrajet.Count; i++)
+            {
+                if (listTrajet[i].idtrajet == ID)
+                {
+                    listTrajet.RemoveAt(i);
+                    Supprimer = true;
+                }
+            }
+            Console.Clear();
+            if (Supprimer == true)
+            {
+                Console.WriteLine("Le trajet a bien été supprimé.");
+            }
+            else Console.WriteLine("Aucun trajet avec cet ID n'a été trouvé.");
+            SauvegardeTrajet();
+        }
+        public void ListeTrajets()
+        {
+            {
+                Console.WriteLine("Voici la liste complète des trajets enregistrés :");
+                Console.WriteLine("\n| Ville de départ |" + "    " +
+                    " | Ville d'arrivée | " + "| ID du client |" + "| ID du trajet |");
+                for (int i = 0; i < listTrajet.Count; i++)
+                {
+                    Console.WriteLine(listTrajet[i].villedépart + "             |            " + listTrajet[i].villearrivée + "        |       " + listTrajet[i].idclient + "    |     " + listTrajet[i].idtrajet + "    |     ");
+                }
+                Console.WriteLine("\nPressez un bouton pour retourner au menu.");
+                Console.ReadKey();
+                Console.Clear();
+            }
+        }
+
+                //AUTRES METHODES
+        public int CréerID(List<int> NombreAléatoire)
+        {
+
+            Random Aléatoire = new Random();
+            int ID = Aléatoire.Next(100000, 999999);
+            bool ExisteDeja = NombreAléatoire.Contains(ID);
+            while (ExisteDeja == true)
+            {
+                ID = Aléatoire.Next(100000, 999999);
+                ExisteDeja = NombreAléatoire.Contains(ID);
+            }
+            NombreAléatoire.Add(ID);
+            Console.WriteLine("ID : " + ID);
+            return ID;
+        }
+        public string OuiNon()
+        {
+            string Réponse = Console.ReadLine();
+            Réponse = Réponse.ToLower();
+            while (Réponse != "oui" && Réponse != "non")
+            {
+                Console.WriteLine("\n Il y a eu une erreur de compréhension, veuillez renseigner de nouveau par 'oui' ou 'non' s'il-vous-plaît: ");
+                Réponse = Console.ReadLine();
+                Réponse = Réponse.ToLower();
+            }
+            return Réponse;
         }
         public void ChargementDonnées()
         {
@@ -418,179 +672,6 @@ namespace Projet_Info
             {
                 Console.WriteLine(e.Message);
             }
-        }
-        public void SauvegardeClient()
-        {
-            try
-            {
-                StreamWriter EcritureFichierClient = new StreamWriter("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Clients.txt");                
-                for (int i = 0; i < listClient.Count; i++)
-                {
-                    EcritureFichierClient.WriteLine(listClient[i].nom + ";" + listClient[i].prénom + ";" + listClient[i].typepermis + ";" + listClient[i].ID);                    
-                }
-                EcritureFichierClient.Close();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-        }
-        public void SauvegardeVéhicule()
-        {
-            try
-            {
-                StreamWriter EcritureFichierVéhicule = new StreamWriter("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Véhicules.txt");        
-        
-                for (int i = 0; i<listVéhicule.Count; i++)
-                {
-                    string str = listVéhicule[i].ToString();
-                    EcritureFichierVéhicule.WriteLine(str);         
-                }
-                EcritureFichierVéhicule.Close();                
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-        }
-        public void SauvegardeTrajet()
-        {
-            try
-            {
-                StreamWriter EcritureFichierTrajets = new StreamWriter("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Trajets.txt");
-                for (int i = 0; i < listTrajet.Count; i++)
-                {
-                    EcritureFichierTrajets.WriteLine(listTrajet[i].nbKm + ";" + listTrajet[i].villedépart + ";" + listTrajet[i].villearrivée + ";" + listTrajet[i].autoroute + ";" + listTrajet[i].allerretour + ";" + listTrajet[i].idclient + ";" + listTrajet[i].immatriculation + ";" + listTrajet[i].idtrajet + ";" + listTrajet[i].actif);
-                }
-                EcritureFichierTrajets.Close();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-        }
-        public void MaJTrajet(int IDTrajet)
-        {
-            bool Continue = true;
-            while (Continue == true)
-            {
-                bool Existe = false;
-                for (int i = 0; i < listTrajet.Count; i++)
-                {
-                    if (listTrajet[i].idtrajet == IDTrajet && listTrajet[i].actif == true)
-                    {
-                        Existe = true;
-                        Console.WriteLine("Le trajet a bien été sélectionné, il est actuellement considéré étant en cours. Voulez-vous cloturer le trajet ?");
-                        string LireRéponseID = OuiNon();
-                        if(LireRéponseID == "oui")
-                        {
-                            for (int j = 0; j<listTrajet.Count;j++)
-                            {
-                                if (listTrajet[j].idtrajet == IDTrajet)
-                                {
-                                    listTrajet[j].ChangerActif();
-                                    Continue = false;
-                                }
-                            }
-                        }
-                    }
-                    if (listTrajet[i].idtrajet == IDTrajet && listTrajet[i].actif == false && Existe == false)
-                    {
-                        Existe = true;
-                        Console.WriteLine("Le trajet a bien été sélectionné, il est actuellement considéré étant cloturer. Voulez-vous relancer le trajet ?");
-                        string LireRéponseID = OuiNon();
-                        if (LireRéponseID == "oui")
-                        {
-                            for (int j = 0; j < listTrajet.Count; j++)
-                            {
-                                if (listTrajet[j].idtrajet == IDTrajet)
-                                {
-                                    listTrajet[j].ChangerActif();
-                                    Continue = false;
-                                }
-                            }
-                        }
-                    }
-                }
-                if (Existe == false)
-                {
-                    Console.WriteLine("\nIl n'existe aucun trajet avec cet ID, voulez-vous essayer un autre ID ?");                    
-                    string LireRéponseID = Console.ReadLine();
-                    LireRéponseID = LireRéponseID.ToLower();
-                    while (LireRéponseID != "oui" && LireRéponseID != "non")
-                    {
-                        Console.WriteLine("\nIl y a eu une erreur de compréhension, veuillez renseigner de nouveau par 'oui' ou 'non' s'il-vous-plaît :");
-                        LireRéponseID = Console.ReadLine();
-                        LireRéponseID = LireRéponseID.ToLower();
-                    }
-                    if (LireRéponseID == "non")
-                    {
-                        Continue = false;       
-                    }
-                }
-            }
-            Console.Clear();
-            SauvegardeTrajet();
-            
-        }
-        public string OuiNon()
-        {
-            string Réponse = Console.ReadLine();
-            Réponse = Réponse.ToLower();
-            while (Réponse != "oui" && Réponse != "non")
-            {
-                Console.WriteLine("\n Il y a eu une erreur de compréhension, veuillez renseigner de nouveau par 'oui' ou 'non' s'il-vous-plaît: ");
-                Réponse = Console.ReadLine();
-                Réponse = Réponse.ToLower();
-            }
-            return Réponse;
-        }
-        public void ListeClients()
-        {
-            Console.WriteLine("Voici la liste complète des clients enregistrés :");
-            Console.WriteLine("\n| Nom |" + "    " +
-                " | Prénom | " + "     | ID |");
-            for (int i = 0; i<listClient.Count; i++)
-            {
-                Console.WriteLine(listClient[i].nom + "    " + listClient[i].prénom + "    " + listClient[i].ID);
-            }
-            Console.WriteLine("\nPressez un bouton pour retourner au menu.");
-            Console.ReadKey();
-            Console.Clear();
-        }
-        public void SupprimerTrajet(int ID)
-        {
-            bool Supprimer = false;
-            for (int i = 0; i < listTrajet.Count; i++)
-            {
-                if (listTrajet[i].idtrajet == ID)
-                {
-                    listTrajet.RemoveAt(i);
-                    Supprimer = true;
-                }
-            }
-            Console.Clear();
-            if (Supprimer == true)
-            {
-                Console.WriteLine("Le trajet a bien été supprimé.");
-            }
-            else Console.WriteLine("Aucun trajet avec cet ID n'a été trouvé.");
-            SauvegardeTrajet();
-        }
-        public void ListeTrajets()
-        {
-            {
-                Console.WriteLine("Voici la liste complète des trajets enregistrés :");
-                Console.WriteLine("\n| Ville de départ |" + "    " +
-                    " | Ville d'arrivée | " + "| ID du client |" + "| ID du trajet |");
-                for (int i = 0; i < listTrajet.Count; i++)
-                {
-                    Console.WriteLine(listTrajet[i].villedépart + "             |            " + listTrajet[i].villearrivée + "        |       " + listTrajet[i].idclient + "    |     " + listTrajet[i].idtrajet + "    |     ");
-                }
-                Console.WriteLine("\nPressez un bouton pour retourner au menu.");
-                Console.ReadKey();
-                Console.Clear();
-            }
-        }
+        }     
     }
 }
