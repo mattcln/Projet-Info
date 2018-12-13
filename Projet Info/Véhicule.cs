@@ -14,6 +14,7 @@ namespace Projet_Info
         protected string TypeVeh;
         protected string Marque;
         protected string Modèle;
+        protected string Contrôleur;
         public string Immat
         {
             get { return immat; }
@@ -30,14 +31,18 @@ namespace Projet_Info
         {
             get { return Modèle; }
         }
-
+        public string contrôleur
+        {
+            get { return Contrôleur; }
+        }
         //  CONSTRUCTEUR
-        public Véhicule(string Immat, string TypeVeh, string Marque, string Modèle)
+        public Véhicule(string Immat, string TypeVeh, string Marque, string Modèle, string Contrôleur)
         {
             this.immat = Immat;
             this.TypeVeh = TypeVeh;
             this.Marque = Marque;
             this.Modèle = Modèle;
+            this.Contrôleur = Contrôleur;
         }
 
         // METHODE        
@@ -45,7 +50,7 @@ namespace Projet_Info
         public override string ToString()
         {
             string str = "";
-            str = Immat + ";" + TypeVeh + ";" + Marque + ";" + Modèle;
+            str = Immat + ";" + TypeVeh + ";" + Marque + ";" + Modèle + ";" + Contrôleur;
             return str;
         }
         public abstract double CalculCout(int NbKm);        

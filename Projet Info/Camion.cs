@@ -14,7 +14,7 @@ namespace Projet_Info
             get { return Volume; }
         }
 
-        public Camion(string Immat, string Marque, string Modèle, string TypeVeh, int Volume) :base(Immat, Marque, Modèle, TypeVeh)
+        public Camion(string Immat, string Marque, string Modèle, string TypeVeh, string Contrôleur, int Volume) :base(Immat, Marque, Modèle, TypeVeh, Contrôleur)
         {
             this.Volume = Volume;
         }
