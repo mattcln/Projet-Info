@@ -16,7 +16,7 @@ namespace Projet_Info
         }
         static void Authentification()
         {
-            StreamReader FichierAuthentification = new StreamReader("C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Authentification.txt");            
+            StreamReader FichierAuthentification = new StreamReader("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Authentification.txt");            
             Console.WriteLine("Bienvenue sur le programme de gestion du park automobile.");
             string ligne = "";
             string Pseudo = ""; string MDP = ""; bool Continuer = true; bool Vérif = false; bool boucle = false; bool end = false;
@@ -24,7 +24,7 @@ namespace Projet_Info
             {
                 if (boucle == true)
                 {
-                    FichierAuthentification = new StreamReader("C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Authentification.txt");
+                    FichierAuthentification = new StreamReader("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Authentification.txt");
                 }
                 Console.WriteLine("\n Veuillez renseigner votre pseudonyme:");
                 Pseudo = Console.ReadLine();
@@ -216,7 +216,7 @@ namespace Projet_Info
                     Console.WriteLine("");
                     Console.WriteLine(" 1 -   Attribuer un trajet");
                     Console.WriteLine(" 2 -   Retirer un trajet");
-                    Console.WriteLine(" 3 -   Modifier un trajet");
+                    Console.WriteLine(" 3 -   Modifier l'état d'un trajet");
                     Console.WriteLine(" 4 -   Information trajet");
                     Console.WriteLine(" 5 -   Afficher la liste des trajets");
                     Console.WriteLine(" 6 -   Retour au menu principal");
@@ -244,7 +244,7 @@ namespace Projet_Info
 
                         case 3:
                             Console.Clear();
-                            Console.WriteLine("\nVeuillez renseigner l'ID du trajet que vous voulez mette à jour:");
+                            Console.WriteLine("Veuillez renseigner l'ID du trajet que vous voulez mette à jour:");
                             int IDTrajet = int.Parse(Console.ReadLine());
                             C.MaJTrajet(IDTrajet);
                             Console.WriteLine("L'état du trajet a bien été mis à jour !\n");

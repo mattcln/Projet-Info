@@ -103,7 +103,7 @@ namespace Projet_Info
         {
             try
             {
-                StreamWriter EcritureFichierClient = new StreamWriter("C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Clients.txt");
+                StreamWriter EcritureFichierClient = new StreamWriter("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Clients.txt");
                 for (int i = 0; i < listClient.Count; i++)
                 {
                     EcritureFichierClient.WriteLine(listClient[i].nom + ";" + listClient[i].prénom + ";" + listClient[i].typepermis + ";" + listClient[i].ID);
@@ -267,7 +267,7 @@ namespace Projet_Info
         {
             try
             {
-                StreamWriter EcritureFichierVéhicule = new StreamWriter("C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Véhicules.txt");
+                StreamWriter EcritureFichierVéhicule = new StreamWriter("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Véhicules.txt");
 
                 for (int i = 0; i < listVéhicule.Count; i++)
                 {
@@ -454,7 +454,7 @@ namespace Projet_Info
                     }
                 }
                 double Coût = CoûtTrajet(Immatriculation, NbKm);
-                Console.WriteLine("Le coût du trajet est de :");
+                Console.WriteLine("Le coût du trajet est de : " + Coût);
                 Console.WriteLine("Création d'un ID pour le trajet :");
                 int IDTrajet = CréerID(NombreAléatoire);
                 if (ArrêtDeLaMéthode == false)
@@ -467,7 +467,9 @@ namespace Projet_Info
             if (ArrêtDeLaMéthode == true)
             {
                 Console.WriteLine("\nLa création du trajet est annulée, il manquait des informations.");
-            }            
+            }
+            Console.WriteLine("Appuyez sur une touche pour retourner au menu");
+            Console.ReadKey();
             Console.Clear();
         }
         public void InformationsTrajet()
@@ -530,10 +532,10 @@ namespace Projet_Info
         {
             try
             {
-                StreamWriter EcritureFichierTrajets = new StreamWriter("C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Trajets.txt");
+                StreamWriter EcritureFichierTrajets = new StreamWriter("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Trajets.txt");
                 for (int i = 0; i < listTrajet.Count; i++)
                 {
-                    EcritureFichierTrajets.WriteLine(listTrajet[i].nbKm + ";" + listTrajet[i].villedépart + ";" + listTrajet[i].villearrivée + ";" + listTrajet[i].autoroute + ";" + listTrajet[i].allerretour + ";" + listTrajet[i].idclient + ";" + listTrajet[i].immatriculation + ";" + listTrajet[i].idtrajet + ";" + listTrajet[i].actif);
+                    EcritureFichierTrajets.WriteLine(listTrajet[i].nbKm + ";" + listTrajet[i].villedépart + ";" + listTrajet[i].villearrivée + ";" + listTrajet[i].autoroute + ";" + listTrajet[i].allerretour + ";" + listTrajet[i].idclient + ";" + listTrajet[i].immatriculation + ";" + listTrajet[i].idtrajet + ";" + listTrajet[i].coût + ";" + listTrajet[i].actif);
                 }
                 EcritureFichierTrajets.Close();
             }
@@ -651,7 +653,7 @@ namespace Projet_Info
         {
             try
             {
-                string LocalisationClient = "C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Clients.txt";
+                string LocalisationClient = "C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Clients.txt";
                 StreamReader LectureFichierClient = new StreamReader(LocalisationClient);
                 string ligne = "";
                 while (LectureFichierClient.EndOfStream == false)
@@ -663,7 +665,7 @@ namespace Projet_Info
                     listClient.Add(C);
                 }                
                 LectureFichierClient.Close();
-                string LocalisationVéhicules = "C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Véhicules.txt";
+                string LocalisationVéhicules = "C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Véhicules.txt";
                 StreamReader LectureFichierVéhicules = new StreamReader(LocalisationVéhicules);                
                 while (LectureFichierVéhicules.EndOfStream == false)
                 {
@@ -689,7 +691,7 @@ namespace Projet_Info
                     }
                 }
                 LectureFichierVéhicules.Close();
-                string LocationTrajets = "C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Trajets.txt";
+                string LocationTrajets = "C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Trajets.txt";
                 StreamReader LectureFichierTrajets = new StreamReader(LocationTrajets);
                 while (LectureFichierTrajets.EndOfStream == false)
                 {
@@ -710,7 +712,7 @@ namespace Projet_Info
                         AllerRetour = true;
                     }
                     else AllerRetour = false;
-                    if (tab[8] == "True")
+                    if (tab[9] == "True")
                     {
                         Actif = true;
                     }
