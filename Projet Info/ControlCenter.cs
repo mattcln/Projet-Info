@@ -16,6 +16,7 @@ namespace Projet_Info
         private List<Voiture> listVoiture;
         private List<Moto> listMoto;
         private List<Camion> listCamion;
+        private List<Parking> listParking;
 
         public ControlCenter()
         {
@@ -25,6 +26,7 @@ namespace Projet_Info
             listVoiture = new List<Voiture>();
             listMoto = new List<Moto>();
             listCamion = new List<Camion>();
+            listParking = new List<Parking>();
         }
 
 
@@ -721,6 +723,21 @@ namespace Projet_Info
                     listTrajet.Add(T);
                 }
                 LectureFichierTrajets.Close();
+                string LocationParking = "C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Parkings.txt";
+                StreamReader LectureFichierParkings = new StreamReader(LocationParking);
+                while (LectureFichierParkings.EndOfStream == false)
+                {
+                    ligne = LectureFichierParkings.ReadLine();
+                    string[] tab = ligne.Split(';');
+                    int NbArrondissement = Convert.ToInt32(tab[0]);
+                    bool Dispo = false;
+                    if(tab[2] == "True")
+                    {
+                        Dispo = true;
+                    }
+                    Parking P = new Parking(NbArrondissement, tab[1], Dispo);
+                    listParking.Add(P);
+                }
             }
             catch (Exception e)
             {

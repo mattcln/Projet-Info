@@ -10,9 +10,9 @@ namespace Projet_Info
     {
         protected int Arrondissement;
         protected string Place;
-        bool Dispo;
+        protected bool Dispo;
 
-        Parking(int Arrondissement, string Place, bool Dispo)
+        public Parking(int Arrondissement, string Place, bool Dispo)
         {
             this.Arrondissement = Arrondissement;
             this.Place = Place;
