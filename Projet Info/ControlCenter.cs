@@ -103,7 +103,7 @@ namespace Projet_Info
         {
             try
             {
-                StreamWriter EcritureFichierClient = new StreamWriter("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Clients.txt");
+                StreamWriter EcritureFichierClient = new StreamWriter("C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Clients.txt");
                 for (int i = 0; i < listClient.Count; i++)
                 {
                     EcritureFichierClient.WriteLine(listClient[i].nom + ";" + listClient[i].prénom + ";" + listClient[i].typepermis + ";" + listClient[i].ID);
@@ -253,7 +253,7 @@ namespace Projet_Info
         {
             try
             {
-                StreamWriter EcritureFichierVéhicule = new StreamWriter("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Véhicules.txt");
+                StreamWriter EcritureFichierVéhicule = new StreamWriter("C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Véhicules.txt");
 
                 for (int i = 0; i < listVéhicule.Count; i++)
                 {
@@ -438,11 +438,13 @@ namespace Projet_Info
                         else ArrêtDeLaMéthode = true;
                     }
                 }
+                double Coût = CoûtTrajet(Immatriculation, NbKm);
+                Console.WriteLine("Le coût du trajet est de :");
                 Console.WriteLine("Création d'un ID pour le trajet :");
                 int IDTrajet = CréerID(NombreAléatoire);
                 if (ArrêtDeLaMéthode == false)
                 {
-                    Trajet Trajet = new Trajet(NbKm, VilleDépart, VilleArrivée, Autoroute, AllerRetour, IDClient, Immatriculation, IDTrajet, true);
+                    Trajet Trajet = new Trajet(NbKm, VilleDépart, VilleArrivée, Autoroute, AllerRetour, IDClient, Immatriculation, IDTrajet, Coût, true);
                     listTrajet.Add(Trajet);
                     SauvegardeTrajet();
                 }
@@ -450,7 +452,7 @@ namespace Projet_Info
             if (ArrêtDeLaMéthode == true)
             {
                 Console.WriteLine("\nLa création du trajet est annulée, il manquait des informations.");
-            }
+            }            
             Console.Clear();
         }
         public void InformationsTrajet()
@@ -513,7 +515,7 @@ namespace Projet_Info
         {
             try
             {
-                StreamWriter EcritureFichierTrajets = new StreamWriter("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Trajets.txt");
+                StreamWriter EcritureFichierTrajets = new StreamWriter("C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Trajets.txt");
                 for (int i = 0; i < listTrajet.Count; i++)
                 {
                     EcritureFichierTrajets.WriteLine(listTrajet[i].nbKm + ";" + listTrajet[i].villedépart + ";" + listTrajet[i].villearrivée + ";" + listTrajet[i].autoroute + ";" + listTrajet[i].allerretour + ";" + listTrajet[i].idclient + ";" + listTrajet[i].immatriculation + ";" + listTrajet[i].idtrajet + ";" + listTrajet[i].actif);
@@ -589,6 +591,18 @@ namespace Projet_Info
             SauvegardeTrajet();
 
         }        
+        public double CoûtTrajet(string immat, int NbKm)
+        {
+            double Coût = 0;
+            for (int i = 0; i < listVéhicule.Count; i++)
+            {
+                if (listVéhicule[i].Immat == immat)
+                {
+                    Coût = listVéhicule[i].CalculCout(NbKm);
+                }
+            }
+            return Coût;
+        }
         
                 //AUTRES METHODES
         public int CréerID(List<int> NombreAléatoire)
@@ -622,7 +636,7 @@ namespace Projet_Info
         {
             try
             {
-                string LocalisationClient = "C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Clients.txt";
+                string LocalisationClient = "C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Clients.txt";
                 StreamReader LectureFichierClient = new StreamReader(LocalisationClient);
                 string ligne = "";
                 while (LectureFichierClient.EndOfStream == false)
@@ -634,7 +648,7 @@ namespace Projet_Info
                     listClient.Add(C);
                 }                
                 LectureFichierClient.Close();
-                string LocalisationVéhicules = "C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Véhicules.txt";
+                string LocalisationVéhicules = "C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Véhicules.txt";
                 StreamReader LectureFichierVéhicules = new StreamReader(LocalisationVéhicules);                
                 while (LectureFichierVéhicules.EndOfStream == false)
                 {
@@ -660,7 +674,7 @@ namespace Projet_Info
                     }
                 }
                 LectureFichierVéhicules.Close();
-                string LocationTrajets = "C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Trajets.txt";
+                string LocationTrajets = "C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Trajets.txt";
                 StreamReader LectureFichierTrajets = new StreamReader(LocationTrajets);
                 while (LectureFichierTrajets.EndOfStream == false)
                 {
@@ -669,6 +683,7 @@ namespace Projet_Info
                     int NbKm = Convert.ToInt32(tab[0]);
                     int IDTrajet = Convert.ToInt32(tab[7]);
                     int IDClient = Convert.ToInt32(tab[5]);
+                    double Coût = Convert.ToDouble(tab[8]);
                     bool Autoroute; bool AllerRetour; bool Actif;
                     if (tab[3] == "True")
                     {
@@ -685,7 +700,7 @@ namespace Projet_Info
                         Actif = true;
                     }
                     else Actif = false;
-                    Trajet T = new Trajet(NbKm, tab[1], tab[2], Autoroute, AllerRetour, IDClient, tab[6], IDTrajet, Actif);
+                    Trajet T = new Trajet(NbKm, tab[1], tab[2], Autoroute, AllerRetour, IDClient, tab[6], IDTrajet, Coût, Actif);
                     listTrajet.Add(T);
                 }
                 LectureFichierTrajets.Close();

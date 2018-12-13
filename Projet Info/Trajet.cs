@@ -16,6 +16,7 @@ namespace Projet_Info
         private int IDClient;
         private string Immatriculation;
         private int IDTrajet;
+        private double Coût;
         private bool Actif;
         public int nbKm
         {
@@ -49,11 +50,15 @@ namespace Projet_Info
         {
             get { return IDTrajet; }
         }
+        public double coût
+        {
+            get { return Coût; }
+        }
         public bool actif
         {
             get { return Actif; }
         }
-        public Trajet(int NbKm, string VilleDépart, string VilleArrivée, bool Autoroute, bool AllerRetour, int IDClient, string Immatriculation, int IDTrajet, bool Actif)
+        public Trajet(int NbKm, string VilleDépart, string VilleArrivée, bool Autoroute, bool AllerRetour, int IDClient, string Immatriculation, int IDTrajet, double Coût, bool Actif)
         {
             this.NbKm = NbKm;
             this.VilleDépart = VilleDépart;
@@ -63,6 +68,7 @@ namespace Projet_Info
             this.IDClient = IDClient;
             this.Immatriculation = Immatriculation;
             this.IDTrajet = IDTrajet;
+            this.Coût = Coût;
             this.Actif = Actif;
         }
         public void ChangerActif()
