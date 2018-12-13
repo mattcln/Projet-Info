@@ -130,19 +130,6 @@ namespace Projet_Info
         }
 
                 //VEHICULES
-        public bool VérifierExistenceImmatriculation(string immat)
-        {
-            bool existe = false;
-            for (int i = 0; i < listVéhicule.Count; i++)
-            {
-                if (listVéhicule[i].Immat == immat)
-                {
-                    existe = true;
-                    Console.WriteLine("L'immatriculation du véhicule est vérifiée.");
-                }
-            }
-            return existe;
-        }
         public void EnregistrerVéhicule()
         {
             Console.Clear();
@@ -190,46 +177,6 @@ namespace Projet_Info
             }
             SauvegardeVéhicule();
         }
-        public void SupprimerVéhicule()
-        {
-            Console.WriteLine("Veuillez renseigner l'immatriculation du véhicule que vous voulez supprimer:");
-            bool Supprimer = false;
-            string Immat = Console.ReadLine();
-            Immat = Immat.ToUpper();
-            for (int i = 0; i < listVéhicule.Count; i++)
-            {
-                if (listVéhicule[i].Immat == Immat)
-                {
-                    listVéhicule.RemoveAt(i);
-                    Supprimer = true;
-                }
-            }
-            Console.Clear();
-            if (Supprimer == true)
-            {
-                Console.WriteLine("Le véhicule a bien été supprimé.");
-            }
-            else Console.WriteLine("Aucun véhicule avec cette immatriculation n'a été trouvé.");
-            SauvegardeVéhicule();
-        }
-        public void SauvegardeVéhicule()
-        {
-            try
-            {
-                StreamWriter EcritureFichierVéhicule = new StreamWriter("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Véhicules.txt");
-
-                for (int i = 0; i < listVéhicule.Count; i++)
-                {
-                    string str = listVéhicule[i].ToString();
-                    EcritureFichierVéhicule.WriteLine(str);
-                }
-                EcritureFichierVéhicule.Close();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-        }
         public void InformationsVéhicule()
         {
             Console.WriteLine("Quel est l'immatriculation du véhicule dont voulez-vous avoir les informations ?");
@@ -240,7 +187,7 @@ namespace Projet_Info
                 if (listVéhicule[i].Immat == Immat)
                 {
                     Informations = listVéhicule[i].ToString();
-                    string [] Info = Informations.Split(';');
+                    string[] Info = Informations.Split(';');
                     Console.WriteLine("\nVoici les informations du véhicules: ");
                     Console.WriteLine("Immatriculation: " + Info[0]);
                     Console.WriteLine("Type de véhicule: " + Info[3]);
@@ -266,7 +213,29 @@ namespace Projet_Info
             if (Trouvé == false)
             {
                 Console.WriteLine("\nAucun véhicule avec cet ID n'a été trouvé.");
-            }           
+            }
+        }
+        public void SupprimerVéhicule()
+        {
+            Console.WriteLine("Veuillez renseigner l'immatriculation du véhicule que vous voulez supprimer:");
+            bool Supprimer = false;
+            string Immat = Console.ReadLine();
+            Immat = Immat.ToUpper();
+            for (int i = 0; i < listVéhicule.Count; i++)
+            {
+                if (listVéhicule[i].Immat == Immat)
+                {
+                    listVéhicule.RemoveAt(i);
+                    Supprimer = true;
+                }
+            }
+            Console.Clear();
+            if (Supprimer == true)
+            {
+                Console.WriteLine("Le véhicule a bien été supprimé.");
+            }
+            else Console.WriteLine("Aucun véhicule avec cette immatriculation n'a été trouvé.");
+            SauvegardeVéhicule();
         }
         public void ListeVéhicules()
         {
@@ -280,7 +249,38 @@ namespace Projet_Info
             Console.ReadKey();
             Console.Clear();
         }
+        public void SauvegardeVéhicule()
+        {
+            try
+            {
+                StreamWriter EcritureFichierVéhicule = new StreamWriter("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Véhicules.txt");
 
+                for (int i = 0; i < listVéhicule.Count; i++)
+                {
+                    string str = listVéhicule[i].ToString();
+                    EcritureFichierVéhicule.WriteLine(str);
+                }
+                EcritureFichierVéhicule.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+        public bool VérifierExistenceImmatriculation(string immat)
+        {
+            bool existe = false;
+            for (int i = 0; i < listVéhicule.Count; i++)
+            {
+                if (listVéhicule[i].Immat == immat)
+                {
+                    existe = true;
+                    Console.WriteLine("L'immatriculation du véhicule est vérifiée.");
+                }
+            }
+            return existe;
+        } 
+        
                 //TRAJETS
         public void CréerTrajet()
         {
@@ -453,6 +453,62 @@ namespace Projet_Info
             }
             Console.Clear();
         }
+        public void InformationsTrajet()
+        {
+            Console.WriteLine("Quel est l'ID du trajet dont voulez-vous avoir les informations ?");
+            int IDTrajet = int.Parse(Console.ReadLine());
+            string Informations = ""; bool Trouvé = false;
+            for (int i = 0; i < listTrajet.Count; i++)
+            {
+                if (listTrajet[i].idtrajet == IDTrajet)
+                {
+                    Informations = listTrajet[i].ToString();
+                    Trouvé = true;
+                }
+            }
+            if (Trouvé == true)
+            {
+                Console.WriteLine("\n" + Informations + "\n");
+                Console.WriteLine("Appuyez sur un bouton pour revenir au menu");
+                Console.ReadKey();
+                Console.Clear();
+            }
+            else Console.WriteLine("\nAucun trajet avec cet ID n'a été trouvé.");
+        }
+        public void SupprimerTrajet(int ID)
+        {
+            bool Supprimer = false;
+            for (int i = 0; i < listTrajet.Count; i++)
+            {
+                if (listTrajet[i].idtrajet == ID)
+                {
+                    listTrajet.RemoveAt(i);
+                    Supprimer = true;
+                }
+            }
+            Console.Clear();
+            if (Supprimer == true)
+            {
+                Console.WriteLine("Le trajet a bien été supprimé.");
+            }
+            else Console.WriteLine("Aucun trajet avec cet ID n'a été trouvé.");
+            SauvegardeTrajet();
+        }
+        public void ListeTrajets()
+        {
+            {
+                Console.WriteLine("Voici la liste complète des trajets enregistrés :");
+                Console.WriteLine("\n| Ville de départ |" + "    " +
+                    " | Ville d'arrivée | " + "| ID du client |" + "| ID du trajet |");
+                for (int i = 0; i < listTrajet.Count; i++)
+                {
+                    Console.WriteLine(listTrajet[i].villedépart + "             |            " + listTrajet[i].villearrivée + "        |       " + listTrajet[i].idclient + "    |     " + listTrajet[i].idtrajet + "    |     ");
+                }
+                Console.WriteLine("\nPressez un bouton pour retourner au menu.");
+                Console.ReadKey();
+                Console.Clear();
+            }
+        }
         public void SauvegardeTrajet()
         {
             try
@@ -533,41 +589,7 @@ namespace Projet_Info
             SauvegardeTrajet();
 
         }        
-        public void SupprimerTrajet(int ID)
-        {
-            bool Supprimer = false;
-            for (int i = 0; i < listTrajet.Count; i++)
-            {
-                if (listTrajet[i].idtrajet == ID)
-                {
-                    listTrajet.RemoveAt(i);
-                    Supprimer = true;
-                }
-            }
-            Console.Clear();
-            if (Supprimer == true)
-            {
-                Console.WriteLine("Le trajet a bien été supprimé.");
-            }
-            else Console.WriteLine("Aucun trajet avec cet ID n'a été trouvé.");
-            SauvegardeTrajet();
-        }
-        public void ListeTrajets()
-        {
-            {
-                Console.WriteLine("Voici la liste complète des trajets enregistrés :");
-                Console.WriteLine("\n| Ville de départ |" + "    " +
-                    " | Ville d'arrivée | " + "| ID du client |" + "| ID du trajet |");
-                for (int i = 0; i < listTrajet.Count; i++)
-                {
-                    Console.WriteLine(listTrajet[i].villedépart + "             |            " + listTrajet[i].villearrivée + "        |       " + listTrajet[i].idclient + "    |     " + listTrajet[i].idtrajet + "    |     ");
-                }
-                Console.WriteLine("\nPressez un bouton pour retourner au menu.");
-                Console.ReadKey();
-                Console.Clear();
-            }
-        }
-
+        
                 //AUTRES METHODES
         public int CréerID(List<int> NombreAléatoire)
         {

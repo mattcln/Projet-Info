@@ -252,6 +252,7 @@ namespace Projet_Info
 
                         case 4:
                             Console.Clear();
+                            C.InformationsTrajet();
                             // info trajet
                             break;
 

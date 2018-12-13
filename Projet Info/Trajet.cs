@@ -76,7 +76,7 @@ namespace Projet_Info
         public override string ToString()
         {
             string str = "";
-            str = "Nombre de kilomètre : " + NbKm + "\nVille de départ : " + VilleDépart + "\nVille d'arrivée : " + VilleArrivée + "\nAutoroute : " + Autoroute + "\nAller / Retour : " + AllerRetour + "\nID client: " + IDClient + "\nImmatriculation du véhicule: " + Immatriculation + "\nID trajet: " + IDTrajet + "Activité du trajet: " + Actif;
+            str = "Nombre de kilomètre : " + NbKm + "\nVille de départ : " + VilleDépart + "\nVille d'arrivée : " + VilleArrivée + "\nAutoroute : " + Autoroute + "\nAller / Retour : " + AllerRetour + "\nID client: " + IDClient + "\nImmatriculation du véhicule: " + Immatriculation + "\nID trajet: " + IDTrajet + "\nActivité du trajet: " + Actif;
             return str;
         }               
     }
