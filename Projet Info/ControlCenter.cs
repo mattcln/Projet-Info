@@ -133,6 +133,7 @@ namespace Projet_Info
         public void EnregistrerVéhicule()
         {
             Console.Clear();
+            int NbContrôleur = listVéhicule.Count; string Contrôleur ="";
             Console.WriteLine(" Veuillez renseigner les informations du véhicule : " + "\n" + "\n Immatriculation : ");
             string Immatriculation = Console.ReadLine();
             Console.WriteLine("\nMarque : ");
@@ -141,6 +142,18 @@ namespace Projet_Info
             string Modèle = Console.ReadLine();
             string TypeVéhicule = "";
             Console.WriteLine("\nVoulez - vous ajouter une moto, un camion ou une voiture ? ");
+            if (NbContrôleur % 3 == 0)
+            {
+                Contrôleur = "ContrôleurA";
+            }
+            if (NbContrôleur % 3 == 1)
+            {
+                Contrôleur = "ContrôleurB";
+            }
+            if (NbContrôleur % 3 == 2)
+            {
+                Contrôleur = "ContrôleurC";
+            }
             while (TypeVéhicule != "moto" && TypeVéhicule != "camion" && TypeVéhicule != "voiture")
             {
                 TypeVéhicule = Console.ReadLine();
@@ -156,14 +169,14 @@ namespace Projet_Info
                 int Puissance = int.Parse(Console.ReadLine());
                 Console.WriteLine("\nCouleur : ");
                 string Couleur = Console.ReadLine();
-                Moto Moto = new Moto(Immatriculation, Marque, Modèle, TypeVéhicule, Couleur, Puissance);
+                Moto Moto = new Moto(Immatriculation, Marque, Modèle, TypeVéhicule, Contrôleur, Couleur, Puissance);
                 listVéhicule.Add(Moto);
             }
             if (TypeVéhicule == "camion")
             {
                 Console.WriteLine("\nVolume : ");
                 int Volume = int.Parse(Console.ReadLine());
-                Camion Camion = new Camion(Immatriculation, Marque, Modèle, TypeVéhicule, Volume);
+                Camion Camion = new Camion(Immatriculation, Marque, Modèle, TypeVéhicule, Contrôleur, Volume);
                 listVéhicule.Add(Camion);
             }
             if (TypeVéhicule == "voiture")
@@ -172,7 +185,7 @@ namespace Projet_Info
                 string Couleur = Console.ReadLine();
                 Console.WriteLine("\nNombre de portes : ");
                 int NbPortes = int.Parse(Console.ReadLine());
-                Voiture Voiture = new Voiture(Immatriculation, Marque, Modèle, TypeVéhicule, Couleur, NbPortes);
+                Voiture Voiture = new Voiture(Immatriculation, Marque, Modèle, TypeVéhicule, Contrôleur, Couleur, NbPortes);
                 listVéhicule.Add(Voiture);
             }
             SauvegardeVéhicule();
@@ -188,24 +201,25 @@ namespace Projet_Info
                 {
                     Informations = listVéhicule[i].ToString();
                     string[] Info = Informations.Split(';');
-                    Console.WriteLine("\nVoici les informations du véhicules: ");
+                    Console.WriteLine("\nVoici les informations du véhicules: \n");
                     Console.WriteLine("Immatriculation: " + Info[0]);
                     Console.WriteLine("Type de véhicule: " + Info[3]);
                     Console.WriteLine("Marque: " + Info[1]);
                     Console.WriteLine("Modèle: " + Info[2]);
+                    Console.WriteLine("Contrôleur attitré: " + Info[4]);
                     if (Info[3] == "voiture")
                     {
-                        Console.WriteLine("Couleur: " + Info[4]);
-                        Console.WriteLine("Nombre de portes: " + Info[5] + "\n");
+                        Console.WriteLine("Couleur: " + Info[5]);
+                        Console.WriteLine("Nombre de portes: " + Info[6] + "\n");
                     }
                     if (Info[3] == "camion")
                     {
-                        Console.WriteLine("Volume: " + Info[4] + "\n");
+                        Console.WriteLine("Volume: " + Info[5] + "\n");
                     }
                     if (Info[3] == "moto")
                     {
-                        Console.WriteLine("Couleur: " + Info[4]);
-                        Console.WriteLine("Puissance: " + Info[5] + "\n");
+                        Console.WriteLine("Couleur: " + Info[5]);
+                        Console.WriteLine("Puissance: " + Info[6] + "\n");
                     }
                     Trouvé = true;
                 }
@@ -261,6 +275,7 @@ namespace Projet_Info
                     EcritureFichierVéhicule.WriteLine(str);
                 }
                 EcritureFichierVéhicule.Close();
+                Console.WriteLine("Heyy");
             }
             catch (Exception e)
             {
@@ -642,20 +657,20 @@ namespace Projet_Info
                     string[] tab = ligne.Split(';');                    
                     if (tab[3] == "voiture")
                     {
-                        int NbPortes = Convert.ToInt32(tab[5]);                        
-                        Voiture Voiture = new Voiture(tab[0], tab[1], tab[2], tab[3], tab[4], NbPortes);                        
+                        int NbPortes = Convert.ToInt32(tab[6]);                        
+                        Voiture Voiture = new Voiture(tab[0], tab[1], tab[2], tab[3], tab[4], tab[5], NbPortes);                        
                         listVéhicule.Add(Voiture);
                     }
                     if (tab[3] == "camion")
                     {
-                        int VolumeCamion = Convert.ToInt32(tab[4]);
-                        Camion Camion = new Camion(tab[0], tab[1], tab[2], tab[3], VolumeCamion);
+                        int VolumeCamion = Convert.ToInt32(tab[5]);
+                        Camion Camion = new Camion(tab[0], tab[1], tab[2], tab[3], tab[4], VolumeCamion);
                         listVéhicule.Add(Camion);
                     }
                     if (tab[3] == "moto")
                     {
-                        int Puissance = Convert.ToInt32(tab[5]);
-                        Moto Moto = new Moto(tab[0], tab[1], tab[2], tab[3], tab[4], Puissance);
+                        int Puissance = Convert.ToInt32(tab[6]);
+                        Moto Moto = new Moto(tab[0], tab[1], tab[2], tab[3], tab[4], tab[5], Puissance);
                         listVéhicule.Add(Moto);
                     }
                 }
@@ -695,5 +710,9 @@ namespace Projet_Info
                 Console.WriteLine(e.Message);
             }
         }     
+        public void AttributionPlaceParking()
+        {
+
+        }
     }
 }
