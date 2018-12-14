@@ -56,7 +56,7 @@ namespace Projet_Info
         public override string ToString()
         {
             string str = "";
-            str = Immat + ";" + TypeVeh + ";" + Marque + ";" + Modèle + ";" + Contrôleur;
+            str = Immat + ";" + TypeVeh + ";" + Marque + ";" + Modèle + ";" + Contrôleur + ";" + Emplacement;
             return str;
         }
         public abstract double CalculCout(int NbKm);        

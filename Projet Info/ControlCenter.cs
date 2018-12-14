@@ -143,6 +143,7 @@ namespace Projet_Info
             Console.WriteLine("\nModèle : ");
             string Modèle = Console.ReadLine();
             string TypeVéhicule = "";
+            string Emplacement = AttributionPlaceParking();
             Console.WriteLine("\nVoulez - vous ajouter une moto, un camion ou une voiture ? ");
             if (NbContrôleur % 3 == 0)
             {
@@ -155,9 +156,7 @@ namespace Projet_Info
             if (NbContrôleur % 3 == 2)
             {
                 Contrôleur = "ContrôleurC";
-            }
-            string Emplacement = AttributionPlaceParking();
-            Console.WriteLine("Voici la place attribué au véhicule: " + Emplacement);
+            }            
             while (TypeVéhicule != "moto" && TypeVéhicule != "camion" && TypeVéhicule != "voiture")
             {
                 TypeVéhicule = Console.ReadLine();
@@ -279,7 +278,6 @@ namespace Projet_Info
                     EcritureFichierVéhicule.WriteLine(str);
                 }
                 EcritureFichierVéhicule.Close();
-                Console.WriteLine("Heyy");
             }
             catch (Exception e)
             {
@@ -677,19 +675,19 @@ namespace Projet_Info
                     string[] tab = ligne.Split(';');                    
                     if (tab[3] == "voiture")
                     {
-                        int NbPortes = Convert.ToInt32(tab[6]);                        
+                        int NbPortes = Convert.ToInt32(tab[7]);                        
                         Voiture Voiture = new Voiture(tab[0], tab[1], tab[2], tab[3], tab[4], tab[5], tab[6], NbPortes);                        
                         listVéhicule.Add(Voiture);
                     }
                     if (tab[3] == "camion")
                     {
-                        int VolumeCamion = Convert.ToInt32(tab[5]);
+                        int VolumeCamion = Convert.ToInt32(tab[6]);
                         Camion Camion = new Camion(tab[0], tab[1], tab[2], tab[3], tab[4], tab[5], VolumeCamion);
                         listVéhicule.Add(Camion);
                     }
                     if (tab[3] == "moto")
                     {
-                        int Puissance = Convert.ToInt32(tab[6]);
+                        int Puissance = Convert.ToInt32(tab[7]);
                         Moto Moto = new Moto(tab[0], tab[1], tab[2], tab[3], tab[4], tab[5], tab[6], Puissance);
                         listVéhicule.Add(Moto);
                     }
@@ -740,6 +738,7 @@ namespace Projet_Info
                     Parking P = new Parking(NbArrondissement, tab[1], Dispo);
                     listParking.Add(P);
                 }
+                LectureFichierParkings.Close();
             }
             catch (Exception e)
             {
@@ -760,20 +759,45 @@ namespace Projet_Info
                 Place = "A" + NbPlace;
                 for(int i = 0;i<listParking.Count;i++)
                 {
-                    Console.WriteLine(listParking[i].arrondissement + "   " + listParking[i].place + listParking[i].dispo);
                     if (Arrondissement == listParking[i].arrondissement && Place == listParking[i].place && listParking[i].dispo == true)
                     {
                         PlaceTrouvé = true;
-                        Console.WriteLine("La place sélectionné est dans le " + Arrondissement + "ème arrondissement à la place " + Place);
+                        if (Arrondissement == 21)
+                        {
+                            Console.WriteLine("La place sélectionné est à Roissy à la place " + Place);
+                        }
+                        if (Arrondissement == 22)
+                        {
+                            Console.WriteLine("La place sélectionné est à Orly à la place " + Place);
+                        }
+                        if (Arrondissement<20)
+                        {
+                            Console.WriteLine("La place sélectionné est dans le " + Arrondissement + "ème arrondissement à la place " + Place);
+                        }
                         listParking[i].ChangerDispo();
                     }
-                    Console.ReadKey();
-                }      
-               
+                }
             }
+            SauvegardeParking();
             string Emplacement = Arrondissement + "-" + Place;
             return Emplacement;
             
+        }
+        public void SauvegardeParking()
+        {
+            try
+            {
+                StreamWriter EcritureFichierParking = new StreamWriter("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Parkings.txt");
+                for (int i = 0; i < listParking.Count; i++)
+                {
+                    EcritureFichierParking.WriteLine(listParking[i].arrondissement + ";" + listParking[i].place + ";" + listParking[i].dispo);
+                }
+                EcritureFichierParking.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }
