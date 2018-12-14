@@ -202,7 +202,7 @@ namespace Projet_Info
                             break;
                         case 5:
                             Console.Clear();
-                            // methode retourner au menu principal
+                            // Retour Menu
                             break;
                     }                    
                     break;

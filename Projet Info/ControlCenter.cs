@@ -461,14 +461,16 @@ namespace Projet_Info
                     }
                 }
                 double Coût = CoûtTrajet(Immatriculation, NbKm);
-                Console.WriteLine("Le coût du trajet est de : " + Coût);
-                Console.WriteLine("Création d'un ID pour le trajet :");
+                Console.WriteLine("\nLe coût du trajet est de : " + Coût);
+                Console.WriteLine("\nCréation d'un ID pour le trajet :");
                 int IDTrajet = CréerID(NombreAléatoire);
                 if (ArrêtDeLaMéthode == false)
                 {
+                    DépartVoiture(Immatriculation);
                     Trajet Trajet = new Trajet(NbKm, VilleDépart, VilleArrivée, Autoroute, AllerRetour, IDClient, Immatriculation, IDTrajet, Coût, true);
                     listTrajet.Add(Trajet);
                     SauvegardeTrajet();
+                    SauvegardeParking();
                 }
             }
             if (ArrêtDeLaMéthode == true)
@@ -804,5 +806,25 @@ namespace Projet_Info
                 Console.WriteLine(e.Message);
             }
         }
+        public void DépartVoiture(string immat)
+        {
+            string EmplacementParking = "";
+            for (int i = 0; i < listVéhicule.Count; i++)
+            {
+                if (listVéhicule[i].Immat == immat)
+                {
+                    for (int j = 0; j < listParking.Count; j++)
+                    {
+                        EmplacementParking = listParking[j].arrondissement + "-" + listParking[j].place;
+                        if (listVéhicule[i].emplacement == EmplacementParking)
+                        {
+                            listParking[j].ChangerDispo();
+                        }
+                    }
+
+                }
+            }
+        }
+        
     }
 }
