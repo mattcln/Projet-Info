@@ -746,7 +746,27 @@ namespace Projet_Info
         }     
         public void AttributionPlaceParking()
         {
-
+            Random Aléatoire = new Random();
+            int Arrondissement = 0;
+            int NbPlace = Aléatoire.Next(1, 9);
+            string Place = "";
+            bool PlaceTrouvé = false;
+            while (PlaceTrouvé == false)
+            {
+                Arrondissement = Aléatoire.Next(1, 22);
+                NbPlace = Aléatoire.Next(1, 9);
+                Place = "A" + NbPlace;
+                for(int i = 0;i<listParking.Count;i++)
+                {
+                    if (Arrondissement == listParking[i].arrondissement && Place == listParking[i].place && listParking[i].dispo == true)
+                    {
+                        PlaceTrouvé = true;
+                        Console.WriteLine("La place sélectionné est dans le " + Arrondissement + "ème arrondissement à la place " + Place);
+                    }
+                }
+               
+            }
+            
         }
     }
 }
