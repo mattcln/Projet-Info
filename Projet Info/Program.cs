@@ -182,7 +182,6 @@ namespace Projet_Info
                         case 1:
                             Console.Clear();
                             C.EnregistrerVéhicule();
-                            Console.WriteLine("Le véhicule a été enregistré avec succès !\n");
                             break;
 
                         case 2:

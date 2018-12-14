@@ -143,6 +143,7 @@ namespace Projet_Info
             Console.WriteLine("\nModèle : ");
             string Modèle = Console.ReadLine();
             string TypeVéhicule = "";
+            Console.WriteLine();
             string Emplacement = AttributionPlaceParking();
             Console.WriteLine("\nVoulez - vous ajouter une moto, un camion ou une voiture ? ");
             if (NbContrôleur % 3 == 0)
@@ -191,6 +192,9 @@ namespace Projet_Info
                 Voiture Voiture = new Voiture(Immatriculation, Marque, Modèle, TypeVéhicule, Contrôleur, Emplacement, Couleur, NbPortes);
                 listVéhicule.Add(Voiture);
             }
+            Console.WriteLine("Le véhicule a été créé, appuyer sur une touche pour revenir au menu.");
+            Console.ReadKey();
+            Console.Clear();
             SauvegardeVéhicule();
         }
         public void InformationsVéhicule()
@@ -210,19 +214,20 @@ namespace Projet_Info
                     Console.WriteLine("Marque: " + Info[1]);
                     Console.WriteLine("Modèle: " + Info[2]);
                     Console.WriteLine("Contrôleur attitré: " + Info[4]);
+                    Console.WriteLine("Place de parking : " + Info[5]);
                     if (Info[3] == "voiture")
                     {
-                        Console.WriteLine("Couleur: " + Info[5]);
-                        Console.WriteLine("Nombre de portes: " + Info[6] + "\n");
+                        Console.WriteLine("Couleur: " + Info[6]);
+                        Console.WriteLine("Nombre de portes: " + Info[7] + "\n");
                     }
                     if (Info[3] == "camion")
                     {
-                        Console.WriteLine("Volume: " + Info[5] + "\n");
+                        Console.WriteLine("Volume: " + Info[6] + "\n");
                     }
                     if (Info[3] == "moto")
                     {
-                        Console.WriteLine("Couleur: " + Info[5]);
-                        Console.WriteLine("Puissance: " + Info[6] + "\n");
+                        Console.WriteLine("Couleur: " + Info[6]);
+                        Console.WriteLine("Puissance: " + Info[7] + "\n");
                     }
                     Trouvé = true;
                 }
@@ -764,15 +769,15 @@ namespace Projet_Info
                         PlaceTrouvé = true;
                         if (Arrondissement == 21)
                         {
-                            Console.WriteLine("La place sélectionné est à Roissy à la place " + Place);
+                            Console.WriteLine("La place sélectionnée est à Roissy à la place " + Place);
                         }
                         if (Arrondissement == 22)
                         {
-                            Console.WriteLine("La place sélectionné est à Orly à la place " + Place);
+                            Console.WriteLine("La place sélectionnée est à Orly à la place " + Place);
                         }
-                        if (Arrondissement<20)
+                        if (Arrondissement <= 20)
                         {
-                            Console.WriteLine("La place sélectionné est dans le " + Arrondissement + "ème arrondissement à la place " + Place);
+                            Console.WriteLine("La place sélectionnée est dans le " + Arrondissement + "ème arrondissement à la place " + Place);
                         }
                         listParking[i].ChangerDispo();
                     }
