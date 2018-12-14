@@ -15,6 +15,7 @@ namespace Projet_Info
         protected string Marque;
         protected string Modèle;
         protected string Contrôleur;
+        protected string Emplacement;
         public string Immat
         {
             get { return immat; }
@@ -35,14 +36,19 @@ namespace Projet_Info
         {
             get { return Contrôleur; }
         }
+        public string emplacement
+        {
+            get { return Emplacement; }
+        }
         //  CONSTRUCTEUR
-        public Véhicule(string Immat, string TypeVeh, string Marque, string Modèle, string Contrôleur)
+        public Véhicule(string Immat, string TypeVeh, string Marque, string Modèle, string Contrôleur, string Emplacement)
         {
             this.immat = Immat;
             this.TypeVeh = TypeVeh;
             this.Marque = Marque;
             this.Modèle = Modèle;
             this.Contrôleur = Contrôleur;
+            this.Emplacement = Emplacement;
         }
 
         // METHODE        

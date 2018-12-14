@@ -21,7 +21,7 @@ namespace Projet_Info
         }
 
         //  CONSTRUCTEUR
-        public Voiture(string immat, string Marque, string Modèle, string TypeVeh, string Contrôleur, string Couleur, int NbPortes) : base(immat, Marque, Modèle, TypeVeh, Contrôleur)
+        public Voiture(string immat, string Marque, string Modèle, string TypeVeh, string Contrôleur, string Emplacement, string Couleur, int NbPortes) : base(immat, Marque, Modèle, TypeVeh, Contrôleur, Emplacement)
         {
             this.Couleur = Couleur;
             this.NbPortes = NbPortes;

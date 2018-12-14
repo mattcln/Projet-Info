@@ -156,6 +156,8 @@ namespace Projet_Info
             {
                 Contrôleur = "ContrôleurC";
             }
+            string Emplacement = AttributionPlaceParking();
+            Console.WriteLine("Voici la place attribué au véhicule: " + Emplacement);
             while (TypeVéhicule != "moto" && TypeVéhicule != "camion" && TypeVéhicule != "voiture")
             {
                 TypeVéhicule = Console.ReadLine();
@@ -171,14 +173,14 @@ namespace Projet_Info
                 int Puissance = int.Parse(Console.ReadLine());
                 Console.WriteLine("\nCouleur : ");
                 string Couleur = Console.ReadLine();
-                Moto Moto = new Moto(Immatriculation, Marque, Modèle, TypeVéhicule, Contrôleur, Couleur, Puissance);
+                Moto Moto = new Moto(Immatriculation, Marque, Modèle, TypeVéhicule, Contrôleur, Couleur, Emplacement, Puissance);
                 listVéhicule.Add(Moto);
             }
             if (TypeVéhicule == "camion")
             {
                 Console.WriteLine("\nVolume : ");
                 int Volume = int.Parse(Console.ReadLine());
-                Camion Camion = new Camion(Immatriculation, Marque, Modèle, TypeVéhicule, Contrôleur, Volume);
+                Camion Camion = new Camion(Immatriculation, Marque, Modèle, TypeVéhicule, Contrôleur, Emplacement, Volume);
                 listVéhicule.Add(Camion);
             }
             if (TypeVéhicule == "voiture")
@@ -187,7 +189,7 @@ namespace Projet_Info
                 string Couleur = Console.ReadLine();
                 Console.WriteLine("\nNombre de portes : ");
                 int NbPortes = int.Parse(Console.ReadLine());
-                Voiture Voiture = new Voiture(Immatriculation, Marque, Modèle, TypeVéhicule, Contrôleur, Couleur, NbPortes);
+                Voiture Voiture = new Voiture(Immatriculation, Marque, Modèle, TypeVéhicule, Contrôleur, Emplacement, Couleur, NbPortes);
                 listVéhicule.Add(Voiture);
             }
             SauvegardeVéhicule();
@@ -676,19 +678,19 @@ namespace Projet_Info
                     if (tab[3] == "voiture")
                     {
                         int NbPortes = Convert.ToInt32(tab[6]);                        
-                        Voiture Voiture = new Voiture(tab[0], tab[1], tab[2], tab[3], tab[4], tab[5], NbPortes);                        
+                        Voiture Voiture = new Voiture(tab[0], tab[1], tab[2], tab[3], tab[4], tab[5], tab[6], NbPortes);                        
                         listVéhicule.Add(Voiture);
                     }
                     if (tab[3] == "camion")
                     {
                         int VolumeCamion = Convert.ToInt32(tab[5]);
-                        Camion Camion = new Camion(tab[0], tab[1], tab[2], tab[3], tab[4], VolumeCamion);
+                        Camion Camion = new Camion(tab[0], tab[1], tab[2], tab[3], tab[4], tab[5], VolumeCamion);
                         listVéhicule.Add(Camion);
                     }
                     if (tab[3] == "moto")
                     {
                         int Puissance = Convert.ToInt32(tab[6]);
-                        Moto Moto = new Moto(tab[0], tab[1], tab[2], tab[3], tab[4], tab[5], Puissance);
+                        Moto Moto = new Moto(tab[0], tab[1], tab[2], tab[3], tab[4], tab[5], tab[6], Puissance);
                         listVéhicule.Add(Moto);
                     }
                 }
@@ -744,7 +746,7 @@ namespace Projet_Info
                 Console.WriteLine(e.Message);
             }
         }     
-        public void AttributionPlaceParking()
+        public string AttributionPlaceParking()
         {
             Random Aléatoire = new Random();
             int Arrondissement = 0;
@@ -758,15 +760,19 @@ namespace Projet_Info
                 Place = "A" + NbPlace;
                 for(int i = 0;i<listParking.Count;i++)
                 {
+                    Console.WriteLine(listParking[i].arrondissement + "   " + listParking[i].place + listParking[i].dispo);
                     if (Arrondissement == listParking[i].arrondissement && Place == listParking[i].place && listParking[i].dispo == true)
                     {
                         PlaceTrouvé = true;
                         Console.WriteLine("La place sélectionné est dans le " + Arrondissement + "ème arrondissement à la place " + Place);
                         listParking[i].ChangerDispo();
                     }
-                }
+                    Console.ReadKey();
+                }      
                
             }
+            string Emplacement = Arrondissement + "-" + Place;
+            return Emplacement;
             
         }
     }
