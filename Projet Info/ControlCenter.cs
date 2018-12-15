@@ -576,7 +576,7 @@ namespace Projet_Info
                                     Continue = false;
                                 }
                             }
-                        }
+                        } else Continue = false;
                     }
                     if (listTrajet[i].idtrajet == IDTrajet && listTrajet[i].actif == false && Existe == false)
                     {
@@ -593,26 +593,17 @@ namespace Projet_Info
                                     Continue = false;
                                 }
                             }
-                        }
+                        } else Continue = false;
                     }
                 }
                 if (Existe == false)
                 {
-                    Console.WriteLine("\nIl n'existe aucun trajet avec cet ID, voulez-vous essayer un autre ID ?");
-                    string LireRéponseID = Console.ReadLine();
-                    LireRéponseID = LireRéponseID.ToLower();
-                    while (LireRéponseID != "oui" && LireRéponseID != "non")
-                    {
-                        Console.WriteLine("\nIl y a eu une erreur de compréhension, veuillez renseigner de nouveau par 'oui' ou 'non' s'il-vous-plaît :");
-                        LireRéponseID = Console.ReadLine();
-                        LireRéponseID = LireRéponseID.ToLower();
-                    }
-                    if (LireRéponseID == "non")
-                    {
-                        Continue = false;
-                    }
+                    Continue = false;
+                    Console.WriteLine("\nIl n'existe aucun trajet avec cet ID.");
                 }
             }
+            Console.WriteLine("\nVeuillez appuyer sur une touche pour revenir au menu.");
+            Console.ReadKey();
             Console.Clear();
             SauvegardeTrajet();
 
