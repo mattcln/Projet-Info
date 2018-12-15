@@ -629,6 +629,60 @@ namespace Projet_Info
             }
             return Coût;
         }
+        public void RetourTrajet()
+        {
+            Console.WriteLine("Quel est l'ID du trajet qui se clotue ?");
+            int IDTrajet = int.Parse(Console.ReadLine());
+            MaJTrajet(IDTrajet);
+            string ImmatVéhicule = "";
+            for (int i = 0; i<listTrajet.Count; i++)
+            {
+                if(IDTrajet == listTrajet[i].idtrajet)
+                {
+                    ImmatVéhicule = listTrajet[i].immatriculation;
+                }
+            }
+            string AncienEmplacement = ""; int AncienArrondissement = 0; string AnciennePlace = "";
+            string NewEmplacement = ""; int NewArrondissement = 0; int Place = 0; string NewPlace = "";
+            for (int j = 0; j<listVéhicule.Count; j++)
+            {
+                if(ImmatVéhicule == listVéhicule[j].Immat)
+                {
+                    AncienEmplacement = listVéhicule[j].emplacement;
+                    string[] tab = AncienEmplacement.Split('-');
+                    AncienArrondissement = Convert.ToInt32(tab[0]);
+                    AnciennePlace = tab[1];
+                    Console.WriteLine("\nDans quel arrondissement est garé le véhicule ?");
+                    while (NewArrondissement < 1 || NewArrondissement > 22)
+                    {
+                        NewArrondissement = int.Parse(Console.ReadLine());
+                        if (NewArrondissement < 1 || NewArrondissement > 22)
+                        {
+                            Console.WriteLine("Veuillez saisir un arrondissement compris entre 1 et 22, 21 étant le parking de Roissy et 22 étant le parking de Orly.");
+                        }
+                    }
+                    Console.WriteLine("\nA quel place est garé le véhicule ? (de 0 à 9)");
+                    Place = int.Parse(Console.ReadLine());
+                    while (Place < 0 || Place > 9)
+                    {
+                        Place = int.Parse(Console.ReadLine());
+                        if (Place < 0 || Place > 9)
+                        {
+                            Console.WriteLine("Veuillez saisir une place comprise entre 0 et 9.");
+                        }
+                    }                    
+                    NewPlace = "A" + Place;
+                    NewEmplacement = NewArrondissement + "-" + NewPlace;
+                    listVéhicule[j].ChangerEmplacement(NewEmplacement);
+                    Console.WriteLine("Le nouvel emplacement du véhicule a bien été mis à jour.");
+                }
+            }
+            ChangerDispoEmplacement(AncienArrondissement, AnciennePlace);
+            ChangerDispoEmplacement(NewArrondissement, NewPlace);
+            Console.WriteLine("Appuyez sur une touche pour revenir au menu.");
+            Console.ReadKey();
+            Console.Clear();
+        }
         
                 //AUTRES METHODES
         public int CréerID(List<int> NombreAléatoire)
@@ -825,6 +879,16 @@ namespace Projet_Info
                 }
             }
         }
-        
+        public void ChangerDispoEmplacement(int Arrondissement, string Place)
+        {
+            for (int i = 0; i<listParking.Count; i++)
+            {
+                if(listParking[i].arrondissement == Arrondissement && listParking[i].place == Place)
+                {
+                    Console.WriteLine("La disponibilité de la place a été mise à jour.");
+                    listParking[i].ChangerDispo();
+                }
+            }
+        }
     }
 }

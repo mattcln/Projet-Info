@@ -59,6 +59,10 @@ namespace Projet_Info
             str = Immat + ";" + TypeVeh + ";" + Marque + ";" + Modèle + ";" + Contrôleur + ";" + Emplacement;
             return str;
         }
-        public abstract double CalculCout(int NbKm);        
+        public abstract double CalculCout(int NbKm);
+        public void ChangerEmplacement(string NewEmplacement)
+        {
+            Emplacement = NewEmplacement;
+        }
     }
 }

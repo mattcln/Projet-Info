@@ -215,12 +215,13 @@ namespace Projet_Info
                     Console.WriteLine("");
                     Console.WriteLine(" 1 -   Attribuer un trajet");
                     Console.WriteLine(" 2 -   Retirer un trajet");
-                    Console.WriteLine(" 3 -   Modifier l'état d'un trajet");
+                    Console.WriteLine(" 3 -   Mise à jour de l'état d'un trajet");
                     Console.WriteLine(" 4 -   Information trajet");
                     Console.WriteLine(" 5 -   Afficher la liste des trajets");
-                    Console.WriteLine(" 6 -   Retour au menu principal");
+                    Console.WriteLine(" 6 -   Retour d'un trajet");
+                    Console.WriteLine(" 7 -   Retour au menu principal");
                     int ChoixMenu4 = int.Parse(Console.ReadLine());
-                    while (ChoixMenu4 != 1 && ChoixMenu4 != 2 && ChoixMenu4 != 3 && ChoixMenu4 != 4 && ChoixMenu4 != 5 && ChoixMenu4 != 6)
+                    while (ChoixMenu4 != 1 && ChoixMenu4 != 2 && ChoixMenu4 != 3 && ChoixMenu4 != 4 && ChoixMenu4 != 5 && ChoixMenu4 != 6 && ChoixMenu4 != 7)
                     {
                         Console.WriteLine(" Ceci ne correspond à aucune action, choississez une des actions disponibles :");
                         ChoixMenu4 = int.Parse(Console.ReadLine());
@@ -260,6 +261,10 @@ namespace Projet_Info
                             C.ListeTrajets();
                             break;
                         case 6:
+                            Console.Clear();
+                            C.RetourTrajet();
+                            break;
+                        case 7:
                             Console.Clear();
                             // methode retourner au menu principal
                             break;
