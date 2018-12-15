@@ -631,7 +631,7 @@ namespace Projet_Info
         }
         public void RetourTrajet()
         {
-            Console.WriteLine("Quel est l'ID du trajet qui se clotue ?");
+            Console.WriteLine("Quel est l'ID du trajet qui se cloture ?");
             int IDTrajet = int.Parse(Console.ReadLine());
             MaJTrajet(IDTrajet);
             string ImmatVéhicule = "";
@@ -674,7 +674,7 @@ namespace Projet_Info
                     NewPlace = "A" + Place;
                     NewEmplacement = NewArrondissement + "-" + NewPlace;
                     listVéhicule[j].ChangerEmplacement(NewEmplacement);
-                    Console.WriteLine("Le nouvel emplacement du véhicule a bien été mis à jour.");
+                    SauvegardeVéhicule();
                 }
             }
             ChangerDispoEmplacement(AncienArrondissement, AnciennePlace);
@@ -885,10 +885,10 @@ namespace Projet_Info
             {
                 if(listParking[i].arrondissement == Arrondissement && listParking[i].place == Place)
                 {
-                    Console.WriteLine("La disponibilité de la place a été mise à jour.");
                     listParking[i].ChangerDispo();
                 }
             }
+            SauvegardeParking();
         }
     }
 }

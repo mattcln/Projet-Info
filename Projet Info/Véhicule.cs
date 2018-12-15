@@ -62,7 +62,10 @@ namespace Projet_Info
         public abstract double CalculCout(int NbKm);
         public void ChangerEmplacement(string NewEmplacement)
         {
-            Emplacement = NewEmplacement;
+            Console.WriteLine("Le nouvel emplacement du véhicule a bien été mis à jour.");
+            Console.WriteLine("Emplacement actuel:" + Emplacement);
+            Console.WriteLine("Emplacement nouveau:" + NewEmplacement);
+            Emplacement = NewEmplacement;            
         }
     }
 }
