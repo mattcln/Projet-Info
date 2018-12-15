@@ -134,7 +134,6 @@ namespace Projet_Info
                         case 1:
                             Console.Clear();
                             C.CréerClient(NombreAléatoire);
-                            Console.WriteLine("Le client a été créé avec succès !\n");
                             break;
 
                         case 2:
@@ -247,7 +246,6 @@ namespace Projet_Info
                             Console.WriteLine("Veuillez renseigner l'ID du trajet que vous voulez mette à jour:");
                             int IDTrajet = int.Parse(Console.ReadLine());
                             C.MaJTrajet(IDTrajet);
-                            Console.WriteLine("L'état du trajet a bien été mis à jour !\n");
                             break;
 
                         case 4:
