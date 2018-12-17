@@ -173,14 +173,14 @@ namespace Projet_Info
                 int Puissance = int.Parse(Console.ReadLine());
                 Console.WriteLine("\nCouleur : ");
                 string Couleur = Console.ReadLine();
-                Moto Moto = new Moto(Immatriculation, Marque, Modèle, TypeVéhicule, Contrôleur, Couleur, Emplacement, Puissance);
+                Moto Moto = new Moto(Immatriculation, Marque, Modèle, TypeVéhicule, Contrôleur, Emplacement, 0, Couleur, Puissance);
                 listVéhicule.Add(Moto);
             }
             if (TypeVéhicule == "camion")
             {
                 Console.WriteLine("\nVolume : ");
                 int Volume = int.Parse(Console.ReadLine());
-                Camion Camion = new Camion(Immatriculation, Marque, Modèle, TypeVéhicule, Contrôleur, Emplacement, Volume);
+                Camion Camion = new Camion(Immatriculation, Marque, Modèle, TypeVéhicule, Contrôleur, Emplacement, 0, Volume);
                 listVéhicule.Add(Camion);
             }
             if (TypeVéhicule == "voiture")
@@ -189,7 +189,7 @@ namespace Projet_Info
                 string Couleur = Console.ReadLine();
                 Console.WriteLine("\nNombre de portes : ");
                 int NbPortes = int.Parse(Console.ReadLine());
-                Voiture Voiture = new Voiture(Immatriculation, Marque, Modèle, TypeVéhicule, Contrôleur, Emplacement, Couleur, NbPortes);
+                Voiture Voiture = new Voiture(Immatriculation, Marque, Modèle, TypeVéhicule, Contrôleur, Emplacement, 0, Couleur, NbPortes);
                 listVéhicule.Add(Voiture);
             }
             Console.WriteLine("Le véhicule a été créé, appuyer sur une touche pour revenir au menu.");
@@ -626,19 +626,22 @@ namespace Projet_Info
             int IDTrajet = int.Parse(Console.ReadLine());
             MaJTrajet(IDTrajet);
             string ImmatVéhicule = "";
-            for (int i = 0; i<listTrajet.Count; i++)
+            int i = 0;
+            for (i = 0; i<listTrajet.Count; i++)
             {
                 if(IDTrajet == listTrajet[i].idtrajet)
                 {
                     ImmatVéhicule = listTrajet[i].immatriculation;
                 }
             }
+            i--;
             string AncienEmplacement = ""; int AncienArrondissement = 0; string AnciennePlace = "";
             string NewEmplacement = ""; int NewArrondissement = 0; int Place = 0; string NewPlace = "";
             for (int j = 0; j<listVéhicule.Count; j++)
             {
                 if(ImmatVéhicule == listVéhicule[j].Immat)
                 {
+                    listVéhicule[j].AjouterKm(listTrajet[i].nbKm);
                     AncienEmplacement = listVéhicule[j].emplacement;
                     string[] tab = AncienEmplacement.Split('-');
                     AncienArrondissement = Convert.ToInt32(tab[0]);
@@ -670,6 +673,7 @@ namespace Projet_Info
             }
             ChangerDispoEmplacement(AncienArrondissement, AnciennePlace);
             ChangerDispoEmplacement(NewArrondissement, NewPlace);
+            SauvegardeParking();
             Console.WriteLine("Appuyez sur une touche pour revenir au menu.");
             Console.ReadKey();
             Console.Clear();
@@ -720,27 +724,29 @@ namespace Projet_Info
                 }                
                 LectureFichierClient.Close();
                 string LocalisationVéhicules = "C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Véhicules.txt";
-                StreamReader LectureFichierVéhicules = new StreamReader(LocalisationVéhicules);                
+                StreamReader LectureFichierVéhicules = new StreamReader(LocalisationVéhicules);
+                int NbKmV = 0;
                 while (LectureFichierVéhicules.EndOfStream == false)
                 {
                     ligne = LectureFichierVéhicules.ReadLine();
-                    string[] tab = ligne.Split(';');                    
+                    string[] tab = ligne.Split(';');
+                    NbKmV = Convert.ToInt32(tab[6]);
                     if (tab[3] == "voiture")
                     {
-                        int NbPortes = Convert.ToInt32(tab[7]);                        
-                        Voiture Voiture = new Voiture(tab[0], tab[1], tab[2], tab[3], tab[4], tab[5], tab[6], NbPortes);                        
+                        int NbPortes = Convert.ToInt32(tab[8]);                        
+                        Voiture Voiture = new Voiture(tab[0], tab[1], tab[2], tab[3], tab[4], tab[5], NbKmV, tab[7], NbPortes);                        
                         listVéhicule.Add(Voiture);
                     }
                     if (tab[3] == "camion")
                     {
-                        int VolumeCamion = Convert.ToInt32(tab[6]);
-                        Camion Camion = new Camion(tab[0], tab[1], tab[2], tab[3], tab[4], tab[5], VolumeCamion);
+                        int VolumeCamion = Convert.ToInt32(tab[7]);
+                        Camion Camion = new Camion(tab[0], tab[1], tab[2], tab[3], tab[4], tab[5], NbKmV, VolumeCamion);
                         listVéhicule.Add(Camion);
                     }
                     if (tab[3] == "moto")
                     {
-                        int Puissance = Convert.ToInt32(tab[7]);
-                        Moto Moto = new Moto(tab[0], tab[1], tab[2], tab[3], tab[4], tab[5], tab[6], Puissance);
+                        int Puissance = Convert.ToInt32(tab[8]);
+                        Moto Moto = new Moto(tab[0], tab[1], tab[2], tab[3], tab[4], tab[5], NbKmV, tab[7], Puissance);
                         listVéhicule.Add(Moto);
                     }
                 }

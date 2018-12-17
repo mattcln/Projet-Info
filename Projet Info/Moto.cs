@@ -19,7 +19,7 @@ namespace Projet_Info
             get { return Puissance; }
         }
 
-        public Moto(string Immat, string Marque, string Modèle, string TypeVeh, string Contrôleur, string Emplacement, string Couleur, int Puissance) : base(Immat, Marque, Modèle, TypeVeh, Contrôleur, Emplacement)
+        public Moto(string Immat, string Marque, string Modèle, string TypeVeh, string Contrôleur, string Emplacement, int NbKm, string Couleur, int Puissance) : base(Immat, Marque, Modèle, TypeVeh, Contrôleur, Emplacement, NbKm)
         {
             this.Puissance = Puissance;
             this.Couleur = Couleur;

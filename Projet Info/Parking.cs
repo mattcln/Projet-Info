@@ -37,6 +37,7 @@ namespace Projet_Info
                 Dispo = false;
             }
             else Dispo = true;
+            Console.WriteLine("La dispo a été changée !");
         }
     }
 }
