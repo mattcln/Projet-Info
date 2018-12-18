@@ -73,7 +73,6 @@ namespace Projet_Info
         public void AjouterKm(int NbKmEnPlus)
         {
             NbKm += NbKmEnPlus;
-            Console.WriteLine(NbKmEnPlus + "km ont été ajoutés au véhicule.");
             Console.WriteLine("\nCe véhicule a maintenant parcouru un total de " + NbKm + "km.");
         }
     }

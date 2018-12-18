@@ -686,6 +686,7 @@ namespace Projet_Info
                 }
             }
             ChangerDispoEmplacement(NewArrondissement, NewPlace);
+            SauvegardeClient();
             SauvegardeParking();
             Console.WriteLine("Appuyez sur une touche pour revenir au menu.");
             Console.ReadKey();
