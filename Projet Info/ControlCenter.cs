@@ -43,8 +43,11 @@ namespace Projet_Info
             Console.WriteLine("\nType de permis : ");
             string TypePermis = Console.ReadLine();
             int ID = CréerID(NombreAléatoire);
-            Client C = new Client(Nom, Prénom, TypePermis, ID);
+            Client C = new Client(Nom, Prénom, TypePermis, ID, 0);
             listClient.Add(C);
+            Console.WriteLine("Le client a bien été enregistré.");
+            Console.WriteLine("\nAppuyez sur une touche pour revenir au menu.");
+            Console.ReadKey();
             Console.Clear();
             SauvegardeClient();
         }
@@ -108,7 +111,7 @@ namespace Projet_Info
                 StreamWriter EcritureFichierClient = new StreamWriter("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Clients.txt");
                 for (int i = 0; i < listClient.Count; i++)
                 {
-                    EcritureFichierClient.WriteLine(listClient[i].nom + ";" + listClient[i].prénom + ";" + listClient[i].typepermis + ";" + listClient[i].ID);
+                    EcritureFichierClient.WriteLine(listClient[i].nom + ";" + listClient[i].prénom + ";" + listClient[i].typepermis + ";" + listClient[i].ID + ";" + listClient[i].dépensetotale);
                 }
                 EcritureFichierClient.Close();
             }
@@ -627,11 +630,15 @@ namespace Projet_Info
             MaJTrajet(IDTrajet);
             string ImmatVéhicule = "";
             int i = 0;
+            int IDClient = 0;
+            double DépenseàAjouter = 0;
             for (i = 0; i<listTrajet.Count; i++)
             {
                 if(IDTrajet == listTrajet[i].idtrajet)
                 {
                     ImmatVéhicule = listTrajet[i].immatriculation;
+                    IDClient = listTrajet[i].idclient;
+                    DépenseàAjouter = listTrajet[i].coût;
                 }
             }
             i--;
@@ -671,7 +678,13 @@ namespace Projet_Info
                     SauvegardeVéhicule();
                 }
             }
-            ChangerDispoEmplacement(AncienArrondissement, AnciennePlace);
+            for(int g = 0; g<listClient.Count; g++)
+            {
+                if (listClient[g].ID == IDClient)
+                {
+                    listClient[i].AjouterDépense(DépenseàAjouter);
+                }
+            }
             ChangerDispoEmplacement(NewArrondissement, NewPlace);
             SauvegardeParking();
             Console.WriteLine("Appuyez sur une touche pour revenir au menu.");
@@ -719,7 +732,8 @@ namespace Projet_Info
                     ligne = LectureFichierClient.ReadLine();
                     string[] tab = ligne.Split(';');
                     int ID = Convert.ToInt32(tab[3]);
-                    Client C = new Client(tab[0], tab[1], tab[2], ID);
+                    int DépenseTotale = Convert.ToInt32(tab[4]);
+                    Client C = new Client(tab[0], tab[1], tab[2], ID, DépenseTotale);
                     listClient.Add(C);
                 }                
                 LectureFichierClient.Close();

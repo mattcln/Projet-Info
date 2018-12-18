@@ -230,7 +230,6 @@ namespace Projet_Info
                         case 1:
                             Console.Clear();
                             C.CréerTrajet();
-                            Console.WriteLine("Le trajet a été enregistré avec succès !\n");
                             break;
 
                         case 2:

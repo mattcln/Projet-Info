@@ -13,6 +13,7 @@ namespace Projet_Info
         private string Prénom;
         private string TypePermis;
         private int iD;
+        private double DépenseTotale;
         public int ID
         {
             get { return iD; }
@@ -29,22 +30,30 @@ namespace Projet_Info
         {
             get { return TypePermis; }
         }
+        public double dépensetotale
+        {
+            get { return DépenseTotale; }
+        }
 
         //  CONSTRUCTEUR
-        public Client(string Nom, string Prénom, string TypePermis, int iD)
+        public Client(string Nom, string Prénom, string TypePermis, int iD, double DépenseTotale)
         {
             this.Nom = Nom;
             this.Prénom = Prénom;
             this.TypePermis = TypePermis;
-            this.iD = iD;            
+            this.iD = iD;
+            this.DépenseTotale = DépenseTotale;
         }
-
         //  METHODE
         
         public string Tostring()
         {
-            string str = "\n|Nom: " + Nom + "\n|Prénom: " + Prénom + "\n|Permis : " + TypePermis + "\n|ID:" + ID;            
+            string str = "\n|Nom: " + Nom + "\n|Prénom: " + Prénom + "\n|Permis : " + TypePermis + "\n|ID:" + ID + "\n|Dépense totale: " + DépenseTotale;            
             return str;            
-        }        
+        }    
+        public void AjouterDépense(double DépenseàAjouter)
+        {
+            DépenseTotale += DépenseàAjouter;
+        }
     }
 }
