@@ -169,9 +169,10 @@ namespace Projet_Info
                     Console.WriteLine(" 2 -   Retirer un véhicule");
                     Console.WriteLine(" 3 -   Information véhicule");
                     Console.WriteLine(" 4 -   Liste des véhicules");
-                    Console.WriteLine(" 5 -   Retour au menu principal");
+                    Console.WriteLine(" 5 -   Liste des véhicules par marque");
+                    Console.WriteLine(" 6 -   Retour au menu principal");
                     int ChoixMenu3 = int.Parse(Console.ReadLine());
-                    while (ChoixMenu3 != 1 && ChoixMenu3 != 2 && ChoixMenu3 != 3 && ChoixMenu3 != 4 && ChoixMenu3 != 5)
+                    while (ChoixMenu3 != 1 && ChoixMenu3 != 2 && ChoixMenu3 != 3 && ChoixMenu3 != 4 && ChoixMenu3 != 5 && ChoixMenu3 != 6)
                     {
                         Console.WriteLine(" Ceci ne correspond à aucune action, choississez une des actions disponibles :");
                         ChoixMenu3 = int.Parse(Console.ReadLine());
@@ -201,9 +202,13 @@ namespace Projet_Info
                             break;
                         case 5:
                             Console.Clear();
+                            C.ListeParMarque();
+                            break;
+                        case 6:
+                            Console.Clear();
                             // Retour Menu
                             break;
-                    }                    
+                    }
                     break;
 
                 case 3:

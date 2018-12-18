@@ -68,8 +68,10 @@ namespace Projet_Info
             {
                 Console.WriteLine(Informations);
             }
-            else Console.WriteLine("\nAucun client avec cet ID n'a été trouvé.");            
-
+            else Console.WriteLine("\nAucun client avec cet ID n'a été trouvé.");
+            Console.WriteLine("\nAppuyez sur un bouton pour revenir au menu.");
+            Console.ReadKey();
+            Console.Clear();
         }
         public void SupprimerClient()
         {
@@ -239,6 +241,9 @@ namespace Projet_Info
             {
                 Console.WriteLine("\nAucun véhicule avec cet ID n'a été trouvé.");
             }
+            Console.WriteLine("\nAppuyez sur un bouton pour revenir au menu.");
+            Console.ReadKey();
+            Console.Clear();
         }
         public void SupprimerVéhicule()
         {
@@ -264,7 +269,7 @@ namespace Projet_Info
         }
         public void ListeVéhicules()
         {
-            Console.WriteLine("Voici la liste complète des clients enregistrés:");
+            Console.WriteLine("Voici la liste complète des véhicules enregistrés:");
             Console.WriteLine("\n| Immat |" + "    " + " | Marque | " + "     | Modèle |");
             for (int i = 0; i < listVéhicule.Count; i++)
             {
@@ -305,6 +310,22 @@ namespace Projet_Info
             }
             return existe;
         } 
+        public void ListeParMarque()
+        {
+            Console.WriteLine("De quelle marque voulez-vous avez la liste ?");
+            string Marque = Console.ReadLine();
+            for(int i = 0; i < listVéhicule.Count; i++)
+            {
+                Console.WriteLine(listVéhicule[i].marque + " et " + Marque);
+                if (listVéhicule[i].marque == Marque)
+                {
+                    Console.WriteLine("  " + listVéhicule[i].Immat + "      " + listVéhicule[i].marque + "         " + listVéhicule[i].modèle);
+                }
+            }
+            Console.WriteLine("\nAppoyez sur une touche pour revenir au menu.");
+            Console.ReadKey();
+            Console.Clear();
+        }
         
                 //TRAJETS
         public void CréerTrajet()
