@@ -215,9 +215,11 @@ namespace Projet_Info
                     string[] Info = Informations.Split(';');
                     Console.WriteLine("\nVoici les informations du véhicules: \n");
                     Console.WriteLine("Immatriculation: " + Info[0]);
-                    Console.WriteLine("Type de véhicule: " + Info[3]);
-                    Console.WriteLine("Marque: " + Info[1]);
-                    Console.WriteLine("Modèle: " + Info[2]);
+                    Console.WriteLine("Type de véhicule: " + Info[1]);
+                    Console.WriteLine("Marque: " + Info[2]);
+                    Console.WriteLine("Modèle: " + Info[3]);
+                    Console.WriteLine("Couleur: " + Info[7]);
+                    Console.WriteLine("Nombre de portes: " + Info[8]);
                     Console.WriteLine("Contrôleur attitré: " + Info[4]);
                     Console.WriteLine("Place de parking : " + Info[5]);
                     if (Info[3] == "voiture")
