@@ -763,7 +763,7 @@ namespace Projet_Info
                     int DépenseTotale = Convert.ToInt32(tab[4]);
                     Client C = new Client(tab[0], tab[1], tab[2], ID, DépenseTotale);
                     listClient.Add(C);
-                }                
+                }
                 LectureFichierClient.Close();
                 string LocalisationVéhicules = "C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Véhicules.txt";
                 StreamReader LectureFichierVéhicules = new StreamReader(LocalisationVéhicules);
