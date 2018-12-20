@@ -29,9 +29,6 @@ namespace Projet_Info
             listParking = new List<Parking>();
         }
 
-
-
-
                 //CLIENTS
         public void CréerClient(List<int> NombreAléatoire)
         {
@@ -110,7 +107,7 @@ namespace Projet_Info
         {
             try
             {
-                StreamWriter EcritureFichierClient = new StreamWriter("C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Clients.txt");
+                StreamWriter EcritureFichierClient = new StreamWriter("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Clients.txt");
                 for (int i = 0; i < listClient.Count; i++)
                 {
                     EcritureFichierClient.WriteLine(listClient[i].nom + ";" + listClient[i].prénom + ";" + listClient[i].typepermis + ";" + listClient[i].ID + ";" + listClient[i].dépensetotale);
@@ -285,7 +282,7 @@ namespace Projet_Info
         {
             try
             {
-                StreamWriter EcritureFichierVéhicule = new StreamWriter("C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Véhicules.txt");
+                StreamWriter EcritureFichierVéhicule = new StreamWriter("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Véhicules.txt");
 
                 for (int i = 0; i < listVéhicule.Count; i++)
                 {
@@ -416,97 +413,65 @@ namespace Projet_Info
                     }
                 }
             }
-            bool NouvelleImmatriculation = false;
-            bool ExistenceImmatriculation = false;
             string Immatriculation = "";
-            if (ArrêtDeLaMéthode == false) //Permet d'arrêter le programme vu que aucun ID Client n'a été affecté
+            bool ExistenceImmatriculation = false;
+            bool DispoVéhicule = false;
+            string LireRéponseImmat = "oui";
+            bool ImmatVérifié = false;
+            string LireRéponseVéhicule = "oui";
+            if (ArrêtDeLaMéthode == false)
             {
-                if (NouvelleImmatriculation == false)
+                while (LireRéponseImmat == "oui")
                 {
                     Console.WriteLine("\nSaisir l'immatriculation du véhicule affecté à ce trajet: ");
                     Immatriculation = Console.ReadLine();
                     ExistenceImmatriculation = VérifierExistenceImmatriculation(Immatriculation);
+                    DispoVéhicule = VérifierDispoVoiture(Immatriculation);
+                    if (ExistenceImmatriculation == false)
+                    {
+                        Console.WriteLine("Il n'existe aucun véhicule avec cette immatriculation, voulez-vous réessayer ?");
+                        LireRéponseImmat = OuiNon();
+                    }
+                    if (ExistenceImmatriculation == true && DispoVéhicule == false)
+                    {
+                        Console.WriteLine("\nLe véhicule sélectionné n'est pas disponible, il est surement déjà utilisé dans un autre trajet.");
+                        Console.WriteLine("Voulez-vous essayer avec une autre immatriculation ?");
+                        LireRéponseImmat = OuiNon();
+                    }
+                    if (ExistenceImmatriculation == true && DispoVéhicule == true)
+                    {
+                        LireRéponseImmat = "non"; //On fait ça pour close le while, vu que l'immat sélectionné est bon.
+                        ImmatVérifié = true;
+                    }
                 }
-                string LireRéponseImmat = "";
-                bool Dispo = false;
-                while (ExistenceImmatriculation == false && Dispo == false)
+                if (ImmatVérifié == false)
                 {
-                    if (NouvelleImmatriculation == false)
+                    Console.WriteLine("Voulez-vous créer un nouveau véhicule ?");
+                    LireRéponseVéhicule = OuiNon();
+                    if (LireRéponseVéhicule == "oui")
                     {
-                        Console.WriteLine("\nIl n'existe aucun véhicule avec cet immatriculation, vous-voulez réessayer ?");
-                        LireRéponseImmat = Console.ReadLine();
-                        LireRéponseImmat = LireRéponseImmat.ToLower();
+                        EnregistrerVéhicule();
+                        Immatriculation = listVéhicule[listVéhicule.Count - 1].Immat;
+                        LireRéponseVéhicule = "non"; //On fait ça pour close le while, vu que l'immat sélectionné est bon.
                     }
-
-                    while (LireRéponseImmat != "oui" && LireRéponseImmat != "non")
-                    {
-                        Console.WriteLine("\nIl y a eu une erreur de compréhension, veuillez renseigner de nouveau par 'oui' ou 'non' s'il-vous-plaît :");
-                        LireRéponseImmat = Console.ReadLine();
-                        LireRéponseImmat = LireRéponseImmat.ToLower();
-                    }
-                    if (LireRéponseImmat == "oui")
-                    {
-                        if (NouvelleImmatriculation == true)
-                        {
-                            while (ExistenceImmatriculation == false)
-                            {
-                                Console.WriteLine("\nVeuillez renseigner l'immatriculation du nouveau véhicule s'il-vous-plaît :");
-                                Immatriculation = Console.ReadLine();
-                                ExistenceImmatriculation = VérifierExistenceImmatriculation(Immatriculation);
-                                if (NouvelleImmatriculation == false)
-                                {
-                                    Console.WriteLine("\nVous avez fait une erreur en recopiant l'immatriculation.");
-                                }
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("\nSaisir l'immatriculation du véhicule affecté à ce trajet: ");
-                            Immatriculation = Console.ReadLine();
-                            ExistenceImmatriculation = VérifierExistenceImmatriculation(Immatriculation);
-                        }
-                    }
-                    if (LireRéponseImmat == "non")
-                    {
-                        Console.WriteLine("\nVoulez-vous créer un nouveau véhicule ?");
-                        string LireRéponseVéhicule = Console.ReadLine();
-                        LireRéponseVéhicule = LireRéponseVéhicule.ToLower();
-                        while (LireRéponseVéhicule != "oui" && LireRéponseVéhicule != "non")
-                        {
-                            Console.WriteLine("\nIl y a eu une erreur de compréhension, veuillez renseigner de nouveau par 'oui' ou 'non' s'il-vous-plaît :");
-                            LireRéponseVéhicule = Console.ReadLine();
-                            LireRéponseVéhicule = LireRéponseVéhicule.ToLower();
-                        }
-                        if (LireRéponseVéhicule == "oui")
-                        {
-                            EnregistrerVéhicule();
-                            LireRéponseImmat = "oui";
-                            NouvelleImmatriculation = true;
-                        }
-                        else ArrêtDeLaMéthode = true;
-                    }
-                    Dispo = VérifierDispoVoiture(Immatriculation);
-                    if (Dispo == false)
-                    {
-                        Console.WriteLine("Le véhicule sélectionné n'est pas disponible.");
-                    }
+                    else ArrêtDeLaMéthode = true;
                 }
-                double Coût = CoûtTrajet(Immatriculation, NbKm);
-                if (AllerRetour == true)
-                {
-                    Coût = Coût * 2;
-                }
-                Console.WriteLine("\nLe coût du trajet est de : " + Coût + " euros");
-                Console.WriteLine("\nCréation d'un ID pour le trajet :");
-                int IDTrajet = CréerID(NombreAléatoire);
-                if (ArrêtDeLaMéthode == false)
-                {
-                    DépartVoiture(Immatriculation);
-                    Trajet Trajet = new Trajet(NbKm, VilleDépart, VilleArrivée, Autoroute, AllerRetour, IDClient, Immatriculation, IDTrajet, Coût, true);
-                    listTrajet.Add(Trajet);
-                    SauvegardeTrajet();
-                    SauvegardeParking();
-                }
+            }
+            double Coût = CoûtTrajet(Immatriculation, NbKm);
+            if (AllerRetour == true)
+            {
+                Coût = Coût * 2;
+            }
+            Console.WriteLine("\nLe coût du trajet est de : " + Coût);
+            Console.WriteLine("\nCréation d'un ID pour le trajet :");
+            int IDTrajet = CréerID(NombreAléatoire);
+            if (ArrêtDeLaMéthode == false)
+            {
+                DépartVoiture(Immatriculation);
+                Trajet Trajet = new Trajet(NbKm, VilleDépart, VilleArrivée, Autoroute, AllerRetour, IDClient, Immatriculation, IDTrajet, Coût, true);
+                listTrajet.Add(Trajet);
+                SauvegardeTrajet();
+                SauvegardeParking();
             }
             if (ArrêtDeLaMéthode == true)
             {
@@ -576,7 +541,7 @@ namespace Projet_Info
         {
             try
             {
-                StreamWriter EcritureFichierTrajets = new StreamWriter("C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Trajets.txt");
+                StreamWriter EcritureFichierTrajets = new StreamWriter("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Trajets.txt");
                 for (int i = 0; i < listTrajet.Count; i++)
                 {
                     EcritureFichierTrajets.WriteLine(listTrajet[i].nbKm + ";" + listTrajet[i].villedépart + ";" + listTrajet[i].villearrivée + ";" + listTrajet[i].autoroute + ";" + listTrajet[i].allerretour + ";" + listTrajet[i].idclient + ";" + listTrajet[i].immatriculation + ";" + listTrajet[i].idtrajet + ";" + listTrajet[i].coût + ";" + listTrajet[i].actif);
@@ -757,7 +722,7 @@ namespace Projet_Info
         {
             try
             {
-                string LocalisationClient = "C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Clients.txt";
+                string LocalisationClient = "C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Clients.txt";
                 StreamReader LectureFichierClient = new StreamReader(LocalisationClient);
                 string ligne = "";
                 while (LectureFichierClient.EndOfStream == false)
@@ -770,7 +735,7 @@ namespace Projet_Info
                     listClient.Add(C);
                 }                
                 LectureFichierClient.Close();
-                string LocalisationVéhicules = "C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Véhicules.txt";
+                string LocalisationVéhicules = "C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Véhicules.txt";
                 StreamReader LectureFichierVéhicules = new StreamReader(LocalisationVéhicules);
                 int NbKmV = 0;
                 while (LectureFichierVéhicules.EndOfStream == false)
@@ -798,7 +763,7 @@ namespace Projet_Info
                     }
                 }
                 LectureFichierVéhicules.Close();
-                string LocationTrajets = "C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Trajets.txt";
+                string LocationTrajets = "C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Trajets.txt";
                 StreamReader LectureFichierTrajets = new StreamReader(LocationTrajets);
                 while (LectureFichierTrajets.EndOfStream == false)
                 {
@@ -828,7 +793,7 @@ namespace Projet_Info
                     listTrajet.Add(T);
                 }
                 LectureFichierTrajets.Close();
-                string LocationParking = "C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Parkings.txt";
+                string LocationParking = "C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Parkings.txt";
                 StreamReader LectureFichierParkings = new StreamReader(LocationParking);
                 while (LectureFichierParkings.EndOfStream == false)
                 {
@@ -892,7 +857,7 @@ namespace Projet_Info
         {
             try
             {
-                StreamWriter EcritureFichierParking = new StreamWriter("C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Parkings.txt");
+                StreamWriter EcritureFichierParking = new StreamWriter("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Parkings.txt");
                 for (int i = 0; i < listParking.Count; i++)
                 {
                     EcritureFichierParking.WriteLine(listParking[i].arrondissement + ";" + listParking[i].place + ";" + listParking[i].dispo);

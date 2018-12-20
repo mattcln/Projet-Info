@@ -16,7 +16,7 @@ namespace Projet_Info
         }
         static void Authentification()
         {
-            StreamReader FichierAuthentification = new StreamReader("C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Authentification.txt");            
+            StreamReader FichierAuthentification = new StreamReader("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Authentification.txt");            
             Console.WriteLine("Bienvenue sur le programme de gestion du park automobile.");
             string ligne = "";
             string Pseudo = ""; string MDP = ""; bool Continuer = true; bool Vérif = false; bool boucle = false; bool end = false;
@@ -24,7 +24,7 @@ namespace Projet_Info
             {
                 if (boucle == true)
                 {
-                    FichierAuthentification = new StreamReader("C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Authentification.txt");
+                    FichierAuthentification = new StreamReader("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Authentification.txt");
                 }
                 Console.WriteLine("\n Veuillez renseigner votre pseudonyme:");
                 Pseudo = Console.ReadLine();
@@ -104,11 +104,11 @@ namespace Projet_Info
             Console.WriteLine(" 4 -   Fermeture du programme");
             Console.WriteLine("");
             Console.WriteLine(" Choississez une action avec un chiffre : ");
-            int ChoixMenu = int.Parse(Console.ReadLine());
+            int.TryParse(Console.ReadLine(),out int ChoixMenu);
             while (ChoixMenu != 1 && ChoixMenu != 2 && ChoixMenu != 3 && ChoixMenu != 4)
             {
                 Console.WriteLine(" Ceci ne correspond à aucune action, choississez une des actions disponibles :");
-                ChoixMenu = int.Parse(Console.ReadLine());
+                int.TryParse(Console.ReadLine(), out ChoixMenu);
             }
             switch (ChoixMenu)
             {
@@ -123,11 +123,12 @@ namespace Projet_Info
                     Console.WriteLine(" 3 -   Informations client");
                     Console.WriteLine(" 4 -   Afficher la liste des clients");
                     Console.WriteLine(" 5 -   Retour au menu principal");
-                    int ChoixMenu2 = int.Parse(Console.ReadLine());
+                    int.TryParse(Console.ReadLine(), out int ChoixMenu2);
                     while (ChoixMenu2 != 1 && ChoixMenu2 != 2 && ChoixMenu2 != 3 && ChoixMenu2 != 4 && ChoixMenu2 != 5)
                     {
                         Console.WriteLine(" Ceci ne correspond à aucune action, choississez une des actions disponibles :");
                         ChoixMenu2 = int.Parse(Console.ReadLine());
+                        int.TryParse(Console.ReadLine(), out ChoixMenu2);
                     }
                     switch (ChoixMenu2)
                     {
@@ -171,11 +172,11 @@ namespace Projet_Info
                     Console.WriteLine(" 4 -   Liste des véhicules");
                     Console.WriteLine(" 5 -   Liste des véhicules par marque");
                     Console.WriteLine(" 6 -   Retour au menu principal");
-                    int ChoixMenu3 = int.Parse(Console.ReadLine());
+                    int.TryParse(Console.ReadLine(), out int ChoixMenu3);
                     while (ChoixMenu3 != 1 && ChoixMenu3 != 2 && ChoixMenu3 != 3 && ChoixMenu3 != 4 && ChoixMenu3 != 5 && ChoixMenu3 != 6)
                     {
                         Console.WriteLine(" Ceci ne correspond à aucune action, choississez une des actions disponibles :");
-                        ChoixMenu3 = int.Parse(Console.ReadLine());
+                        int.TryParse(Console.ReadLine(), out ChoixMenu3);
                     }
                     switch (ChoixMenu3)
                     {
@@ -224,11 +225,11 @@ namespace Projet_Info
                     Console.WriteLine(" 5 -   Afficher la liste des trajets");
                     Console.WriteLine(" 6 -   Retour d'un trajet");
                     Console.WriteLine(" 7 -   Retour au menu principal");
-                    int ChoixMenu4 = int.Parse(Console.ReadLine());
+                    int.TryParse(Console.ReadLine(), out int ChoixMenu4);
                     while (ChoixMenu4 != 1 && ChoixMenu4 != 2 && ChoixMenu4 != 3 && ChoixMenu4 != 4 && ChoixMenu4 != 5 && ChoixMenu4 != 6 && ChoixMenu4 != 7)
                     {
                         Console.WriteLine(" Ceci ne correspond à aucune action, choississez une des actions disponibles :");
-                        ChoixMenu4 = int.Parse(Console.ReadLine());
+                        int.TryParse(Console.ReadLine(), out ChoixMenu4);
                     }
                     switch (ChoixMenu4)
                     {
