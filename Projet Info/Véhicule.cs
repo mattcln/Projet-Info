@@ -46,7 +46,7 @@ namespace Projet_Info
             get { return NbKm; }
         }
         //  CONSTRUCTEUR
-        public Véhicule(string Immat, string Marque, string Modèle, string TypeVeh, string Contrôleur, string Emplacement, int NbKm)
+        public Véhicule(string Immat, string TypeVeh, string Marque, string Modèle, string Contrôleur, string Emplacement, int NbKm)
         {
             this.immat = Immat;
             this.TypeVeh = TypeVeh;

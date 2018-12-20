@@ -197,7 +197,7 @@ namespace Projet_Info
                 Voiture Voiture = new Voiture(Immatriculation, Marque, Modèle, TypeVéhicule, Contrôleur, Emplacement, 0, Couleur, NbPortes);
                 listVéhicule.Add(Voiture);
             }
-            Console.WriteLine("Le véhicule a été créé, appuyer sur une touche pour revenir au menu.");
+            Console.WriteLine("Le véhicule a été créé, appuyer sur une touche pour revenir au menu." + listVéhicule.Count);
             Console.ReadKey();
             Console.Clear();
             SauvegardeVéhicule();
@@ -275,7 +275,7 @@ namespace Projet_Info
             {
                 Console.WriteLine("  " + listVéhicule[i].Immat + "      " + listVéhicule[i].marque + "         " + listVéhicule[i].modèle);
             }
-            Console.WriteLine("\nPressez un bouton pour retourner au menu.");
+            Console.WriteLine("\nPressez un bouton pour retourner au menu." + listVéhicule.Count);
             Console.ReadKey();
             Console.Clear();
         }
@@ -427,7 +427,8 @@ namespace Projet_Info
                     ExistenceImmatriculation = VérifierExistenceImmatriculation(Immatriculation);
                 }
                 string LireRéponseImmat = "";
-                while (ExistenceImmatriculation == false)
+                bool Dispo = false;
+                while (ExistenceImmatriculation == false && Dispo == false)
                 {
                     if (NouvelleImmatriculation == false)
                     {
@@ -482,6 +483,11 @@ namespace Projet_Info
                             NouvelleImmatriculation = true;
                         }
                         else ArrêtDeLaMéthode = true;
+                    }
+                    Dispo = VérifierDispoVoiture(Immatriculation);
+                    if (Dispo == false)
+                    {
+                        Console.WriteLine("Le véhicule sélectionné n'est pas disponible.");
                     }
                 }
                 double Coût = CoûtTrajet(Immatriculation, NbKm);
@@ -767,19 +773,19 @@ namespace Projet_Info
                     ligne = LectureFichierVéhicules.ReadLine();
                     string[] tab = ligne.Split(';');
                     NbKmV = Convert.ToInt32(tab[6]);
-                    if (tab[3] == "voiture")
+                    if (tab[1] == "voiture")
                     {
                         int NbPortes = Convert.ToInt32(tab[8]);                        
-                        Voiture Voiture = new Voiture(tab[0], tab[1], tab[2], tab[3], tab[4], tab[5], NbKmV, tab[7], NbPortes);                        
+                        Voiture Voiture = new Voiture(tab[0], tab[1], tab[2], tab[3], tab[4], tab[5], NbKmV, tab[7], NbPortes);
                         listVéhicule.Add(Voiture);
                     }
-                    if (tab[3] == "camion")
+                    if (tab[1] == "camion")
                     {
                         int VolumeCamion = Convert.ToInt32(tab[7]);
                         Camion Camion = new Camion(tab[0], tab[1], tab[2], tab[3], tab[4], tab[5], NbKmV, VolumeCamion);
                         listVéhicule.Add(Camion);
                     }
-                    if (tab[3] == "moto")
+                    if (tab[1] == "moto")
                     {
                         int Puissance = Convert.ToInt32(tab[8]);
                         Moto Moto = new Moto(tab[0], tab[1], tab[2], tab[3], tab[4], tab[5], NbKmV, tab[7], Puissance);
@@ -922,6 +928,21 @@ namespace Projet_Info
                 }
             }
             SauvegardeParking();
+        }
+        public bool VérifierDispoVoiture(string Immat)
+        {
+            bool Dispo = true;
+            for (int i = 0; i<listTrajet.Count;i++)
+            {
+                if (listTrajet[i].immatriculation == Immat)
+                {
+                    if (listTrajet[i].actif == true)
+                    {
+                        Dispo = false;
+                    }
+                }
+            }
+            return Dispo;
         }
     }
 }
