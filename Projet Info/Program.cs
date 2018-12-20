@@ -16,7 +16,7 @@ namespace Projet_Info
         }
         static void Authentification()
         {
-            StreamReader FichierAuthentification = new StreamReader("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Authentification.txt");            
+            StreamReader FichierAuthentification = new StreamReader("C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Authentification.txt");            
             Console.WriteLine("Bienvenue sur le programme de gestion du park automobile.");
             string ligne = "";
             string Pseudo = ""; string MDP = ""; bool Continuer = true; bool Vérif = false; bool boucle = false; bool end = false;
@@ -24,7 +24,7 @@ namespace Projet_Info
             {
                 if (boucle == true)
                 {
-                    FichierAuthentification = new StreamReader("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Authentification.txt");
+                    FichierAuthentification = new StreamReader("C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Authentification.txt");
                 }
                 Console.WriteLine("\n Veuillez renseigner votre pseudonyme:");
                 Pseudo = Console.ReadLine();
