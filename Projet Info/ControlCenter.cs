@@ -635,7 +635,7 @@ namespace Projet_Info
                 {
                     ImmatVéhicule = listTrajet[i].immatriculation;
                     IDClient = listTrajet[i].idclient;
-                    DépenseàAjouter = listTrajet[i].coût;
+                    DépenseàAjouter = listTrajet[i].coût;                    
                 }
             }
             i--;
@@ -645,6 +645,7 @@ namespace Projet_Info
             {
                 if(ImmatVéhicule == listVéhicule[j].Immat)
                 {
+                    Console.WriteLine("Le trajet est bien cloturé, le " + listVéhicule[j].contrôleur + " doit s'occuper de la gestion du véhicule.");
                     listVéhicule[j].AjouterKm(listTrajet[i].nbKm);
                     AncienEmplacement = listVéhicule[j].emplacement;
                     string[] tab = AncienEmplacement.Split('-');
@@ -679,7 +680,7 @@ namespace Projet_Info
             {
                 if (listClient[g].ID == IDClient)
                 {
-                    listClient[i].AjouterDépense(DépenseàAjouter);
+                    listClient[g].AjouterDépense(DépenseàAjouter);
                 }
             }
             ChangerDispoEmplacement(NewArrondissement, NewPlace);
