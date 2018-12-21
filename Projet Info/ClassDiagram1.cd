@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Projet_Info.Camion" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAIAAAACAAE=</HashCode>
+      <FileName>Camion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projet_Info.Client" Collapsed="true">
+    <Position X="7.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAgAAAAAgAAEAIAAKEAAACAIIAAAACAAAAAAAAA=</HashCode>
+      <FileName>Client.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projet_Info.ControlCenter" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>DAAUCkmCABAAAiEAAEgARClEEAQkAAKAAAABAJAIAgA=</HashCode>
+      <FileName>ControlCenter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projet_Info.Moto" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAIAAAEAAAAAAABAAAAAQAAAAAAAAAAAAE=</HashCode>
+      <FileName>Moto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projet_Info.Parking" Collapsed="true">
+    <Position X="11" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAABQAABAUAAAQAAAAA=</HashCode>
+      <FileName>Parking.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projet_Info.Program" Collapsed="true">
+    <Position X="7.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAAAAAIAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projet_Info.Trajet" Collapsed="true">
+    <Position X="11" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAYEAAAEBAAEAiAgBDAgIAAwAxAEAAIQAAAAAAA=</HashCode>
+      <FileName>Trajet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projet_Info.Véhicule" Collapsed="true">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAEIAAABGAAIAAAByAAAAAgAgAAIAIABABAE=</HashCode>
+      <FileName>Véhicule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projet_Info.Voiture" Collapsed="true">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAgAAAAIAAAEAAAAAAAAAAAAAAAAAAAAAAAAAIE=</HashCode>
+      <FileName>Voiture.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
