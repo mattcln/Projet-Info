@@ -10,13 +10,13 @@ namespace Projet_Info
     class Program
     {
         static void Main(string[] args)
-        {      
-            Menu();
+        {
+            Authentification();
             System.Threading.Thread.Sleep(2000);
         }
         static void Authentification()
         {
-            StreamReader FichierAuthentification = new StreamReader("C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Authentification.txt");            
+            StreamReader FichierAuthentification = new StreamReader("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Authentification.txt");            
             Console.WriteLine("Bienvenue sur le programme de gestion du park automobile.");
             string ligne = "";
             string Pseudo = ""; string MDP = ""; bool Continuer = true; bool Vérif = false; bool boucle = false; bool end = false;
@@ -24,7 +24,7 @@ namespace Projet_Info
             {
                 if (boucle == true)
                 {
-                    FichierAuthentification = new StreamReader("C:\\Users\\natha\\source\\repos\\Projet-Info\\Projet Info\\bin\\Debug\\Authentification.txt");
+                    FichierAuthentification = new StreamReader("C:\\Users\\user\\Documents\\Cours\\Ingé 2\\Informatique\\Données projet\\Authentification.txt");
                 }
                 Console.WriteLine("\n Veuillez renseigner votre pseudonyme:");
                 Pseudo = Console.ReadLine();
