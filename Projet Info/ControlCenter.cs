@@ -194,7 +194,7 @@ namespace Projet_Info
                 Voiture Voiture = new Voiture(Immatriculation, TypeVéhicule, Marque, Modèle, Contrôleur, Emplacement, 0, Couleur, NbPortes);
                 listVéhicule.Add(Voiture);
             }
-            Console.WriteLine("Le véhicule a été créé, appuyer sur une touche pour revenir au menu." + listVéhicule.Count);
+            Console.WriteLine("Le véhicule a été créé, appuyer sur une touche pour revenir au menu.");
             Console.ReadKey();
             Console.Clear();
             SauvegardeVéhicule();
@@ -461,6 +461,7 @@ namespace Projet_Info
             if (AllerRetour == true)
             {
                 Coût = Coût * 2;
+                NbKm = NbKm * 2;
             }
             Console.WriteLine("\nLe coût du trajet est de : " + Coût);
             Console.WriteLine("\nCréation d'un ID pour le trajet :");
